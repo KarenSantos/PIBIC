@@ -1,32 +1,13 @@
 package models;
 
-import play.data.validation.Constraints.Required;
-
 public class Musica {
+
+	private String nome, artista, link;
 	
-	@Required
-	private String nome;
-	@Required
-	private String link;
-	
-	public Musica(String nome, String link) {
+	public Musica(String nome, String artista, String link) {
 		this.nome = nome;
+		this.artista = artista;
 		this.link = link;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
 }

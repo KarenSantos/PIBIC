@@ -3,57 +3,37 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import play.data.validation.Constraints.Required;
-
 public class Playlist {
-	
-	@Required
-	private List<Musica> primPaisagem;
-	@Required
+
+	private int id;
+	private List<Musica> primPaisagem, segPaisagem;
 	private Musica transicao;
-	@Required
-	private List<Musica> segPaisagem;
+	private String nome, imagem;
 	
-	
-	public Playlist() {
-		primPaisagem = new ArrayList<Musica>();
-		segPaisagem = new ArrayList<Musica>();
+	public Playlist(int id, List<Musica> primPaisagem,
+			List<Musica> segPaisagem, Musica transicao, String nome, String imagem) {
+		this.id = id;
+		this.primPaisagem = primPaisagem;
+		this.segPaisagem = segPaisagem;
+		this.transicao = transicao;
+		this.nome = nome;
+		this.imagem = imagem;
 	}
 
-	public List<Musica> getPrimPaisagem() {
-		return primPaisagem;
+	public String getNome() {
+		return nome;
 	}
 	
-	public List<Musica> segPrimPaisagem() {
-		return segPaisagem;
+	public String getImagem() {
+		return imagem;
 	}
 	
-	public Musica getTransicao() {
-		return transicao;
+	public List<Musica> getMusicas() {
+		List<Musica> musicas = new ArrayList<Musica>();
+		musicas.addAll(primPaisagem);
+		musicas.add(transicao);
+		musicas.addAll(segPaisagem);
+		return musicas;
 	}
-	
-	public void addMusicaPrimPaisagem (Musica musica){
-		primPaisagem.add(musica);
-	}
-	
-	public void addMusicaSegPaisagem (Musica musica) {
-		segPaisagem.add(musica);
-	}
-	
-	public void setTransicao(Musica musica){
-		transicao = musica;
-	}
-	
-	public List<Musica> getAll(){
-		List<Musica> all = new ArrayList<Musica>();
-		for (Musica musica : primPaisagem) {
-			all.add(musica);
-		}
-		all.add(transicao);
-		for (Musica musica : segPaisagem) {
-			all.add(musica);
-		}
-		return all;
-	}
-	
+
 }
