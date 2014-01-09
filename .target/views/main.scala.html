@@ -1,17 +1,105 @@
 @(title: String)(content: Html)
 
 <!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if (IE 9)]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
 
-<html>
-    <head>
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-    </head>
-    <body>
-	    <script src="https://code.jquery.com/jquery.js"></script>
-	    <script src="js/bootstrap.min.js"></script>
-        @content
-    </body>
+	<head>
+	
+		<!-- Meta Tags -->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<title>@title</title>   
+		
+		<meta name="description" content="" /> 
+		
+		<!-- Mobile Specifics -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>   
+		
+		<!-- Mobile Internet Explorer ClearType Technology -->
+		<!--[if IEMobile]>  <meta http-equiv="cleartype" content="on">  <![endif]-->
+		
+		<!-- Bootstrap -->
+		<link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet">
+		
+		<!-- Main Style -->
+		<link href="@routes.Assets.at("css/main.css")" rel="stylesheet">
+		
+		<!-- Supersized -->
+		<link href="@routes.Assets.at("css/supersized.css")" rel="stylesheet">
+		<link href="@routes.Assets.at("css/supersized.shutter.css")" rel="stylesheet">
+		
+		<!-- FancyBox -->
+		<link href="@routes.Assets.at("css/fancybox/jquery.fancybox.css")" rel="stylesheet">
+		
+		<!-- Font Icons -->
+		<link href="@routes.Assets.at("css/fonts.css")" rel="stylesheet">
+		
+		<!-- Shortcodes -->
+		<link href="@routes.Assets.at("css/shortcodes.css")" rel="stylesheet">
+		
+		<!-- Responsive -->
+		<link href="@routes.Assets.at("css/bootstrap-responsive.min.css")" rel="stylesheet">
+		<link href="@routes.Assets.at("css/responsive.css")" rel="stylesheet">
+		
+		<!-- Custom CSS -->
+		<link href="@routes.Assets.at("css/custom.css")" rel="stylesheet">
+		
+		<!-- Google Font -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+		
+		<!-- Fav Icon -->
+		<link rel="shortcut icon" href="@routes.Assets.at("img/forward.png")">
+		
+		<link rel="apple-touch-icon" href="#">
+		<link rel="apple-touch-icon" sizes="114x114" href="#">
+		<link rel="apple-touch-icon" sizes="72x72" href="#">
+		<link rel="apple-touch-icon" sizes="144x144" href="#">
+		
+		<!-- Modernizr -->
+		<script src="@routes.Assets.at("js/modernizr.js")"></script>
+		
+		<!-- Analytics -->
+		<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'YOUR ID']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+		<!-- End Analytics -->
+	
+	</head>
+	
+	<body>
+	
+		@content
+		
+		<!-- Js -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery Core -->
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script> <!-- Google Map API -->
+		<script src="@routes.Assets.at("js/bootstrap.min.js")"></script> <!-- Bootstrap -->
+		<script src="@routes.Assets.at("js/supersized.3.2.7.min.js")"></script> <!-- Slider -->
+		<script src="@routes.Assets.at("js/waypoints.js")"></script> <!-- WayPoints -->
+		<script src="@routes.Assets.at("js/waypoints-sticky.js")"></script> <!-- Waypoints for Header -->
+		<script src="@routes.Assets.at("js/jquery.isotope.js")"></script> <!-- Isotope Filter -->
+		<script src="@routes.Assets.at("js/jquery.fancybox.pack.js")"></script> <!-- Fancybox -->
+		<script src="@routes.Assets.at("js/jquery.fancybox-media.js")"></script> <!-- Fancybox for Media -->
+		<script src="@routes.Assets.at("js/jquery.tweet.js")"></script> <!-- Tweet -->
+		<script src="@routes.Assets.at("js/plugins.js")"></script> <!-- Contains: jPreloader, jQuery Easing, jQuery ScrollTo, jQuery One Page Navi -->
+		<script src="@routes.Assets.at("js/main.js")"></script> <!-- Default JS -->
+		<!-- End Js -->
+	
+	</body>
 </html>
