@@ -1,4 +1,4 @@
-@(message: String)
+@(playlists: List[Playlist])
 
 @import helper._
 
@@ -12,7 +12,7 @@
 		</div>
 		<!-- End of Splash Screen -->
 		
-		<!-- Homepage Slider -->
+		<!-- Homepage Slider 
 		<div id="home-slider">	
 		    <div class="overlay"></div>
 		
@@ -33,7 +33,7 @@
 		        
 		        <a id="nextsection" href="#work"><i class="font-icon-arrow-simple-down"></i></a>
 		    </div>
-		</div>
+		</div>-->
 		<!-- End Homepage Slider -->
 		
 		<!-- Header -->
@@ -42,18 +42,18 @@
 		    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
 		        
 		        <div id="logo">
-		        	<a id="goUp" href="#home-slider" title="Chakra | Responsive One Page Template">Chakra Template</a>
+		        	<a id="goUp" href="#home-slider" title="Projeto">Projeto</a>
 		        </div>
 		        
 		        <nav id="menu">
 		        	<ul id="menu-nav">
-		            	<li class="current"><a href="#home-slider">Home</a></li>
-		                <li><a href="#work">Our Work</a></li>
-		                <li><a href="#about">About Us</a></li>
+		            	<li class="current"><a href="#about">Home</a></li>
+		                <li><a href="#about">Nova Playlist</a></li>
+		                <li><a href="#work">Playlists</a></li>
 		                <li><a href="#services">Services</a></li>
-		                <li><a href="blog.html" class="external">Blog</a></li>
+		                <!-- <li><a href="blog.html" class="external">Blog</a></li> -->
 		                <li><a href="#contact">Contact</a></li>
-						<li><a href="shortcodes.html" class="external">Shortcodes</a></li>
+						<!-- <li><a href="shortcodes.html" class="external">Shortcodes</a></li> -->
 		            </ul>
 		        </nav>
 		        
@@ -61,15 +61,173 @@
 		</header>
 		<!-- End Header -->
 		
-		<!-- Our Work Section -->
+		<!-- Nova Playlist Section -->
+		<div id="about" class="page-alternate">
+		<div class="container">
+		    <!-- Title Page -->
+		    <div class="row">
+		        <div class="span12">
+		            <div class="title-page">
+		                <h2 class="title">Crie sua playlist</h2>
+		                <h3 class="title-description">Learn About our Team &amp; Culture.</h3>
+		                
+		                <div class="page-description">
+		                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ligula odio. Sed id metus felis. Ut pretium nisl non justo condimentum id tincidunt nunc faucibus. 
+		                    Ut neque eros, pulvinar eu blandit quis, lacinia nec ipsum. Etiam vel orci ipsum. Sed eget velit ipsum. Duis in tortor scelerisque felis mattis imperdiet. Donec at libero tellus. 
+		                    <a href="#">Suspendisse consectetur</a> consectetur bibendum. Pellentesque posuere, ligula volutpat elementum interdum, diam arcu elementum ipsum, vel ultricies est mauris ut nisi.</p>
+		                </div>
+		                
+		            </div>
+		        </div>
+		    </div>
+		    <!-- End Title Page -->
+		    
+		    <div class="row margin-40">
+		    	<div class="span4">
+		        	<h3>Our Culture</h3>
+					<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ligula odio. Sed id metus felis. Ut pretium nisl non justo condimentum id tincidunt nunc faucibus. 
+		            Ut neque eros, pulvinar eu blandit quis, lacinia nec ipsum. Etiam vel orci ipsum. Sed eget velit ipsum. </p>
+		            
+		            <p>Duis in tortor scelerisque felis mattis imperdiet. Donec at <a href="#">libero tellus</a>. Suspendisse consectetur consectetur bibendum.</p>
+		        </div>
+		        
+		        <div class="span4">
+		        	<h3>Our Method</h3>
+		            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ligula odio. Sed id metus felis. Ut <strong>pretium nisl</strong> non justo condimentum id tincidunt nunc faucibus. 
+		            Ut neque eros, pulvinar eu blandit quis, lacinia nec ipsum. Etiam vel orci ipsum. Sed eget velit ipsum. </p>
+		            
+		            <p>Duis in tortor scelerisque felis mattis imperdiet. Donec at libero tellus. Suspendisse consectetur consectetur bibendum.</p>
+		        </div>
+		        
+		        <div class="span4">
+		        	<h3>Our Skills</h3>
+		            
+		            <div class="progress-bar">
+		                <div class="progress">
+		                	<span class="field">Design</span>
+		                    <span class="field-value">60%</span>
+		                    <div class="bar" style="width: 60%;"></div>
+		                </div>
+		            </div>
+		            
+		            <div class="progress-bar">
+		                <div class="progress">
+		                	<span class="field">Development</span>
+		                    <span class="field-value">75%</span>
+		                    <div class="bar" style="width: 75%;"></div>
+		                </div>
+		            </div>
+		            
+		            <div class="progress-bar">
+		                <div class="progress">
+		                	<span class="field">UX/UI</span>
+		                    <span class="field-value">33%</span>
+		                    <div class="bar" style="width: 33%;"></div>
+		                </div>
+		            </div>
+		            
+		            <div class="progress-bar">
+		                <div class="progress">
+		                	<span class="field">Branding</span>
+		                    <span class="field-value">100%</span>
+		                    <div class="bar" style="width: 100%;"></div>
+		                </div>
+		            </div>    
+		        </div>
+		        
+		    </div>
+		    
+		    <div class="sep">
+		    	<span class="separator"></span>
+		    </div>
+		    
+		    <!-- People -->
+		    <div class="row">
+		    	
+		        <!-- Start Profile -->
+		    	<div class="span4 profile">
+		        	<div class="image-wrap">
+		                <div class="hover-wrap">
+		                    <span class="overlay-img"></span>
+		                    <span class="overlay-text-thumb">CTO/Founder</span>
+		                </div>
+		                <img src="@routes.Assets.at("img/profile/profile-01.jpg")" alt="John Doe">
+		            </div>
+		            <h3 class="profile-name">John Doe</h3>
+		            <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>. 
+		            Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+		            	
+		            <div class="social">
+		            	<ul class="social-icons">
+		                	<li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+		                    <li><a href="#"><i class="font-icon-social-dribbble"></i></a></li>
+		                    <li><a href="#"><i class="font-icon-social-facebook"></i></a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        <!-- End Profile -->
+		        
+		        <!-- Start Profile -->
+		    	<div class="span4 profile">
+		        	<div class="image-wrap">
+		                <div class="hover-wrap">
+		                    <span class="overlay-img"></span>
+		                    <span class="overlay-text-thumb">Creative Director</span>
+		                </div>
+		                <img src="@routes.Assets.at("img/profile/profile-02.jpg")" alt="Jane Helf">
+		            </div>
+		            <h3 class="profile-name">Jane Helf</h3>
+		            <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>. 
+		            Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+		            	
+		            <div class="social">
+		            	<ul class="social-icons">
+		                	<li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+		                    <li><a href="#"><i class="font-icon-social-email"></i></a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        <!-- End Profile -->
+		        
+		        <!-- Start Profile -->
+		    	<div class="span4 profile">
+		        	<div class="image-wrap">
+		                <div class="hover-wrap">
+		                    <span class="overlay-img"></span>
+		                    <span class="overlay-text-thumb">Lead Designer</span>
+		                </div>
+		                <img src="@routes.Assets.at("img/profile/profile-03.jpg")" alt="Joshua Insanus">
+		            </div>
+		            <h3 class="profile-name">Joshua Insanus</h3>
+		            <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>. 
+		            Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+		            	
+		            <div class="social">
+		            	<ul class="social-icons">
+		                	<li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+		                    <li><a href="#"><i class="font-icon-social-linkedin"></i></a></li>
+		                    <li><a href="#"><i class="font-icon-social-google-plus"></i></a></li>
+		                    <li><a href="#"><i class="font-icon-social-vimeo"></i></a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        <!-- End Profile -->
+		        
+		    </div>
+		    <!-- End People -->
+		</div>
+		</div>
+		<!-- End Nova Playlist Section -->
+		
+		<!-- Playlists Section -->
 		<div id="work" class="page">
 			<div class="container">
 		    	<!-- Title Page -->
 		        <div class="row">
 		            <div class="span12">
 		                <div class="title-page">
-		                    <h2 class="title">Our Work</h2>
-		                    <h3 class="title-description">Check Out Our Projects on <a href="#">Dribbble</a>.</h3>
+		                    <h2 class="title">Playlists</h2>
+		                    <h3 class="title-description">Check Out Our Projects on Dribbble.</h3>
 		                    
 		                    <div class="page-description">
 		                		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ligula odio. Sed id metus felis. Ut pretium nisl non justo condimentum id tincidunt nunc faucibus. 
@@ -88,7 +246,7 @@
 		            	<!-- Filter -->
 		                <nav id="options" class="work-nav">
 		                    <ul id="filters" class="option-set" data-option-key="filter">
-		                    	<li class="type-work">Type of Work</li>
+		                    	<li class="type-work">Playlists</li>
 		                        <li><a href="#filter" data-option-value="*" class="selected">All Projects</a></li>
 		                        <li><a href="#filter" data-option-value=".design">Design</a></li>
 		                        <li><a href="#filter" data-option-value=".illustration">Illustration</a></li>
@@ -256,165 +414,7 @@
 		        <!-- End Portfolio Projects -->
 		    </div>
 		</div>
-		<!-- End Our Work Section -->
-		
-		<!-- About Section -->
-		<div id="about" class="page-alternate">
-		<div class="container">
-		    <!-- Title Page -->
-		    <div class="row">
-		        <div class="span12">
-		            <div class="title-page">
-		                <h2 class="title">About Us</h2>
-		                <h3 class="title-description">Learn About our Team &amp; Culture.</h3>
-		                
-		                <div class="page-description">
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ligula odio. Sed id metus felis. Ut pretium nisl non justo condimentum id tincidunt nunc faucibus. 
-		                    Ut neque eros, pulvinar eu blandit quis, lacinia nec ipsum. Etiam vel orci ipsum. Sed eget velit ipsum. Duis in tortor scelerisque felis mattis imperdiet. Donec at libero tellus. 
-		                    <a href="#">Suspendisse consectetur</a> consectetur bibendum. Pellentesque posuere, ligula volutpat elementum interdum, diam arcu elementum ipsum, vel ultricies est mauris ut nisi.</p>
-		                </div>
-		                
-		            </div>
-		        </div>
-		    </div>
-		    <!-- End Title Page -->
-		    
-		    <div class="row margin-40">
-		    	<div class="span4">
-		        	<h3>Our Culture</h3>
-					<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ligula odio. Sed id metus felis. Ut pretium nisl non justo condimentum id tincidunt nunc faucibus. 
-		            Ut neque eros, pulvinar eu blandit quis, lacinia nec ipsum. Etiam vel orci ipsum. Sed eget velit ipsum. </p>
-		            
-		            <p>Duis in tortor scelerisque felis mattis imperdiet. Donec at <a href="#">libero tellus</a>. Suspendisse consectetur consectetur bibendum.</p>
-		        </div>
-		        
-		        <div class="span4">
-		        	<h3>Our Method</h3>
-		            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed ligula odio. Sed id metus felis. Ut <strong>pretium nisl</strong> non justo condimentum id tincidunt nunc faucibus. 
-		            Ut neque eros, pulvinar eu blandit quis, lacinia nec ipsum. Etiam vel orci ipsum. Sed eget velit ipsum. </p>
-		            
-		            <p>Duis in tortor scelerisque felis mattis imperdiet. Donec at libero tellus. Suspendisse consectetur consectetur bibendum.</p>
-		        </div>
-		        
-		        <div class="span4">
-		        	<h3>Our Skills</h3>
-		            
-		            <div class="progress-bar">
-		                <div class="progress">
-		                	<span class="field">Design</span>
-		                    <span class="field-value">60%</span>
-		                    <div class="bar" style="width: 60%;"></div>
-		                </div>
-		            </div>
-		            
-		            <div class="progress-bar">
-		                <div class="progress">
-		                	<span class="field">Development</span>
-		                    <span class="field-value">75%</span>
-		                    <div class="bar" style="width: 75%;"></div>
-		                </div>
-		            </div>
-		            
-		            <div class="progress-bar">
-		                <div class="progress">
-		                	<span class="field">UX/UI</span>
-		                    <span class="field-value">33%</span>
-		                    <div class="bar" style="width: 33%;"></div>
-		                </div>
-		            </div>
-		            
-		            <div class="progress-bar">
-		                <div class="progress">
-		                	<span class="field">Branding</span>
-		                    <span class="field-value">100%</span>
-		                    <div class="bar" style="width: 100%;"></div>
-		                </div>
-		            </div>    
-		        </div>
-		        
-		    </div>
-		    
-		    <div class="sep">
-		    	<span class="separator"></span>
-		    </div>
-		    
-		    <!-- People -->
-		    <div class="row">
-		    	
-		        <!-- Start Profile -->
-		    	<div class="span4 profile">
-		        	<div class="image-wrap">
-		                <div class="hover-wrap">
-		                    <span class="overlay-img"></span>
-		                    <span class="overlay-text-thumb">CTO/Founder</span>
-		                </div>
-		                <img src="@routes.Assets.at("img/profile/profile-01.jpg")" alt="John Doe">
-		            </div>
-		            <h3 class="profile-name">John Doe</h3>
-		            <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>. 
-		            Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-		            	
-		            <div class="social">
-		            	<ul class="social-icons">
-		                	<li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
-		                    <li><a href="#"><i class="font-icon-social-dribbble"></i></a></li>
-		                    <li><a href="#"><i class="font-icon-social-facebook"></i></a></li>
-		                </ul>
-		            </div>
-		        </div>
-		        <!-- End Profile -->
-		        
-		        <!-- Start Profile -->
-		    	<div class="span4 profile">
-		        	<div class="image-wrap">
-		                <div class="hover-wrap">
-		                    <span class="overlay-img"></span>
-		                    <span class="overlay-text-thumb">Creative Director</span>
-		                </div>
-		                <img src="@routes.Assets.at("img/profile/profile-02.jpg")" alt="Jane Helf">
-		            </div>
-		            <h3 class="profile-name">Jane Helf</h3>
-		            <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>. 
-		            Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-		            	
-		            <div class="social">
-		            	<ul class="social-icons">
-		                	<li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
-		                    <li><a href="#"><i class="font-icon-social-email"></i></a></li>
-		                </ul>
-		            </div>
-		        </div>
-		        <!-- End Profile -->
-		        
-		        <!-- Start Profile -->
-		    	<div class="span4 profile">
-		        	<div class="image-wrap">
-		                <div class="hover-wrap">
-		                    <span class="overlay-img"></span>
-		                    <span class="overlay-text-thumb">Lead Designer</span>
-		                </div>
-		                <img src="@routes.Assets.at("img/profile/profile-03.jpg")" alt="Joshua Insanus">
-		            </div>
-		            <h3 class="profile-name">Joshua Insanus</h3>
-		            <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>. 
-		            Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-		            	
-		            <div class="social">
-		            	<ul class="social-icons">
-		                	<li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
-		                    <li><a href="#"><i class="font-icon-social-linkedin"></i></a></li>
-		                    <li><a href="#"><i class="font-icon-social-google-plus"></i></a></li>
-		                    <li><a href="#"><i class="font-icon-social-vimeo"></i></a></li>
-		                </ul>
-		            </div>
-		        </div>
-		        <!-- End Profile -->
-		        
-		    </div>
-		    <!-- End People -->
-		</div>
-		</div>
-		<!-- End About Section -->
+		<!-- End Playlists Section -->
 		
 		<!-- Big Blockquote -->
 		<div class="big-quote page">
@@ -516,10 +516,10 @@
 		</div>
 		<!-- End Services Section -->
 		
-		<!-- Google Map -->
+		<!-- Google Map
 		<div id="map-area">
 		    <div class="map" id="map_1" data-mapLat="51.911475" data-mapLon="-1.461815" data-mapZoom="11" data-mapTitle="Your Title"></div>
-		</div>
+		</div> -->
 		<!-- End Google Map -->
 		
 		<!-- Contact Section -->

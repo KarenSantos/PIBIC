@@ -9,5 +9,7 @@ public class Musica {
 		this.artista = artista;
 		this.link = link;
 	}
+	
+	
 
 }
