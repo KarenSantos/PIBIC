@@ -7,9 +7,14 @@ public class Musica {
 	public Musica(String nome, String artista, String link) {
 		this.nome = nome;
 		this.artista = artista;
+		
+		//ajeitar a string do link
+		
 		this.link = link;
 	}
 	
-	
+	public String getLink(){
+		return link;
+	}
 
 }

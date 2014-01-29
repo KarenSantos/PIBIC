@@ -46,6 +46,6 @@ public class Projeto {
 		List<Musica> andrePais2 = new ArrayList<Musica>();
 		andrePais2.add(new Musica("Fullmoon", "Sonata Arctica", "http://www.youtube.com/watch?v=sTqX4hY74KA"));
 		andrePais2.add(new Musica("Late Redemption", "Angra", "http://www.youtube.com/watch?v=RiQwEknXPqo"));
-		criarPlaylist(andrePais1, andrePais2, andreTrans, "Andre Rocha", "");
+		criarPlaylist(andrePais1, andrePais2, andreTrans, "Nome da playlist", "img000.jpg");
 	}
 }
