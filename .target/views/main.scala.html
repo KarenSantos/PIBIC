@@ -99,45 +99,8 @@
 		<script src="@routes.Assets.at("js/jquery.tweet.js")"></script> <!-- Tweet -->
 		<script src="@routes.Assets.at("js/plugins.js")"></script> <!-- Contains: jPreloader, jQuery Easing, jQuery ScrollTo, jQuery One Page Navi -->
 		<script src="@routes.Assets.at("js/main.js")"></script> <!-- Default JS -->
+		<script src="@routes.Assets.at("js/player.js")"></script> <!-- Playlist player bar -->
 		<!-- End Js -->
 		
-		<script>
-								
-			// Script para tocar o video sem ele aparecer. iFrame tem tamanho zero
-			// e aparece uma menssagem indicando que o iFrame foi chamado com sucesso.
-								
-			var loadLinkH = document.getElementById("playlist"); // armazena o id do link
-			loadLinkH.onclick = loadFrame; // chama a função loadFrame quando clica no link
-								
-			function loadFrame(e) { // função para criar o iFrame
-				var containerH = document.getElementById("frameHiden"); // armazena o id da div onde vai aparecer o iFrame
-				var containerMsg = document.getElementById("frameHidenMsg"); 
-				e = e || window.event; 
-									
-				//adiciona o iFrame na div
-				containerH.innerHTML = "<iframe width='0' height='0' src=\"" + loadLinkH.href + "\" frameborder='0' allowfullscreen >";
-				containerMsg.innerHTML = "<div id='faixaPlayer'>Nome da musica que vai tocar.</div>"; 
-				
-				//chama a função stopEvent
-				stopEvent( e ); 
-			}
-			
-			//A funcao stopEvent abaixo inpede a ação primaria do tag <a>.
-			//Assim o link funciona mesmo se o Javascript estiver desativado.
-			
-			function stopEvent( e ) {
-				e = e || window.event; 
-				
-				e.cancelBubble = true; 
-				e.returnValue = false; 
-			
-				if( e.stopPropagation ) { 
-				 e.stopPropagation(); 
-				 e.preventDefault(); 
-				} 
-				return false; 
-			} 
-		</script>
-	
 	</body>
 </html>
