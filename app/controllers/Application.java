@@ -11,5 +11,9 @@ public class Application extends Controller {
     public static Result index() {
         return ok(views.html.index.render(projeto.getPlaylists()));
     }
+    
+    public static Result novaPlaylist() {
+		return ok(views.html.create.render());
+	}
 
 }
