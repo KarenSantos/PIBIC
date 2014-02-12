@@ -8,9 +8,7 @@ public class Musica {
 		this.nome = nome;
 		this.artista = artista;
 		
-		//ajeitar a string do link
-		
-		this.link = link;
+		this.link = link.split("=")[1];
 	}
 	
 	public String getLink(){
