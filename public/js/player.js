@@ -6,7 +6,6 @@
 // e aparece uma menssagem indicando que o iFrame foi chamado com sucesso.
 					
 var loadLinkH = document.getElementById("playlist"); // armazena o id do link
-var playlist = document.getElementById("playlist").info;
 loadLinkH.onclick = loadFrame; // chama a função loadFrame quando clica no link
 					
 function loadFrame(e) { // função para criar o iFrame
@@ -15,10 +14,9 @@ function loadFrame(e) { // função para criar o iFrame
 	e = e || window.event; 
 						
 	//adiciona o iFrame na div
-	var pause = "<img src='@routes.Assets.at(\"img/imgs playlists/img000.JPG\")'>";
 	containerHiden.innerHTML = "<iframe width='0' height='0' src=\"" + loadLinkH.href + "\" frameborder='0' allowfullscreen >";
-	containerFaixa.innerHTML = "<div id='faixaPlayer'>" + 
-							   "<a id='pause' title='pausar'>" + pause + "</a></div>"; 
+	document.getElementById("faixaPlayer").style.display = "block";
+	//containerFaixa.innerHTML = "<div id='faixaPlayer'></div>"; 
 
 
 	
