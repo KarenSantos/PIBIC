@@ -20,7 +20,9 @@
 		    	<div class="row">
 		        	<div class="span12">
 		                <div class="slider-text">
-		                    <div id="slidecaption"></div>
+		                    <div id="slidecaption">
+		                    	<div class="slide-content">FullScreen Gallery</div>
+		                    </div>
 		                </div>
 		            </div>
 		        </div>
@@ -47,9 +49,9 @@
 		        
 		        <nav id="menu">
 		        	<ul id="menu-nav">
-		            	<li class="current"><a href="#about">Home</a></li>
-		                <li><a href="#about">Nova Playlist</a></li>
+		            	<li class="current"><a href="#work">Home</a></li>
 		                <li><a href="#work">Playlists</a></li>
+		                <li><a href="#about">Nova Playlist</a></li>
 		                <li><a href="#contact">Contato</a></li>
 		            </ul>
 		        </nav>
@@ -58,14 +60,75 @@
 		</header>
 		<!-- End Header -->
 		
+		<!-- Playlists Section -->
+		<div id="work" class="page">
+			<div class="container">
+		    	<!-- Title Page -->
+		        <div class="row">
+		            <div class="span12">
+		                <div class="title-page">
+		                    <h2 class="title">VIAJE!</h2>
+		                    <h3 class="title-description">Ouça playlists criadas por outros usuários.</h3>
+		                
+		                </div>    
+		            </div>
+		        </div>
+		        <!-- End Title Page -->
+		        
+		        <!-- Portfolio Projects -->
+		        <div class="row">
+		            <div class="span12">
+		            	<div class="row">
+		                	<section id="projects">
+		                    	<ul id="thumbs">
+		                        
+		                        	@for(playlist <- playlists) {
+										<li class="item-thumbs span3 design">
+			                                <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+			                                <a class="hover-wrap fancybox" id="playlist" data-fancybox-group="gallery" title="Clique aqui para ouvir" href="http://www.youtube.com/embed/@playlist.getMusicas().get(0).getLink()?autoplay=1">
+			                                    <span class="overlay-img"></span>
+			                                    <span class="overlay-img-thumb font-icon-play"></span>
+			                                </a>
+			                                <!-- Thumb Image and Description -->
+			                                <img src="@routes.Assets.at("img/imgs playlists/img000.JPG")" alt="Não foi possível carregar imagem">
+			                            </li>
+		                            }               
+		                            
+		                        </ul>
+		                        <!-- div para chamar o iframe escondido e tocar automaticamente -->
+								<div id="frameHiden"></div>
+		                        
+		                    </section>
+		                    
+		            	</div>
+		            </div>
+		        </div>
+		        <!-- End Portfolio Projects -->
+		    </div>
+		</div>
+		<!-- End Playlists Section -->
+		
+		<!-- Big Blockquote -->
+		<div class="big-quote page">
+			<div class="container">
+		    	<div class="row">
+		        	<div class="span12">
+		            	<p>Será que você consegue fazer melhor?</p>
+		                <span class="font-icon-blockquote"></span>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<!-- End Big Blockquote -->
+		
 		<!-- Nova Playlist Section -->
-		<div id="about" class="page">
+		<div id="about" class="page-alternate">
 		<div class="container">
 		    <!-- Title Page -->
 		    <div class="row">
 		        <div class="span12">
 		            <div class="title-page">
-		                <h2 class="title">Crie sua playlist</h2>
+		                <h2 class="title">CRIE!</h2>
 		                <h3 class="title-description">Crie playlists com viagens musicais entre diversos gêneros.</h3>
 		                
 		                <div class="page-description">
@@ -134,67 +197,6 @@
 		</div>
 		</div>
 		<!-- End Nova Playlist Section -->
-		
-		<!-- Playlists Section -->
-		<div id="work" class="page-alternate">
-			<div class="container">
-		    	<!-- Title Page -->
-		        <div class="row">
-		            <div class="span12">
-		                <div class="title-page">
-		                    <h2 class="title">Playlists</h2>
-		                    <h3 class="title-description">Ouça playlists criadas por outros usuários.</h3>
-		                
-		                </div>    
-		            </div>
-		        </div>
-		        <!-- End Title Page -->
-		        
-		        <!-- Portfolio Projects -->
-		        <div class="row">
-		            <div class="span12">
-		            	<div class="row">
-		                	<section id="projects">
-		                    	<ul id="thumbs">
-		                        
-		                        	@for(playlist <- playlists) {
-										<li class="item-thumbs span3 design">
-			                                <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-			                                <a class="hover-wrap fancybox" id="playlist" data-fancybox-group="gallery" title="Clique aqui para ouvir" href="http://www.youtube.com/embed/@playlist.getMusicas().get(0)?autoplay=1">
-			                                    <span class="overlay-img"></span>
-			                                    <span class="overlay-img-thumb font-icon-play"></span>
-			                                </a>
-			                                <!-- Thumb Image and Description -->
-			                                <img src="@routes.Assets.at("img/imgs playlists/img000.JPG")" alt="Não foi possível carregar imagem">
-			                            </li>
-		                            }               
-		                            
-		                        </ul>
-		                        <!-- div para chamar o iframe escondido e tocar automaticamente -->
-								<div id="frameHiden"></div>
-		                        
-		                    </section>
-		                    
-		            	</div>
-		            </div>
-		        </div>
-		        <!-- End Portfolio Projects -->
-		    </div>
-		</div>
-		<!-- End Playlists Section -->
-		
-		<!-- Big Blockquote -->
-		<div class="big-quote page-alternate">
-			<div class="container">
-		    	<div class="row">
-		        	<div class="span12">
-		            	<p>Será que você consegue fazer melhor?</p>
-		                <span class="font-icon-blockquote"></span>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-		<!-- End Big Blockquote -->
 		
 		<!-- Contact Section -->
 		<div id="contact" class="page">
@@ -285,7 +287,12 @@
 		
 		<!-- Footer -->
 		<footer id="footer">
-			<div id="faixaPlayer" style="display:none;"></div>
+			<div id="faixaPlayer" style="display:none;">
+				qualquer texto
+				<button type="button" class="btn btn-default btn-lg">
+  					<span class="glyphicon glyphicon-play"></span>
+				</button>
+			</div>
 			<p class="credits">&copy;2013 Chakra. <a href="http://themes.alessioatzeni.com/html/chakra/" title="Chakra | Responsive One Page Template">Chakra Template</a> by <a href="http://www.alessioatzeni.com/" title="Alessio Atzeni | Web Designer &amp; Front-end Developer">Alessio Atzeni</a></p>
 		</footer>
 		<!-- End Footer -->

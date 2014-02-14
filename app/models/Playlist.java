@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Playlist {
@@ -33,7 +34,7 @@ public class Playlist {
 		musicas.addAll(primPaisagem);
 		musicas.add(transicao);
 		musicas.addAll(segPaisagem);
-		return musicas;
+		return Collections.unmodifiableList(musicas);
 	}
 
 }
