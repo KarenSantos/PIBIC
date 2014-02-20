@@ -1,4 +1,4 @@
-@(playlists: List[Playlist])
+@(playlistsSample: List[Playlist])
 
 @import helper._
 
@@ -82,7 +82,7 @@
 		                	<section id="projects">
 		                    	<ul id="thumbs">
 		                        
-		                        	@for(playlist <- playlists) {
+		                        	@for(playlist <- playlistsSample) {
 										<li class="item-thumbs span3 design">
 			                                <!-- Fancybox - Gallery Enabled - Title - Full Image -->
 			                                <a class="hover-wrap fancybox" id="playlist" data-fancybox-group="gallery" title="Clique aqui para ouvir" href="http://www.youtube.com/embed/@playlist.getMusicas().get(0).getLink()?autoplay=1">

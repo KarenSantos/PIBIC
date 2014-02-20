@@ -1,51 +1,90 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import models.CatalogoDePlaylists;
 import models.Musica;
 import models.Playlist;
 
+/**
+ * Classe controlador do PROJETO.
+ * 
+ * @author karen
+ * 
+ */
 public class Projeto {
 
-	private List<Playlist> playlists;
-	private int id;
-	
+	private CatalogoDePlaylists catalogo;
+
+	/**
+	 * Cria um PROJETO com um catalogo de playlists.
+	 */
 	public Projeto() {
-		playlists = new ArrayList<Playlist>();
-		id = 0;
-		
-		createSamplePlaylists();
+		catalogo = new CatalogoDePlaylists();
 	}
 
+	/**
+	 * Retorna uma lista com todas as playlists criadas.
+	 * 
+	 * @return A lita com todas as playlists criadas.
+	 */
 	public List<Playlist> getPlaylists() {
-		return playlists;
+		return catalogo.getPlaylists();
 	}
 
+	/**
+	 * Retorna uma playlist da lista de playlists.
+	 * 
+	 * @param id
+	 *            O id da playlist.
+	 * @return A playlist.
+	 */
 	public Playlist getPlaylist(int id) {
-		return playlists.get(id);
+		return catalogo.getPlaylist(id);
 	}
 
-	public void criarPlaylist(List<Musica> primPaisagem, List<Musica> segPaisagem, 
-									Musica transicao, String nome, String imagem) {
-		Playlist aPlaylist = new Playlist(id, primPaisagem, segPaisagem, transicao, nome, imagem);
-		playlists.add(aPlaylist);
-		id ++;
+	/**
+	 * Retorna o total de playlists criadas.
+	 * 
+	 * @return O total de playlists criadas.
+	 */
+	public int getTotalDePlaylists() {
+		return catalogo.getTotalDePlaylists();
 	}
 
-	private void createSamplePlaylists() {
-
-		// Playlist Andre Rocha
-		List<Musica> andrePais1 = new ArrayList<Musica>();
-		andrePais1.add(new Musica("Wonderful Slippery Thing", "Guthrie Govan", "http://www.youtube.com/watch?v=01gzVYDV5B8"));
-		andrePais1.add(new Musica("Jammin’ on Sunny", "Greg Howe", "http://www.youtube.com/watch?v=edVbz_uXJd0"));
-		andrePais1.add(new Musica("For the Love of God", "Steve Vai", "http://www.youtube.com/watch?v=okLDkcexiVg"));
-		
-		Musica andreTrans = new Musica("Instrumedley Live at Budokan", "Dream Theater", "http://www.youtube.com/watch?v=aqCkihctr0w");
-		
-		List<Musica> andrePais2 = new ArrayList<Musica>();
-		andrePais2.add(new Musica("Fullmoon", "Sonata Arctica", "http://www.youtube.com/watch?v=sTqX4hY74KA"));
-		andrePais2.add(new Musica("Late Redemption", "Angra", "http://www.youtube.com/watch?v=RiQwEknXPqo"));
-		criarPlaylist(andrePais1, andrePais2, andreTrans, "Nome da playlist", "img000.jpg");
+	/**
+	 * Cria uma playlist com uma lista de músicas da primeira paisagem, uma
+	 * lista de músicas da segunda paisagem, uma música de transição um nome e
+	 * uma imagem.
+	 * 
+	 * @param primPaisagem
+	 *            A lista de músicas da primeira paisagem.
+	 * @param segPaisagem
+	 *            A lista de músicas da segunda paisagem.
+	 * @param transicao
+	 *            A música de transição.
+	 * @param nome
+	 *            O nome da playlist.
+	 * @param imagem
+	 *            A imagem da playlist.
+	 */
+	public void criarPlaylist(List<Musica> primPaisagem,
+			List<Musica> segPaisagem, Musica transicao, String nome,
+			String imagem) {
+		catalogo.criarPlaylist(primPaisagem, segPaisagem, transicao, nome,
+				imagem);
 	}
+
+	/**
+	 * Retorna uma lista com playlists aleatórias selecionadas do total de
+	 * playlists.
+	 * 
+	 * @param num
+	 *            O número de playlists da amostra.
+	 * @return A lista com playlists selecionadas aleatoriamente.
+	 */
+	public List<Playlist> getSamplePlaylists(int num) {
+		return catalogo.getSamplePlaylists(num);
+	}
+
 }
