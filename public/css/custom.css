@@ -4,30 +4,62 @@ Enter Here your Custom CSS Style!!
 
 #faixaPlayer{
 	position: fixed;
-	background: #999;
+	background: #666666;
 	width: 100%;
 	height: 50px;
 	bottom: 0;
-	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding: initial;
 	line-height: 28px;
 }
 
-#textoPlayer{
+#playlistPlayer{
+	position: absolute;
+	left: 10px;
 	padding-top: 10px;
-	left: 30px;
+	padding-left: 10px;
 	color: #fff;
 	font-size:20px;
 	font-weight: 200;
 }
 
-#botoes {
+#controlesBox {
 	position: absolute;
-	left: 20px;
-	width: 20%;
-	height: 50px;
-	padding-top: 6px;
+	top: 4px;
+	left: 35%;
+	width: 30%;
+	height: 40px;
+	background: lightgray;
+	border:2px;
+	padding-top: 3px;
+	border-radius:10px;
+}
+
+#controles {
+	position: absolute;
+	left: 5px;
 	display: inline;
+	color: #333333;
+}
+
+.botao:hover {
+	background-color:#FF8C53;
+}
+
+#musicaAtual {
+	position: absolute;
+	padding-top: 3px;
+	left: 30%;
+	color: #333333;
+}
+
+#proxima{
+	position: absolute;
+	color: #fff;;
+	font-size:20px;
+	font-weight: 200;
+	left: 67%;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
