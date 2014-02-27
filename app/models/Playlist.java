@@ -13,9 +13,9 @@ import java.util.List;
 public class Playlist {
 
 	private int id;
+	private String nome, imagem;
 	private List<Musica> primPaisagem, segPaisagem;
 	private Musica transicao;
-	private String nome, imagem;
 
 	/**
 	 * Cria uma playlist com um id, uma lista de músicas da primeira paisagem,
@@ -44,6 +44,15 @@ public class Playlist {
 		this.transicao = transicao;
 		this.nome = nome;
 		this.imagem = imagem;
+	}
+	
+	/**
+	 * Retorna o id da playlist.
+	 * 
+	 * @return O id da playlist;
+	 */
+	public int getId() {
+		return id;
 	}
 
 	/**

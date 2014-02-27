@@ -81,11 +81,10 @@
 		            	<div class="row">
 		                	<section id="projects">
 		                    	<ul id="thumbs">
-		                        
 		                        	@for(playlist <- playlistsSample) {
 										<li class="item-thumbs span3 design">
 			                                <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-			                                <a class="hover-wrap fancybox" id="playlist" data-fancybox-group="gallery" title="Clique aqui para ouvir" href="http://www.youtube.com/embed/@playlist.getMusicas().get(0).getLink()?autoplay=1">
+			                                <a class="hover-wrap fancybox" id="playlist" data-fancybox-group="gallery" title="Clique aqui para ouvir" onclick="openPlaylist('@playlist.getId()')">
 			                                    <span class="overlay-img"></span>
 			                                    <span class="overlay-img-thumb font-icon-play"></span>
 			                                </a>
@@ -93,7 +92,6 @@
 			                                <img src="@routes.Assets.at("img/imgs playlists/img000.JPG")" alt="Não foi possível carregar imagem">
 			                            </li>
 		                            }               
-		                            
 		                        </ul>
 		                        <!-- div para chamar o iframe escondido e tocar automaticamente -->
 								<div id="frameHiden"></div>
@@ -287,27 +285,27 @@
 		
 		<!-- Footer -->
 		<footer id="footer">
-			<div id="faixaPlayer" style="display:;">
+			<div id="faixaPlayer" style="display:none;">
+				<a id="fecharPlayer" onclick="closePlaylist()">
+					<i class="glyphicon glyphicon-remove"></i>
+				</a>
 				<div id="playlistPlayer">
 					Nome da playlist aqui...
 				</div>
-				<div id="controlesBox">
-					<div id="controles">
-						<button type="button" class="botao btn btn-regular">
-	  						<span class="glyphicon glyphicon-fast-backward"></span></button>
-	  					<button type="button" class="botao btn btn-regular">
-	  						<span class="glyphicon glyphicon-play"></span></button>
-	  					<button type="button" class="botao btn btn-regular">
-	  						<span class="glyphicon glyphicon-fast-forward"></span></button>
+				<div id="videoBox">
+					<div class="video">
+						<iframe width="300" height="59" src="//www.youtube.com/embed/01gzVYDV5B8?rel=0&amp;fs=0&amp;autoplay=1" allowfullscreen="false" frameborder="0"></iframe>
 					</div>
-	  				<div id="musicaAtual">
-	  						Musica atual aqui
-	  				</div>
+					<div id="musicaAtual">
+						"Slipery thing"<br>
+						Gutrie Govan
+					</div>
 				</div>
 				<div id="proxima">
 					proxima música tal...
 				</div>
 			</div>
+			
 			<p class="credits">&copy;2013 Chakra. <a href="http://themes.alessioatzeni.com/html/chakra/" title="Chakra | Responsive One Page Template">Chakra Template</a> by <a href="http://www.alessioatzeni.com/" title="Alessio Atzeni | Web Designer &amp; Front-end Developer">Alessio Atzeni</a></p>
 		</footer>
 		<!-- End Footer -->

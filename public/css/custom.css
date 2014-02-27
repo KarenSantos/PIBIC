@@ -6,7 +6,7 @@ Enter Here your Custom CSS Style!!
 	position: fixed;
 	background: #666666;
 	width: 100%;
-	height: 50px;
+	height: 70px;
 	bottom: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -16,42 +16,12 @@ Enter Here your Custom CSS Style!!
 
 #playlistPlayer{
 	position: absolute;
-	left: 10px;
+	left: 50px;
 	padding-top: 10px;
 	padding-left: 10px;
 	color: #fff;
 	font-size:20px;
 	font-weight: 200;
-}
-
-#controlesBox {
-	position: absolute;
-	top: 4px;
-	left: 35%;
-	width: 30%;
-	height: 40px;
-	background: lightgray;
-	border:2px;
-	padding-top: 3px;
-	border-radius:10px;
-}
-
-#controles {
-	position: absolute;
-	left: 5px;
-	display: inline;
-	color: #333333;
-}
-
-.botao:hover {
-	background-color:#FF8C53;
-}
-
-#musicaAtual {
-	position: absolute;
-	padding-top: 3px;
-	left: 30%;
-	color: #333333;
 }
 
 #proxima{
@@ -62,4 +32,51 @@ Enter Here your Custom CSS Style!!
 	left: 67%;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+#fecharPlayer {
+	background-color: #E0E0E0;
+	margin: 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	z-index: 99;
+	color: #333333;
+	padding-top:10px;
+	
+	-webkit-transition: background 0.1s linear 0s;	
+	   -moz-transition: background 0.1s linear 0s;
+		 -o-transition: background 0.1s linear 0s;
+		    transition: background 0.1s linear 0s;
+}
+
+#fecharPlayer:hover {
+	background-color:#FF8C53;
+}
+
+#videoBox {
+	position: absolute;
+	top: 2px;
+	bottom: 4px;
+	left: 35%;
+	width: 30%;
+	height: 63px;
+	background: lightgray;
+	border:2px;
+	padding-top: 2px;
+	border-radius:10px;
+}
+
+#videoBox .video {
+	padding-left: 10px;
+	float: left;
+}
+
+#musicaAtual {
+	position: absolute;
+	padding-top: 2px;
+	left: 60%;
+	color: #333333;
 }
