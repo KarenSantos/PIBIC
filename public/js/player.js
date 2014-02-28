@@ -10,21 +10,23 @@ function openPlaylist(id) {
 	document.getElementById("faixaPlayer").style.display = "block";
 	alert("playlist id: " + id);
 	
-//	$.ajax({
-//		  type: "GET",
-//		  url: "/getPlaylist/" + id,
-//		  data: "",
-//		  success: function(){
+	$.ajax({
+		  type: "GET",
+		  url: "/getPlaylist/" + id,
+		  data: "",
+		  success: function(data, textStatus, jqXHR){
 //		        window.location = "/";
-//		  },
-//		  error: function(XMLHttpRequest, textStatus, errorThrown) {
-//			  var ind = XMLHttpRequest.responseText.indexOf("Exception:");
-//			  var res = XMLHttpRequest.responseText.substring(ind +11 , ind + 500);
-//			  var ind2 = res.indexOf("]");
-//			  var res2 = res.substring(0, ind2);
-//		      alert(res2);
-//		  }
-//	});
+			  console.log(" testando 123");
+			  console.log(data.nome);
+		  },
+		  error: function(XMLHttpRequest, textStatus, errorThrown) {
+			  var ind = XMLHttpRequest.responseText.indexOf("Exception:");
+			  var res = XMLHttpRequest.responseText.substring(ind +11 , ind + 500);
+			  var ind2 = res.indexOf("]");
+			  var res2 = res.substring(0, ind2);
+		      alert(res2);
+		  }
+	});
 	
 }
 
