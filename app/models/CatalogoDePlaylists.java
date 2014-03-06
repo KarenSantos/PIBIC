@@ -143,8 +143,103 @@ public class CatalogoDePlaylists {
 				"http://www.youtube.com/watch?v=sTqX4hY74KA"));
 		andrePais2.add(new Musica("Late Redemption", "Angra",
 				"http://www.youtube.com/watch?v=RiQwEknXPqo"));
-		criarPlaylist(andrePais1, andrePais2, andreTrans, "Nome da playlist",
-				"img000.jpg");
+		criarPlaylist(andrePais1, andrePais2, andreTrans, "Playlist de André","0.jpg");
+		
+		// Playlist Diego Vilela
+		List<Musica> diegoPais1 = new ArrayList<Musica>();
+		diegoPais1.add(new Musica("Diga", "Fresno",
+				"http://www.youtube.com/watch?v=T7uleRm-4sM"));
+		diegoPais1.add(new Musica("Best Of You", "Foo Fighters",
+				"http://www.youtube.com/watch?v=MtfE72Ni9_Y"));
+		diegoPais1.add(new Musica("Decode", "Paramore",
+				"http://www.youtube.com/watch?v=RvnkAtWcKYg"));
+
+		Musica diegoTrans = new Musica("The Joke",
+				"Lifehouse", "http://www.youtube.com/watch?v=Ua8d3gDSXyc");
+
+		List<Musica> diegoPais2 = new ArrayList<Musica>();
+		diegoPais2.add(new Musica("O Preço", "Charlie Brown Jr.",
+				"http://www.youtube.com/watch?v=GH7MB6a35aU"));
+		diegoPais2.add(new Musica("A Thousand Years", "Christina Perri",
+				"http://www.youtube.com/watch?v=rtOvBOTyX00"));
+		diegoPais2.add(new Musica("Forasteiro", "Natiruts",
+				"http://www.youtube.com/watch?v=wbKRLtfWPdI"));
+		criarPlaylist(diegoPais1, diegoPais2, diegoTrans, "Playlist de Diego","1.jpg");
+		
+		// Playlist Andrew Marques
+		List<Musica> andrewPais1 = new ArrayList<Musica>();
+		andrewPais1.add(new Musica("Make Some Noise", "Chuckie & Junxterjack",
+				"http://www.youtube.com/watch?v=wB6fV7VM2AU"));
+		andrewPais1.add(new Musica("Levels", "Avicii",
+				"http://www.youtube.com/watch?v=_ovdm2yX4MA"));
+		andrewPais1.add(new Musica("I Could Be The One", "Avicii vs Nicky Romero",
+				"http://www.youtube.com/watch?v=bek1y2uiQGA"));
+		andrewPais1.add(new Musica("Thing Called Love", "Above & Beyond feat. Richard Bedford",
+				"http://www.youtube.com/watch?v=ZgRnLM9Vi24"));
+		andrewPais1.add(new Musica("Don't you Worry Child", "Swedish House Mafia",
+				"http://www.youtube.com/watch?v=1y6smkh6c-0"));
+
+		Musica andrewTrans = new Musica("In My Mind",
+				"Flo Rida", "http://www.youtube.com/watch?v=MeDyhpcng9c");
+
+		List<Musica> andrewPais2 = new ArrayList<Musica>();
+		andrewPais2.add(new Musica("Wild For the Night", "ASAP Rocky",
+				"http://www.youtube.com/watch?v=4A-5SexRmtI"));
+		andrewPais2.add(new Musica("Scream & Shout (remix)", "Will.I.am",
+				"http://www.youtube.com/watch?v=lEKOWKcUxdU"));
+		andrewPais2.add(new Musica("Mercy", "Kanye West",
+				"http://www.youtube.com/watch?v=7Dqgr0wNyPo"));
+		criarPlaylist(andrewPais1, andrewPais2, andrewTrans, "Playlist de Andrew", "2.jpg");
+		
+		// Playlist Djaildo Quaresma
+		List<Musica> djaildoPais1 = new ArrayList<Musica>();
+		djaildoPais1.add(new Musica("Mr. Blue Sky", "Electric Light Orchestra",
+				"http://www.youtube.com/watch?v=bjPqsDU0j2I"));
+		djaildoPais1.add(new Musica("Raindrops Keep Falling On My Head", "BJ Thomas",
+				"http://www.youtube.com/watch?v=VILWkqlQLWk"));
+		djaildoPais1.add(new Musica("Don’t Worry Be Happy", "Bobby McFerrin",
+				"http://www.youtube.com/watch?v=d-diB65scQU"));
+		djaildoPais1.add(new Musica("I’m Yours", "Jason Mraz",
+				"http://www.youtube.com/watch?v=EkHTsc9PU2"));
+		djaildoPais1.add(new Musica("Wouldn’t It Be Nice", "The Beach Boys",
+				"http://www.youtube.com/watch?v=-E4FRtrD9aQ"));
+
+		Musica djaildoTrans = new Musica("California Dreamin’",
+				"The Mamas & The Papas", "http://www.youtube.com/watch?v=dN3GbF9Bx6E");
+
+		List<Musica> djaildoPais2 = new ArrayList<Musica>();
+		djaildoPais2.add(new Musica("London Calling", "The Clash",
+				"http://www.youtube.com/watch?v=4vHvzybkqfo"));
+		djaildoPais2.add(new Musica("Snowblind", "Black Sabbath",
+				"http://www.youtube.com/watch?v=qHal84S_XkI"));
+		djaildoPais2.add(new Musica("Gimme Shelter", "The Rolling Stones",
+				"http://www.youtube.com/watch?v=n_a0zOLMAfw"));
+		djaildoPais2.add(new Musica("Since I’ve Been Loving You", "Led Zeppelin",
+				"http://www.youtube.com/watch?v=Bkjv9SscotY"));
+		djaildoPais2.add(new Musica("Once", "Van Halen",
+				"http://www.youtube.com/watch?v=I19X-m3vWnk"));
+		criarPlaylist(djaildoPais1, djaildoPais2, djaildoTrans, "Playlist de Djaildo", "3.gif");
+		
+		// Playlist Vitor Amaral
+		List<Musica> vitorPais1 = new ArrayList<Musica>();
+		vitorPais1.add(new Musica("Through The Shadows", "Insomnium",
+				"http://www.youtube.com/watch?v=sZmK2ZWBxQc"));
+		vitorPais1.add(new Musica("Eternal Tears Of Sorrow", "Aurora Borealis",
+				"http://www.youtube.com/watch?v=1BhKJX5aiAk"));
+		
+		Musica vitorTrans = new Musica("From Broken Vessels", "Orphaned Land",
+				"http://www.youtube.com/watch?v=UG213nX6cto");
+
+		List<Musica> vitorPais2 = new ArrayList<Musica>();
+		vitorPais2.add(new Musica("Beyond the Stars", "Myrath",
+				"http://www.youtube.com/watch?v=H9V-AxS2kao"));
+		vitorPais2.add(new Musica("New Jerusalem", "Orphaned Land",
+				"http://www.youtube.com/watch?v=UB8Qx_Hce1s"));
+		vitorPais2.add(new Musica("Setting Sail, Coming Home", "Bastion Soundtrack",
+				"http://www.youtube.com/watch?v=GDflVhOpS4E"));
+		vitorPais2.add(new Musica("I Was Born for This", "Journey Soundtrack",
+				"http://www.youtube.com/watch?v=qizpBpHTzkU"));
+		criarPlaylist(vitorPais1, vitorPais2, vitorTrans, "Playlist de Vitor", "4.jpg");
 	}
 
 }

@@ -3,21 +3,23 @@
  */
 function closePlaylist() {
 	document.getElementById("faixaPlayer").style.display = "none";
+//	$('#faixaPlayer').style.display = "none";
 }
 
 function openPlaylist(id) {
 	
-	document.getElementById("faixaPlayer").style.display = "block";
-	alert("playlist id: " + id);
 	
 	$.ajax({
 		  type: "GET",
 		  url: "/getPlaylist/" + id,
 		  data: "",
 		  success: function(data, textStatus, jqXHR){
-//		        window.location = "/";
-			  console.log(" testando 123");
-			  console.log(data.nome);
+			  document.getElementById("faixaPlayer").style.display = "block";
+			  document.getElementById("video").innerHTML = "<iframe width='300' height='59' " +
+						"src='//www.youtube.com/embed/" + data.musicas[0].link + "?rel=0&amp;fs=0&amp;autoplay=1' allowfullscreen='false' frameborder='0'></iframe>";
+			  document.getElementById("playlistPlayer").innerHTML = data.nome;
+			  document.getElementById("musicaAtual").innerHTML = '"' + data.musicas[0].nome + '"' + "<br>" + data.musicas[0].artista;
+			  //			  console.log(data.nome);
 		  },
 		  error: function(XMLHttpRequest, textStatus, errorThrown) {
 			  var ind = XMLHttpRequest.responseText.indexOf("Exception:");

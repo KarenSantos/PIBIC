@@ -84,12 +84,12 @@
 		                        	@for(playlist <- playlistsSample) {
 										<li class="item-thumbs span3 design">
 			                                <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-			                                <a class="hover-wrap fancybox" id="playlist" data-fancybox-group="gallery" title="Clique aqui para ouvir" onclick="openPlaylist('@playlist.getId()')">
+			                                <a class="hover-wrap" id="playlist" title="Clique aqui para ouvir" onclick="openPlaylist('@playlist.getId()')">
 			                                    <span class="overlay-img"></span>
 			                                    <span class="overlay-img-thumb font-icon-play"></span>
 			                                </a>
 			                                <!-- Thumb Image and Description -->
-			                                <img src="@routes.Assets.at("img/imgs playlists/img000.JPG")" alt="Não foi possível carregar imagem">
+			                                <img src="@routes.Assets.at("img/imgs playlists/playlist.getImagem()")" width="200" height="160" alt="Não foi possível carregar imagem">
 			                            </li>
 		                            }               
 		                        </ul>
@@ -289,17 +289,10 @@
 				<a id="fecharPlayer" onclick="closePlaylist()">
 					<i class="glyphicon glyphicon-remove"></i>
 				</a>
-				<div id="playlistPlayer">
-					Nome da playlist aqui...
-				</div>
+				<div id="playlistPlayer"></div>
 				<div id="videoBox">
-					<div class="video">
-						<iframe width="300" height="59" src="//www.youtube.com/embed/01gzVYDV5B8?rel=0&amp;fs=0&amp;autoplay=1" allowfullscreen="false" frameborder="0"></iframe>
-					</div>
-					<div id="musicaAtual">
-						"Slipery thing"<br>
-						Gutrie Govan
-					</div>
+					<div id="video" class="video"></div>
+					<div id="musicaAtual"></div>
 				</div>
 				<div id="proxima">
 					proxima música tal...

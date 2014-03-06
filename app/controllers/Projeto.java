@@ -14,6 +14,7 @@ import models.Playlist;
  */
 public class Projeto {
 
+	private final int SAMPLE = 12;
 	private CatalogoDePlaylists catalogo;
 
 	/**
@@ -33,7 +34,7 @@ public class Projeto {
 	}
 
 	/**
-	 * Retorna uma playlist da lista de playlists.
+	 * Retorna uma playlist especifica da lista de playlists.
 	 * 
 	 * @param id
 	 *            O id da playlist.
@@ -83,8 +84,8 @@ public class Projeto {
 	 *            O número de playlists da amostra.
 	 * @return A lista com playlists selecionadas aleatoriamente.
 	 */
-	public List<Playlist> getSamplePlaylists(int num) {
-		return catalogo.getSamplePlaylists(num);
+	public List<Playlist> getSamplePlaylists() {
+		return catalogo.getSamplePlaylists(SAMPLE);
 	}
 
 }

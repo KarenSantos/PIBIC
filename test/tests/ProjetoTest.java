@@ -38,16 +38,16 @@ public class ProjetoTest {
 		// playlist sample já criada, esta é a playlist 2
 		projeto.criarPlaylist(primPaisagem, segPaisagem, transicao, "My Playlist", "img.jpg");
 		
-		assertEquals("My Playlist", projeto.getPlaylist(1).getNome());  
-		assertEquals(3, projeto.getPlaylist(1).getTotalDeMusicas());
-		assertEquals("img.jpg", projeto.getPlaylist(1).getImagem());
+		assertEquals("Playlist de André", projeto.getPlaylist(0).getNome());  
+		assertEquals(6, projeto.getPlaylist(0).getTotalDeMusicas());
+		assertEquals("0.jpg", projeto.getPlaylist(0).getImagem());
 	}
 	
 	@Test
 	public void deveCriarAmostraDePlaylists() {
 		
-		assertEquals(1, projeto.getTotalDePlaylists());
-		assertEquals(1, projeto.getSamplePlaylists(5).size());
+		assertEquals(5, projeto.getTotalDePlaylists());
+		assertEquals(5, projeto.getSamplePlaylists().size());
 	}
 
 }

@@ -14,7 +14,7 @@ public class Application extends Controller {
 	private static Projeto projeto = new Projeto();
 	
     public static Result index() {
-        return ok(views.html.index.render(projeto.getPlaylists()));
+        return ok(views.html.index.render(projeto.getSamplePlaylists()));
     }
     
     public static Result novaPlaylist() {
@@ -25,10 +25,5 @@ public class Application extends Controller {
     	Playlist play = projeto.getPlaylist(id);
         return ok(Json.toJson(play));
     }
-    
-//    public static Result getTasks(int id) {
-//        List<Task> tasks = new Model.Finder(String.class, Task.class).all();
-//        return ok(toJson(tasks));
-//    }
     
 }
