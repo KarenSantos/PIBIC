@@ -8,7 +8,6 @@ function closePlaylist() {
 
 function openPlaylist(id) {
 	
-	
 	$.ajax({
 		  type: "GET",
 		  url: "/getPlaylist/" + id,
@@ -22,11 +21,7 @@ function openPlaylist(id) {
 			  //			  console.log(data.nome);
 		  },
 		  error: function(XMLHttpRequest, textStatus, errorThrown) {
-			  var ind = XMLHttpRequest.responseText.indexOf("Exception:");
-			  var res = XMLHttpRequest.responseText.substring(ind +11 , ind + 500);
-			  var ind2 = res.indexOf("]");
-			  var res2 = res.substring(0, ind2);
-		      alert(res2);
+
 		  }
 	});
 	

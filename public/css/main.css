@@ -1271,6 +1271,18 @@ nav#menu #menu-nav li a:hover {
 	padding: 0;	
 }
 
+.contact-name {
+	width: 50em;
+}
+
+.contact-email {
+	width: 50em;
+}
+
+.contact-message {
+	width: 50em;
+}
+
 #contact-form {
 	margin-bottom: 0;	
 }

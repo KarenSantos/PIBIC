@@ -89,7 +89,7 @@
 			                                    <span class="overlay-img-thumb font-icon-play"></span>
 			                                </a>
 			                                <!-- Thumb Image and Description -->
-			                                <img src="@routes.Assets.at("img/imgs playlists/playlist.getImagem()")" width="200" height="160" alt="Não foi possível carregar imagem">
+			                                <img src="@routes.Assets.at("img/imgs playlists/" + playlist.getImagem())" width="200" height="160" alt="Não foi possível carregar imagem">
 			                            </li>
 		                            }               
 		                        </ul>
@@ -223,7 +223,7 @@
 		                	<input id="contact_email" type="text" placeholder="Email" value="" name="email" />
 		                </p>
 		                <p class="contact-message">
-		                	<textarea id="contact_message" placeholder="Sua mensagem" name="message" rows="15" cols="40"></textarea>
+		                	<textarea id="contact_message" placeholder="Sua mensagem" name="message" rows="10" cols="20"></textarea>
 		                </p>
 		                <p class="contact-submit">
 		                	<a id="contact-submit" class="submit" href="#">Enviar</a>
@@ -236,7 +236,6 @@
 		         
 		        </div>
 		        
-		        <div class="span3">
 		        	<div class="contact-details">
 		        		<h3>Detalhes para Contato</h3>
 		                <ul>
@@ -247,11 +246,10 @@
 		                        <br>
 		                        Bloco CO
 		                        <br>
-		                        Ramal: 
+		                        Ramal: 1365
 		                    </li>
 		                </ul>
 		            </div>
-		        </div>
 		    </div>
 		    <!-- End Services Form -->
 		</div>
