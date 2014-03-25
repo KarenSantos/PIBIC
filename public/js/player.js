@@ -21,9 +21,6 @@ function openPlaylist(id) {
 
 function playlistStart(playlist) {
 	
-	alert(playlist.musicas.length);
-	alert(playlist.musicas[0].link);
-
 	document.getElementById("faixaPlayer").style.display = "block";
 
 	var videoIDs = [];
