@@ -22,11 +22,14 @@ function openPlaylist(id) {
 function playlistStart(playlist) {
 	
 	document.getElementById("faixaPlayer").style.display = "block";
+	document.getElementById("nomePlaylist").innerHTML = playlist.nome;
 
+	var musicasPlaylist = [];
 	var videoIDs = [];
-	var player, currentVideoId = 0;
+	var player, currentSong = 0;
 
 	for (var i = 0; i < playlist.musicas.length; i++){
+		musicasPlaylist.push(playlist.musicas[i]);
 		videoIDs.push(playlist.musicas[i].link);
 	}
 	
@@ -42,30 +45,31 @@ function playlistStart(playlist) {
 	}
 
 	function onPlayerReady(event) {
-		event.target.loadVideoById(videoIDs[currentVideoId]);
+		event.target.loadVideoById(videoIDs[currentSong]);
+		
+		document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
+		document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
+		document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
 	}
 
 	function onPlayerStateChange(event) {
 		if (event.data == YT.PlayerState.ENDED) {
-			currentVideoId++;
-			if (currentVideoId < videoIDs.length) {
-				player.loadVideoById(videoIDs[currentVideoId]);
+			currentSong++;
+			if (currentSong < videoIDs.length) {
+				player.loadVideoById(videoIDs[currentSong]);
+				
+				document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
+				document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
+				
+				if (currentSong+1 < videoIds.length) {
+					document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
+				}
+				
 			}
 		}
 	}
 	
 	onYouTubeIframeAPIReady();
-
-	// document.getElementById("video").innerHTML = "<iframe width='300'
-	// height='59' " +
-	// "src='//www.youtube.com/embed/" + data.musicas[0].link +
-	// "?rel=0&amp;fs=0&amp;autoplay=1' allowfullscreen='false'
-	// frameborder='0'></iframe>";
-
-	document.getElementById("playlistPlayer").innerHTML = playlist.nome;
-	document.getElementById("musicaAtual").innerHTML = '"'
-			+ playlist.musicas[0].nome + '"' + "<br>"
-			+ playlist.musicas[0].artista;
 }
 
 function closePlaylist() {

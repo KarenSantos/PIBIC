@@ -1,8 +1,8 @@
-/*
-Enter Here your Custom CSS Style!!
-*/
+/* ==================================================
+   Player styles
+================================================== */
 
-#faixaPlayer{
+#faixaPlayer {
 	position: fixed;
 	background: #666666;
 	width: 100%;
@@ -14,46 +14,37 @@ Enter Here your Custom CSS Style!!
 	line-height: 28px;
 }
 
-#playlistPlayer{
-	position: absolute;
-	left: 50px;
-	padding-top: 10px;
-	padding-left: 10px;
-	color: #fff;
-	font-size:20px;
-	font-weight: 200;
-}
-
-#proxima{
-	position: absolute;
-	color: #fff;;
-	font-size:20px;
-	font-weight: 200;
-	left: 67%;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
 #fecharPlayer {
-	background-color: #E0E0E0;
 	margin: 0;
 	position: fixed;
-	bottom: 0;
+	botom: 20px;
 	left: 0;
 	width: 50px;
 	height: 50px;
+	color: lightgray;
+	padding-top: 10px;
 	z-index: 99;
-	color: #333333;
-	padding-top:10px;
 	
-	-webkit-transition: background 0.1s linear 0s;	
-	   -moz-transition: background 0.1s linear 0s;
-		 -o-transition: background 0.1s linear 0s;
-		    transition: background 0.1s linear 0s;
+	-webkit-transition: background 0.1s linear 0s;
+	-moz-transition: background 0.1s linear 0s;
+	-o-transition: background 0.1s linear 0s;
+	transition: background 0.1s linear 0s;
 }
 
 #fecharPlayer:hover {
-	background-color:#FF8C53;
+	color: #FF8C53;
+	cursor: pointer;
+}
+
+#nomePlaylist {
+	position: absolute;
+	left: 40px;
+	top: 18px;
+	width: 20%;
+	color: #fff;
+	font-size: 30px;
+	font-weight: bold;
+	font-style: italic;
 }
 
 #videoBox {
@@ -64,19 +55,41 @@ Enter Here your Custom CSS Style!!
 	width: 30%;
 	height: 63px;
 	background: lightgray;
-	border:2px;
-	padding-top: 2px;
-	border-radius:10px;
+	border: 2px;
+	border-radius: 10px;
 }
 
 #videoBox .video {
+	padding-top: 2px;
 	padding-left: 10px;
 	float: left;
 }
 
 #musicaAtual {
 	position: absolute;
-	padding-top: 2px;
-	left: 60%;
+	width: 45%;
+	top: 2px;
+	left: 53%;
 	color: #333333;
+	font-weight: bold;
+	overflow:hidden;
+	line-height:20px;
+}
+
+#artistaAtual{
+	position: absolute;
+	width: 45%;
+	bottom: 0px;
+	left: 53%;
+	color: #333333;
+	overflow:hidden;
+	font-size: 10px;
+}
+
+#proxima {
+	position: absolute;
+	top: 20px;
+	left: 80%;
+	color: #fff;;
+	font-size: 20px;
 }
