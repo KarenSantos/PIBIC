@@ -74,7 +74,7 @@ function playlistStart(playlist) {
 	if(player == null){
 		onYouTubeIframeAPIReady();
 	} else {
-		event.target.loadVideoById(videoIDs[currentSong]);
+		player.loadVideoById(videoIDs[currentSong]);
 		document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
 		document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
 		document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
