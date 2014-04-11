@@ -2,6 +2,7 @@ var tag = document.createElement('script');
 tag.src = "//www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var player;
 
 function openPlaylist(id) {
 
@@ -26,7 +27,7 @@ function playlistStart(playlist) {
 
 	var musicasPlaylist = [];
 	var videoIDs = [];
-	var player, currentSong = 0;
+	var currentSong = 0;
 
 	for (var i = 0; i < playlist.musicas.length; i++){
 		musicasPlaylist.push(playlist.musicas[i]);
@@ -62,6 +63,7 @@ function playlistStart(playlist) {
 				document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
 				
 				if (currentSong+1 < videoIds.length) {
+					alert("chegou no if da proxima");
 					document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
 				}
 				
@@ -69,10 +71,32 @@ function playlistStart(playlist) {
 		}
 	}
 	
-	onYouTubeIframeAPIReady();
+	if(player == null){
+		onYouTubeIframeAPIReady();
+	} else {
+		event.target.loadVideoById(videoIDs[currentSong]);
+		document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
+		document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
+		document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
+	}
+	
 }
 
 function closePlaylist() {
+	player.pauseVideo();
+
+	if (player == null){
+		alert("conseguiu fazer player nulo");
+	}
 	document.getElementById("faixaPlayer").style.display = "none";
 	// $('#faixaPlayer').style.display = "none";
+}
+
+function murderEvent(evt) {
+	 evt.cancel=true;
+	 evt.returnValue=false;
+	 evt.cancelBubble=true;
+	 if (evt.stopPropagation) evt.stopPropagation();
+	 if (evt.preventDefault) evt.preventDefault();
+	 return false;
 }
