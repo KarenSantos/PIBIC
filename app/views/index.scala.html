@@ -12,10 +12,9 @@
 		</div>
 		<!-- End of Splash Screen -->
 		
-		<!-- Homepage Slider -->
+		<!-- Homepage Slider
 		<div id="home-slider">	
 		    <div class="overlay"></div>
-		
 			<div class="container">
 		    	<div class="row">
 		        	<div class="span12">
@@ -26,7 +25,7 @@
 		                </div>
 		            </div>
 		        </div>
-		    </div>   
+		    </div>
 			
 			<div class="control-nav">
 		        <a id="prevslide" class="load-item"><i class="font-icon-arrow-simple-left"></i></a>
@@ -37,6 +36,49 @@
 		    </div>
 		</div>
 		<!-- End Homepage Slider -->
+		
+		<div id="home-slider" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#home-slider" data-slide-to="0" class="active"></li>
+				<li data-target="#home-slider" data-slide-to="1"></li>
+				<li data-target="#home-slider" data-slide-to="2"></li>
+			</ol>
+	
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="..." alt="...">
+			    	<h2>Slide 1</h2>
+		            <div class="carousel-caption">
+		            	<h3>First slide label</h3>
+		            	<p>Lorem ipsum dolor sit amet consectetur…</p>
+		            </div>	
+				</div>
+				
+				<div class="item">
+		        	<h2>Slide 2</h2>
+		        	<div class="carousel-caption">
+		            	<h3>Second slide label</h3>
+		            	<p>Aliquam sit amet gravida nibh, facilisis gravida…</p>
+		        </div>
+        </div>
+			</div>
+	
+			<!-- Controls -->
+			<a class="left carousel-control" href="#home-slider" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="right carousel-control" href="#home-slider" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+			     $("#home-slider").carousel();
+			});
+		</script>
 		
 		<!-- Header -->
 		<header>

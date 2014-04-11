@@ -83,7 +83,7 @@ function playlistStart(playlist) {
 }
 
 function closePlaylist() {
-	player.pauseVideo();
+	player.stopVideo();
 
 	if (player == null){
 		alert("conseguiu fazer player nulo");
