@@ -93,3 +93,41 @@
 	color: #fff;;
 	font-size: 20px;
 }
+
+/* ==================================================
+   Home-slider
+================================================== */
+
+.carousel-caption {
+    top: 0;
+    bottom: auto;
+    font-family: 'Open Sans', sans-serif;
+	font-size: 60px;
+	font-weight: 300;
+	color: #FFFFFF;
+	letter-spacing: -2px;
+	line-height: 1em;
+}
+
+.carousel-caption h3{
+	color: white;
+	font-size: 30px;
+}
+
+.carousel-indicators {
+	bottom: 6px;
+	font-size: 30px;
+}
+
+.carousel-indicators li {
+	width: 13px;
+	height: 13px;
+	background-color: lightgray;
+	border-radius: 10px;
+}
+
+.carousel-indicators .active {
+	background-color: #FF8C53;
+	width: 14px;
+	height: 14px;
+}

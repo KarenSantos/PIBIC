@@ -12,73 +12,65 @@
 		</div>
 		<!-- End of Splash Screen -->
 		
-		<!-- Homepage Slider
-		<div id="home-slider">	
-		    <div class="overlay"></div>
-			<div class="container">
-		    	<div class="row">
-		        	<div class="span12">
-		                <div class="slider-text">
-		                    <div id="slidecaption">
-		                    	<div class="slide-content">FullScreen Gallery</div>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-			
-			<div class="control-nav">
-		        <a id="prevslide" class="load-item"><i class="font-icon-arrow-simple-left"></i></a>
-		        <a id="nextslide" class="load-item"><i class="font-icon-arrow-simple-right"></i></a>
-		        <ul id="slide-list"></ul>
-		        
-		        <a id="nextsection" href="#about"><i class="font-icon-arrow-simple-down"></i></a>
-		    </div>
-		</div>
-		<!-- End Homepage Slider -->
-		
+		<!-- Homepage Slider -->
 		<div id="home-slider" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#home-slider" data-slide-to="0" class="active"></li>
-				<li data-target="#home-slider" data-slide-to="1"></li>
-				<li data-target="#home-slider" data-slide-to="2"></li>
-			</ol>
 	
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
+				
 				<div class="item active">
-					<img src="..." alt="...">
-			    	<h2>Slide 1</h2>
+					<a href="https://www.flickr.com/photos/atbaker/2416192063/" title="Music por AlphaTangoBravo / Adam Baker, no Flickr" target="_blank">
+					<img src="https://farm3.staticflickr.com/2205/2416192063_e12c7f2fe2_b.jpg" width="100%" height="100%" alt="Music"></a>
 		            <div class="carousel-caption">
-		            	<h3>First slide label</h3>
-		            	<p>Lorem ipsum dolor sit amet consectetur…</p>
+		            	<p>VIAJE</p>
+		            	<h3>Entre gêneros musicais</h3>
 		            </div>	
 				</div>
 				
 				<div class="item">
-		        	<h2>Slide 2</h2>
+					<a href="https://www.flickr.com/photos/ijammin/8809257234/" title="Southampton University Music Society Showcase / Talking Heads por BenGrantham, no Flickr" target="_blank">
+					<img src="https://farm3.staticflickr.com/2880/8809257234_b30e4e0e0f_c.jpg" width="100%" height="100%" alt="Southampton University Music Society Showcase / Talking Heads"></a>
 		        	<div class="carousel-caption">
-		            	<h3>Second slide label</h3>
-		            	<p>Aliquam sit amet gravida nibh, facilisis gravida…</p>
-		        </div>
-        </div>
+    					<p>CRIE</p>
+		            	<h3>Novas paisagens musicais</h3>
+  					</div>
+        		</div>
+        		
+        		<div class="item">
+					<a href="https://www.flickr.com/photos/v-neck/5712010773/" title="Music  por FunGi_ (Trading), no Flickr" target="_blank">
+					<img src="https://farm4.staticflickr.com/3583/5712010773_35cd9ba2d6_o.jpg" width="100%" height="100%" alt="Music "></a>
+		        	<div class="carousel-caption">
+    					<p>DESCUBRA</p>
+		            	<h3>Mais músicas de transição</h3>
+  					</div>
+        		</div>
+        		
 			</div>
 	
-			<!-- Controls -->
-			<a class="left carousel-control" href="#home-slider" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-			</a>
-			<a class="right carousel-control" href="#home-slider" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-			</a>
+			<!-- Control bar -->
+			<div class="control-nav">
+			
+				<!-- Indicators -->
+		        <ol class="carousel-indicators">
+				<li data-target="#home-slider" data-slide-to="0" class="active"></li>
+				<li data-target="#home-slider" data-slide-to="1"></li>
+				<li data-target="#home-slider" data-slide-to="2"></li>
+				</ol>
+				
+				<a id="prevslide" href="#home-slider" data-slide="prev"><i class="font-icon-arrow-simple-left"></i></a>
+		        <a id="nextslide" href="#home-slider" data-slide="next"><i class="font-icon-arrow-simple-right"></i></a>
+				
+		        <a id="nextsection" href="#work"><i class="font-icon-arrow-simple-down"></i></a>
+		    </div>
 		</div>
 		
 		<script type="text/javascript">
 			$(document).ready(function(){
-			     $("#home-slider").carousel();
+			     $("#home-slider").carousel({
+			    	  interval: 3000}, 'cycle');
 			});
 		</script>
+		<!-- End Homepage Slider -->
 		
 		<!-- Header -->
 		<header>
