@@ -62,8 +62,7 @@ function playlistStart(playlist) {
 				document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
 				document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
 				
-				if (currentSong+1 < videoIds.length) {
-					alert("chegou no if da proxima");
+				if (currentSong++ < videoIDs.length) {
 					document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
 				}
 				
