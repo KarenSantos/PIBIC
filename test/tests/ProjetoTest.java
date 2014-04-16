@@ -1,11 +1,7 @@
 package tests;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import models.Musica;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,18 +25,13 @@ public class ProjetoTest {
 	@Test
 	public void deveTerDetalhesSobreAsPlaylists() {
 		
-		Musica transicao = new Musica("mySong", "artista", "youtube.com/watch=435D15AMJ");
-		List<Musica> primPaisagem = new ArrayList<Musica>();
-		List<Musica> segPaisagem = new ArrayList<Musica>();
-		primPaisagem.add(transicao);
-		segPaisagem.add(transicao);
-		
-		// playlist sample já criada, esta é a playlist 2
-		projeto.criarPlaylist(primPaisagem, segPaisagem, transicao, "My Playlist", "img.jpg");
+		// informacoes da playlist sample criada
 		
 		assertEquals("Playlist de André", projeto.getPlaylist(0).getNome());  
 		assertEquals(6, projeto.getPlaylist(0).getTotalDeMusicas());
 		assertEquals("0.jpg", projeto.getPlaylist(0).getImagem());
+		assertEquals("Rock Instrumental", projeto.getPlaylist(0).getPrimGenero());
+		assertEquals("Metal Melódico", projeto.getPlaylist(0).getSegGenero());
 	}
 	
 	@Test

@@ -131,3 +131,50 @@
 	width: 14px;
 	height: 14px;
 }
+
+/* ==================================================
+   Nova Playlist
+================================================== */
+
+#paisagem1, #paisagem2 {
+	position: relative;
+	width:300px;
+	height:300px;
+	padding:5px 10px;
+	border:2px solid #aaaaaa;
+	border-radius: 20px;
+	float: left;
+	margin: 20px;
+	background: #FFFFFF;
+}
+
+#transicaoBox {
+	position: relative;
+	width:300px;
+	height:300px;
+	float: left;
+	margin: 20px;
+}
+
+#transicao {
+	position: relative;
+	top:30%;
+	width:300px;
+	height:100px;
+	padding:5px 10px;
+	border:2px solid #aaaaaa;
+	border-radius: 20px;
+	background: #FFFFFF;
+}
+
+.titulo{
+	text-align: center;
+	font-style: italic;
+}
+
+#nova button{
+}
+
+#nova button:hover{
+	background-color: #FF8C53;
+}

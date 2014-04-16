@@ -80,16 +80,20 @@ public class CatalogoDePlaylists {
 	 *            A lista de músicas da segunda paisagem.
 	 * @param transicao
 	 *            A música de transição.
+	 * @param primGenero
+	 *            O gênero da primeira paisagem musical.
+	 * @param segGenero
+	 *            O gênero da segunda paisagem musical.
 	 * @param nome
 	 *            O nome da playlist criada.
 	 * @param imagem
 	 *            O nome da imagem da playlist.
 	 */
 	public void criarPlaylist(List<Musica> primPaisagem,
-			List<Musica> segPaisagem, Musica transicao, String nome,
-			String imagem) {
+			List<Musica> segPaisagem, Musica transicao, String primGenero, 
+			String segGenero, String nome, String imagem) {
 		Playlist aPlaylist = new Playlist(id, primPaisagem, segPaisagem,
-				transicao, nome, imagem);
+				transicao, primGenero, segGenero, nome, imagem);
 		playlists.add(aPlaylist);
 		id++;
 	}
@@ -143,7 +147,7 @@ public class CatalogoDePlaylists {
 				"http://www.youtube.com/watch?v=sTqX4hY74KA"));
 		andrePais2.add(new Musica("Late Redemption", "Angra",
 				"http://www.youtube.com/watch?v=RiQwEknXPqo"));
-		criarPlaylist(andrePais1, andrePais2, andreTrans, "Playlist de André","0.jpg");
+		criarPlaylist(andrePais1, andrePais2, andreTrans, "Rock Instrumental", "Metal Melódico", "Playlist de André","0.jpg");
 		
 		// Playlist Diego Vilela
 		List<Musica> diegoPais1 = new ArrayList<Musica>();
@@ -164,7 +168,7 @@ public class CatalogoDePlaylists {
 				"http://www.youtube.com/watch?v=rtOvBOTyX00"));
 		diegoPais2.add(new Musica("Forasteiro", "Natiruts",
 				"http://www.youtube.com/watch?v=wbKRLtfWPdI"));
-		criarPlaylist(diegoPais1, diegoPais2, diegoTrans, "Playlist de Diego","1.jpg");
+		criarPlaylist(diegoPais1, diegoPais2, diegoTrans, "Música Agitada", "Música Lenta", "Playlist de Diego","1.jpg");
 		
 		// Playlist Andrew Marques
 		List<Musica> andrewPais1 = new ArrayList<Musica>();
@@ -189,7 +193,7 @@ public class CatalogoDePlaylists {
 				"http://www.youtube.com/watch?v=lEKOWKcUxdU"));
 		andrewPais2.add(new Musica("Mercy", "Kanye West",
 				"http://www.youtube.com/watch?v=7Dqgr0wNyPo"));
-		criarPlaylist(andrewPais1, andrewPais2, andrewTrans, "Playlist de Andrew", "2.jpg");
+		criarPlaylist(andrewPais1, andrewPais2, andrewTrans, "Música Eletrônica", "Rap", "Playlist de Andrew", "2.jpg");
 		
 		// Playlist Djaildo Quaresma
 		List<Musica> djaildoPais1 = new ArrayList<Musica>();
@@ -218,7 +222,7 @@ public class CatalogoDePlaylists {
 				"http://www.youtube.com/watch?v=Bkjv9SscotY"));
 		djaildoPais2.add(new Musica("Once", "Van Halen",
 				"http://www.youtube.com/watch?v=I19X-m3vWnk"));
-		criarPlaylist(djaildoPais1, djaildoPais2, djaildoTrans, "Playlist de Djaildo", "3.gif");
+		criarPlaylist(djaildoPais1, djaildoPais2, djaildoTrans, "Música Feliz", "Música Melancólica", "Playlist de Djaildo", "3.gif");
 		
 		// Playlist Vitor Amaral
 		List<Musica> vitorPais1 = new ArrayList<Musica>();
@@ -239,7 +243,7 @@ public class CatalogoDePlaylists {
 				"http://www.youtube.com/watch?v=GDflVhOpS4E"));
 		vitorPais2.add(new Musica("I Was Born for This", "Journey Soundtrack",
 				"http://www.youtube.com/watch?v=qizpBpHTzkU"));
-		criarPlaylist(vitorPais1, vitorPais2, vitorTrans, "Playlist de Vitor", "4.jpg");
+		criarPlaylist(vitorPais1, vitorPais2, vitorTrans, "Metal", "Música Árabe", "Playlist de Vitor", "4.jpg");
 	}
 
 }

@@ -64,16 +64,20 @@ public class Projeto {
 	 *            A lista de músicas da segunda paisagem.
 	 * @param transicao
 	 *            A música de transição.
+	 * @param primGenero
+	 *            O gênero da primeira paisagem musical.
+	 * @param segGenero
+	 *            O gênero da segunda paisagem musical.
 	 * @param nome
 	 *            O nome da playlist.
 	 * @param imagem
 	 *            A imagem da playlist.
 	 */
 	public void criarPlaylist(List<Musica> primPaisagem,
-			List<Musica> segPaisagem, Musica transicao, String nome,
-			String imagem) {
-		catalogo.criarPlaylist(primPaisagem, segPaisagem, transicao, nome,
-				imagem);
+			List<Musica> segPaisagem, Musica transicao, String primGenero,
+			String segGenero, String nome, String imagem) {
+		catalogo.criarPlaylist(primPaisagem, segPaisagem, transicao,
+				primGenero, segGenero, nome, imagem);
 	}
 
 	/**

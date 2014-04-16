@@ -793,8 +793,17 @@ nav#menu #menu-nav li a:hover {
 
 
 /* ==================================================
-   About Section
+   Criar Section
 ================================================== */
+
+#criar button{
+	float: right;
+	margin: 5px;
+}
+
+#criar button:hover{
+	background-color: #FF8C53;
+}
 
 .profile-name {
 	margin-bottom: 15px;	
@@ -944,18 +953,6 @@ nav#menu #menu-nav li a:hover {
 	line-height: 160px;	
 }
 
-
-/* ==================================================
-   Map
-================================================== */
-
-#map-area {
-	width: 100%;	
-}
-
-.map {
-	height: 600px;	
-}
 
 /* ==================================================
    Blog Section
@@ -1496,6 +1493,7 @@ nav#menu #menu-nav li a:hover {
 
 footer {
 	position: relative;
+	bottom: 0px;
 	width: 100%;
 	height: auto;
 	background: #FFFFFF;

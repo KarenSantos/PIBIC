@@ -13,7 +13,7 @@ import java.util.List;
 public class Playlist {
 
 	private int id;
-	private String nome, imagem;
+	private String nome, imagem, primGenero, segGenero;
 	private List<Musica> primPaisagem, segPaisagem;
 	private Musica transicao;
 
@@ -30,22 +30,28 @@ public class Playlist {
 	 *            A lista de músicas da segunda paisagem.
 	 * @param transicao
 	 *            A música de transição.
+	 * @param primGenero
+	 *            O gênero da primeira paisagem musical.
+	 * @param segGenero
+	 *            O gênero da segunda paisagem musical.
 	 * @param nome
 	 *            O nome da playlist.
 	 * @param imagem
 	 *            O endereço da imagem da playlist.
 	 */
 	public Playlist(int id, List<Musica> primPaisagem,
-			List<Musica> segPaisagem, Musica transicao, String nome,
-			String imagem) {
+			List<Musica> segPaisagem, Musica transicao, String primGenero,
+			String segGenero, String nome, String imagem) {
 		this.id = id;
 		this.primPaisagem = primPaisagem;
 		this.segPaisagem = segPaisagem;
 		this.transicao = transicao;
+		this.primGenero = primGenero;
+		this.segGenero = segGenero;
 		this.nome = nome;
 		this.imagem = imagem;
 	}
-	
+
 	/**
 	 * Retorna o id da playlist.
 	 * 
@@ -96,4 +102,21 @@ public class Playlist {
 		return getMusicas().size();
 	}
 
+	/**
+	 * Retorna o genero da primeira paisagem musical.
+	 * 
+	 * @return O genero da primeira paisagem musical.
+	 */
+	public String getPrimGenero() {
+		return this.primGenero;
+	}
+	
+	/**
+	 * Retorna o genero da segunda paisagem musical.
+	 * 
+	 * @return O genero da segunda paisagem musical.
+	 */
+	public String getSegGenero() {
+		return this.segGenero;
+	}
 }
