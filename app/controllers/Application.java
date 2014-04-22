@@ -18,7 +18,27 @@ public class Application extends Controller {
 	}
 
     public static Result getPlaylist(int id) {
-    	Playlist play = projeto.getPlaylist(id);
-        return ok(Json.toJson(play));
+    	Playlist playlist = projeto.getPlaylist(id);
+        return ok(Json.toJson(playlist));
+    }
+    
+    public static Result searchVideo(String keyword){
+    
+    	/*
+			params = urllib.urlencode({'q': vote.encode('utf-8'), 'max-results': '1', 'v': '2', 'alt': 'jsonc'})
+	        
+	        url = "http://gdata.youtube.com/feeds/api/videos?%s" % params
+	        result = simplejson.load(urllib.urlopen(url))
+	        item = result['data']['items'][0]
+	        
+	        video_json = simplejson.dumps({"id": item['id'], "title": item['title']})
+	        
+	        radio_utils.append(radio_utils.get_path(RADIO_ROOT, 'to_process_votes'), 
+	                           video_json)
+    	    
+    	    return simplejson.dumps(current_status)
+    	*/
+    	
+    	return ok();
     }
 }

@@ -4,75 +4,85 @@
 
 @main("Projeto") {
 
-		<!-- Header -->
-		<header>
-		    <div class="sticky-nav">
-		    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
-		        
-		        <div id="logo">
-		        	<a id="goUp" href="#" title="Projeto">Projeto</a>
+
+	
+
+	<!-- Header -->
+	<header>
+	    <div class="sticky-nav">
+	    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+	        
+	        <div id="logo">
+	        	<a id="goUp" href="#" title="Projeto">Projeto</a>
+	        </div>
+	        
+	        <nav id="menu">
+	        	<ul id="menu-nav">
+	            	<li><a href="@routes.Application.index()">Home</a></li>
+	                <li><a onclick="goHome()">Playlists</a></li>
+	                <li><a href="www.youtube.com">Contato</a></li>
+	            </ul>
+	        </nav>
+	        
+	    </div>
+	</header>
+	<!-- End Header -->
+	
+	<!-- Nova Playlist Section -->
+	<div id="nova" class="page">
+		<div class="container">
+		   
+		    <!-- Title Page -->
+		    <div class="row">
+		        <div class="span12">
+		            <div class="title-page">
+		                <h2 class="title">Crie sua playlist</h2>
+		                <h3 class="title-description">Escolha suas paisagens e sua música de transição</h3>
+		            </div>
 		        </div>
-		        
-		        <nav id="menu">
-		        	<ul id="menu-nav">
-		            	<li><a href="@routes.Application.index()">Home</a></li>
-		                <li><a onclick="goHome()">Playlists</a></li>
-		                <li><a href="www.youtube.com">Contato</a></li>
-		            </ul>
-		        </nav>
-		        
 		    </div>
-		</header>
-		<!-- End Header -->
-		
-		<!-- Nova Playlist Section -->
-		<div id="nova" class="page">
-			<div class="container">
-			   
-			    <!-- Title Page -->
-			    <div class="row">
-			        <div class="span12">
-			            <div class="title-page">
-			                <h2 class="title">Crie sua playlist</h2>
-			                <h3 class="title-description">Escolha suas paisagens e sua música de transição</h3>
-			            </div>
-			        </div>
+		    
+		    <form role="form">
+
+			    <div id="paisagem1" ondrop="drop(event)" ondragover="allowDrop(event)">
+			    	<div class="titulo">Paisagem 1</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="genero1" placeholder="Gênero da paisagem">
+					</div>
 			    </div>
 			    
-			    <form role="form">
-	
-				    <div id="paisagem1">
-				    	<div class="titulo">Paisagem 1</div>
-						<div class="form-group">
-							<input type="text" class="form-control" id="genero1" placeholder="Gênero da paisagem">
-						</div>
-				    </div>
-				    
-				    <div id="transicaoBox"><div id="transicao"><div class="titulo">Música de transição</div></div></div>
-				    
-				    <div id="paisagem2">
-				    	<div class="titulo">Paisagem 2</div>
-						<div class="form-group">
-							<input type="text" class="form-control" id="genero2" placeholder="Gênero da paisagem">
-						</div>
-				    </div>
-				    
-				    <br><br>
-				    
-					 
-					<button type="submit" class="btn btn-lg">Próximo</button>
-				
-				</form>
+			    <div id="transicaoBox"><div id="transicao" ondrop="drop(event)" ondragover="allowDrop(event)"><div class="titulo">Música de transição</div></div></div>
 			    
-			</div>
+			    <div id="paisagem2" ondrop="drop(event)" ondragover="allowDrop(event)">
+			    	<div class="titulo">Paisagem 2</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="genero2" placeholder="Gênero da paisagem">
+					</div>
+			    </div>
+			    
+			    <br><br>
+			    
+				 
+				<button type="submit" class="btn btn-lg">Próximo</button>
+			
+			</form>
+		    
 		</div>
-		<!-- End Nova Playlist Section -->
+	</div>
+	<!-- End Nova Playlist Section -->
+	
+	<div id="videoSearch">
+		<div class="texto">Pesquise sua música e arraste o vídeo do YouTube para a área desejada.</div>
 		
-		<!-- Footer -->
-		<footer id="footer">
-			<div id="frameHidenMsg"></div> 
-			<p class="credits">&copy;2013 Chakra. <a href="http://themes.alessioatzeni.com/html/chakra/" title="Chakra | Responsive One Page Template">Chakra Template</a> by <a href="http://www.alessioatzeni.com/" title="Alessio Atzeni | Web Designer &amp; Front-end Developer">Alessio Atzeni</a></p>
-		</footer>
-		<!-- End Footer -->		
+		<form role="form" onsubmit="go_get(); return false;" >
+			<input type="text" class="form-control" id="yourtextfield"/>
+			<spanR>
+			<input type="submit" class="btn btn-default" value="Search"/>
+			<input type="reset" class="btn btn-default" value="Limpar"/></spanR>
+		</form>
+		<br><br>
 
+		<iframe id="youriframe" width="290" height="300" controls="0" frameborder="0"></iframe>
+
+	</div>
 }

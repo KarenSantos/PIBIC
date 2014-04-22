@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index()
 
 GET		/nova_playlist				controllers.Application.novaPlaylist()
 GET		/getPlaylist/:id			controllers.Application.getPlaylist(id: Int)
+GET		/search/:keyword			controllers.Application.searchVideo(keyword: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
