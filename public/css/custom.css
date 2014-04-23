@@ -172,10 +172,7 @@
 	font-style: italic;
 }
 
-#nova button{
-}
-
-#nova button:hover{
+#nova .mainButton:hover{
 	background-color: #FF8C53;
 }
 
@@ -204,6 +201,15 @@ spanR {
 	font-style: italic;
 	text-align: center;
 	margin: 20px;
+}
+
+#videoSearch .texto2 {
+	position: relative;
+	color: #FFFFFF;
+	font-size:16px;
+	font-weight: bold;
+	text-align: center;
+	margin: 10px;
 }
 
 #opcaoGoTo {

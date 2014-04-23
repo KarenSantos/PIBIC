@@ -35,11 +35,10 @@ function go_get() {
 	 
 	 if (search_field != "") {
 		 ifr.src = target_url ;
+
+		// $("#opcaoGoTo").style.display = "block";
+		document.getElementById("opcaoGoTo").style.display = "block";
 	 }
-	 
-	 document.getElementById("opcaoGoTo").style.display = "block";
-	 
-	 return false ;
 }
 
 function adicionarMusica() {
@@ -49,7 +48,9 @@ function adicionarMusica() {
 //	var link = document.getElementById('searchiframe').getVideoUrl()
 //	alert(link);
 	
-	alert("Text copied was: " + window.getSelection());
+	var link = document.getElementById("link").value;
+	
+	alert("Link do video: " + link);
 	
 }
 
@@ -77,4 +78,16 @@ function drop(ev, goTo){
 
 	alert("link: " + data + "\n enviado para: " + goTo.id);
 	
-} 
+}
+
+function clearSearch() {
+	document.getElementById('keyword').value = "";
+	document.getElementById('searchiframe').src = "";
+	document.getElementById("opcaoGoTo").style.display = "none";
+}
+
+$("#keyword").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#doSearch").click();
+    }
+});
