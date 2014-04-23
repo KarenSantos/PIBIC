@@ -45,14 +45,9 @@ function go_get(){
 	 var target_url = base_url + search_field;
 	 var ifr = document.getElementById('youriframe');
 	 
-	 var result = simplejson.load(urllib.urlopen(target_url));
-	 alert(result);
-
 	 if (search_field != "") {
 		 ifr.src = target_url ;
 	 }
-	 
-	
 	 return false ;
 }
 
