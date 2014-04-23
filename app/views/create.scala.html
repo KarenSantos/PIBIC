@@ -4,9 +4,6 @@
 
 @main("Projeto") {
 
-
-	
-
 	<!-- Header -->
 	<header>
 	    <div class="sticky-nav">
@@ -44,16 +41,18 @@
 		    
 		    <form role="form">
 
-			    <div id="paisagem1" ondrop="drop(event)" ondragover="allowDrop(event)">
+			    <div id="paisagem1" ondrop="drop(event, this)" ondragover="allowDrop(event)">
 			    	<div class="titulo">Paisagem 1</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="genero1" placeholder="Gênero da paisagem">
 					</div>
 			    </div>
 			    
-			    <div id="transicaoBox"><div id="transicao" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)"><div class="titulo">Música de transição</div></div></div>
+			    <div id="transicaoBox">
+			    	<div id="transicao" ondrop="drop(event, this)" ondragover="allowDrop(event)"><div class="titulo">Música de transição</div></div>
+			    </div>
 			    
-			    <div id="paisagem2" ondrop="drop(event)" ondragover="allowDrop(event)">
+			    <div id="paisagem2" ondrop="drop(event, this)" ondragover="allowDrop(event)">
 			    	<div class="titulo">Paisagem 2</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="genero2" placeholder="Gênero da paisagem">
@@ -61,28 +60,34 @@
 			    </div>
 			    
 			    <br><br>
-			    
-				 
 				<button type="submit" class="btn btn-lg">Próximo</button>
 			
 			</form>
 		    
 		</div>
-	</div>
-	<!-- End Nova Playlist Section -->
 	
-	<div id="videoSearch">
-		<div class="texto">Pesquise sua música e arraste o vídeo do YouTube para a área desejada.</div>
-		
-		<form role="form" onsubmit="go_get(); return false;" >
-			<input type="text" class="form-control" id="yourtextfield"/>
-			<spanR>
-			<input type="submit" class="btn btn-default" value="Search"/>
-			<input type="reset" class="btn btn-default" value="Limpar"/></spanR>
-		</form>
-		<br><br>
-
-		<iframe id="youriframe" width="290" height="300" controls="0" frameborder="0"></iframe>
-
+		<div id="videoSearch">
+			<div class="texto">Pesquise sua música através dos vídeos do YouTube.</div>
+			
+			<form role="form" onsubmit="go_get(); return false;" >
+				<input type="text" class="form-control" id="keyword"/>
+				<spanR>
+				<input type="submit" class="btn btn-default" value="Search"/>
+				<input type="reset" class="btn btn-default" value="Limpar"/></spanR>
+			</form>
+			<br><br>
+	
+			<iframe id="searchiframe" width="290" height="300" controls="0" frameborder="0"></iframe>
+						
+			<div id="opcaoGoTo" style="display:none">
+				<form role="form" name="goTo">
+					<input type="radio" name="radioGoTo" value="1" required>Paisagem 1<br>
+					<input type="radio" name="radioGoTo" value="2">Transição<br>
+					<input type="radio" name="radioGoTo" value="3">Paisagem 2<br><br>
+					<button type="button" onclick="adicionarMusica()" class="btn btn-default"/>Adicionar</button>
+				</form>
+			</div>
+	
+		</div>
 	</div>
 }
