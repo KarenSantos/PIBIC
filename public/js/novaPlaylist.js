@@ -37,25 +37,24 @@ function go_get() {
 		 ifr.src = target_url ;
 
 		// $("#opcaoGoTo").style.display = "block";
-		document.getElementById("opcaoGoTo").style.display = "block";
+		document.getElementById("searchOptions").style.display = "block";
 	 }
 }
 
 function adicionarMusica() {
-	RadioHab();
+	var musicGoTo = RadioHab();
 	
-	// tentar pegar a URL do video atual
-//	var link = document.getElementById('searchiframe').getVideoUrl()
-//	alert(link);
-	
-	var link = document.getElementById("link").value;
-	
-	alert("Link do video: " + link);
-	
+	if (musicGoTo == null){
+		alert("Selecione para onde vai a música adicionada.");
+	} else {
+		var link = document.getElementById("link").value;
+		
+		alert("Link do video: " + link + "\n indo para: " + musicGoTo);
+	}
 }
 
 function RadioHab() {
-	var musicGoTo;
+	var musicGoTo = null;
 	var option = document.goTo.radioGoTo;
 
 	for(var i=0; i < option.length; i++) {
@@ -64,7 +63,7 @@ function RadioHab() {
 			break;
 		}
 	}
-	alert(musicGoTo);
+	return musicGoTo;
 }
 
 function allowDrop(ev){ 
@@ -83,7 +82,7 @@ function drop(ev, goTo){
 function clearSearch() {
 	document.getElementById('keyword').value = "";
 	document.getElementById('searchiframe').src = "";
-	document.getElementById("opcaoGoTo").style.display = "none";
+	document.getElementById("searchOptions").style.display = "none";
 }
 
 $("#keyword").keyup(function(event){
