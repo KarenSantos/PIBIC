@@ -36,7 +36,7 @@ function go_get() {
 	 if (search_field != "") {
 		 ifr.src = target_url ;
 
-		// $("#opcaoGoTo").style.display = "block";
+		// $("#searchOptions").style.display = "block";
 		document.getElementById("searchOptions").style.display = "block";
 	 }
 }
@@ -47,9 +47,25 @@ function adicionarMusica() {
 	if (musicGoTo == null){
 		alert("Selecione para onde vai a música adicionada.");
 	} else {
-		var link = document.getElementById("link").value;
 		
-		alert("Link do video: " + link + "\n indo para: " + musicGoTo);
+		var APIKey = "AIzaSyDrBArU_WZxTHmQc62_YdktmhQsFZ4PnAg";
+		
+		var link = document.getElementById("link").value;
+		var videoId = link.split("=")[1].split("&")[0];
+		
+		$.ajax({
+			type : "GET",
+			url : "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + APIKey,
+			datatype : "application/json",
+			success : function(data) {
+				alert("chegou no sucess");
+				
+				alert(data.items[0]);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("Ocorreu um erro. Tente mais tarde.");
+			}
+		});
 	}
 }
 
