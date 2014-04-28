@@ -136,6 +136,18 @@
    Nova Playlist
 ================================================== */
 
+#creating {
+	position: fixed;
+	left: 20%;
+	width: 80%;
+	padding-left: 50px;
+}
+
+#creating .title-page {
+	padding-left: 30px;
+	padding-bottom: -10;
+}
+
 #paisagem1, #paisagem2 {
 	position: relative;
 	width:300px;
@@ -143,8 +155,6 @@
 	padding:5px 10px;
 	border:2px solid #aaaaaa;
 	border-radius: 20px;
-	float: left;
-	margin: 20px;
 	background: #FFFFFF;
 }
 
@@ -152,13 +162,11 @@
 	position: relative;
 	width:300px;
 	height:300px;
-	float: left;
-	margin: 20px;
 }
 
 #transicao {
 	position: relative;
-	top:30%;
+	top:50%;
 	width:300px;
 	height:100px;
 	padding:5px 10px;
@@ -172,48 +180,62 @@
 	font-style: italic;
 }
 
-#nova .mainButton:hover{
+#creating button:hover{
 	background-color: #FF8C53;
 }
+
+.playInfo {
+	padding-top: 20px;
+}
+
 
 /* ==================================================
    Video Search
 ================================================== */
 
-spanR {
-	float: right;
+.searchCol {
+	margin: 0 0 10px 0;
+	padding: 1px;
 }
 
 #videoSearch {
 	position: fixed;
 	top:60px;
 	background: #666666;
-	width: 300px;
-	height: 100%;
+	width: 20%;
+	height: 95%;
 	padding: 5px;
 	z-index: 100;
+	overflow: auto;
 }
 
 #videoSearch .texto {
-	position: relative;
 	color: #FFFFFF;
-	font-size:20px;
 	font-style: italic;
 	text-align: center;
-	margin: 20px;
 }
 
-#videoSearch .texto2 {
-	position: relative;
-	color: #FFFFFF;
+#videoSearch .t1 {
+	font-size:20px;
+	margin: 15px;
+}
+
+#videoSearch .t2 {
+	font-size:14px;
+	margin-top: 15px;
+}
+
+#videoSearch .t3 {
 	font-size:16px;
-	font-style: italic;
-	text-align: center;
 	margin: 10px;
 }
 
 #searchOptions {
 	color: #FFFFFF;
 	text-align: center;
+}
+
+.searchForm {
+	margin: 0px, 10px;
 }
 

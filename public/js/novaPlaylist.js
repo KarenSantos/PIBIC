@@ -42,30 +42,36 @@ function go_get() {
 }
 
 function adicionarMusica() {
-	var musicGoTo = RadioHab();
 	
-	if (musicGoTo == null){
-		alert("Selecione para onde vai a música adicionada.");
+	var link = document.getElementById("link").value;
+	if (link == ""){
+		alert("Insira um link válido.");
+	
 	} else {
+		var musicGoTo = RadioHab();
+		if (musicGoTo == null){
+			alert("Selecione para onde vai a música adicionada.");
 		
-		var APIKey = "AIzaSyDrBArU_WZxTHmQc62_YdktmhQsFZ4PnAg";
-		
-		var link = document.getElementById("link").value;
-		var videoId = link.split("=")[1].split("&")[0];
-		
-		$.ajax({
-			type : "GET",
-			url : "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + APIKey,
-			datatype : "application/json",
-			success : function(data) {
-				alert("chegou no sucess");
-				
-				alert(data.items[0]);
-			},
-			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("Ocorreu um erro. Tente mais tarde.");
-			}
-		});
+		} else {
+			
+			var APIKey = "AIzaSyDrBArU_WZxTHmQc62_YdktmhQsFZ4PnAg";
+			
+			var videoId = link.split("=")[1].split("&")[0];
+			
+			$.ajax({
+				type : "GET",
+				url : "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + APIKey,
+				datatype : "application/json",
+				success : function(data) {
+					alert("chegou no sucess");
+					
+					alert(data.items[0].title);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("Ocorreu um erro. Tente mais tarde.");
+				}
+			});
+		}
 	}
 }
 
@@ -93,12 +99,6 @@ function drop(ev, goTo){
 
 	alert("link: " + data + "\n enviado para: " + goTo.id);
 	
-}
-
-function clearSearch() {
-	document.getElementById('keyword').value = "";
-	document.getElementById('searchiframe').src = "";
-	document.getElementById("searchOptions").style.display = "none";
 }
 
 $("#keyword").keyup(function(event){

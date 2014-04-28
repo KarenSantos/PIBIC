@@ -26,72 +26,94 @@
 	<!-- End Header -->
 	
 	<!-- Nova Playlist Section -->
-	<div id="nova" class="page">
-		<div class="container">
-		   
-		    <!-- Title Page -->
-		    <div class="row">
-		        <div class="span12">
-		            <div class="title-page">
-		                <h2 class="title">Crie sua playlist</h2>
-		                <h3 class="title-description">Escolha suas paisagens e sua música de transição</h3>
-		            </div>
-		        </div>
-		    </div>
-		    
-		    <form role="form">
-
-			    <div id="paisagem1" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-			    	<div class="titulo">Paisagem 1</div>
-					<div class="form-group">
-						<input type="text" class="form-control" name="genero1" placeholder="Gênero da paisagem">
-					</div>
-			    </div>
-			    
-			    <div id="transicaoBox">
-			    	<div id="transicao" ondrop="drop(event, this)" ondragover="allowDrop(event)"><div class="titulo">Música de transição</div></div>
-			    </div>
-			    
-			    <div id="paisagem2" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-			    	<div class="titulo">Paisagem 2</div>
-					<div class="form-group">
-						<input type="text" class="form-control" name="genero2" placeholder="Gênero da paisagem">
-					</div>
-			    </div>
-			    
-			    <br><br>
-				<button type="submit" class="btn btn-lg mainButton">Próximo</button>
-			
-			</form>
-		    
-		</div>
-	
+	<div id="nova">
+		
 		<div id="videoSearch">
-			<div class="texto">Pesquise sua música através dos vídeos do YouTube.</div>
+			<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
 			
+			<div class="col-md-9 searchCol">
 				<input type="text" class="form-control" id="keyword"/>
-				<spanR>
+			</div>
+			<div class="col-md-3 searchCol">
 				<button type="button" onclick="go_get()" class="btn btn-default" id="doSearch">Search</button>
-				<button type="reset" class="btn btn-default" onclick="clearSearch()">Limpar</button></spanR>
-			<br><br>
+			</div>
 	
 			<div id="searchOptions" style="display:none">
 
-				<div class="texto2"><span class="glyphicon glyphicon-arrow-down"></span> Clique em playlist para ver as opções</div>				
+				<div class="texto t2"><span class="glyphicon glyphicon-arrow-down"></span> Clique em <b>playlist</b> para ver as opções</div>				
 
-				<iframe id="searchiframe" width="290" height="300" controls="0" frameborder="0"></iframe>
+				<iframe id="searchiframe" width="94%" height="250" controls="0" frameborder="0"></iframe>
 			
-				<form role="form" name="goTo">
-					<div class="texto2">Clique no vídeo escolhido com o botão direito, e selecione "copiar URL do vídeo". Copie e cole aqui:</div>
-					
+				<form class="" role="form" name="goTo">
+					<div class="texto t3">Clique no vídeo escolhido com o botão direito, e selecione "copiar URL do vídeo". Copie e cole aqui:</div>
 					<input type="text" class="form-control" id="link" placeholder="Link do vídeo"><br>
-					<input type="radio" name="radioGoTo" value="1" required>Paisagem 1<br>
-					<input type="radio" name="radioGoTo" value="2">Transição<br>
-					<input type="radio" name="radioGoTo" value="3">Paisagem 2<br><br>
-					<button type="button" onclick="adicionarMusica()" class="btn btn-default">Adicionar</button>
+
+					<div class="col-md-6">
+						<input type="radio" name="radioGoTo" value="1" required>Paisagem 1<br>
+						<input type="radio" name="radioGoTo" value="2">Transição<br>
+						<input type="radio" name="radioGoTo" value="3">Paisagem 2<br><br>
+					</div>
+					
+					<div class="col-md-6">
+						<button type="button" onclick="adicionarMusica()" class="btn btn-default">Adicionar</button>
+					</div>
 				</form>
 			</div>
-	
+		</div>
+		
+		<div id="creating">
+		   
+		    <!-- Title Page -->
+		    <div class="row">
+	            <div class="title-page">
+	                <h2 class="title">Crie sua playlist</h2>
+	                <h3 class="title-description">Escolha suas paisagens e sua música de transição</h3>
+	            </div>
+            </div>
+		    
+		    <div class="row">
+		    	<div class="col-md-3">
+					<label for="genero1">Gênero da Paisagem 1</label>
+					<input type="text" class="form-control" name="genero1" placeholder="Gênero"><br>
+
+				    <div id="paisagem1">
+				    	<div class="titulo">Paisagem 1</div>
+				    </div>
+			    </div>
+			    
+			    <div class="col-md-3">
+				    <div id="transicaoBox">
+				    	<div id="transicao"><div class="titulo">Música de transição</div></div>
+				    </div>
+			    </div>
+			    
+			    <div class="col-md-3">
+			    	<label for="genero2">Gênero da Paisagem 2</label>
+					<input type="text" class="form-control" name="genero2" placeholder="Gênero"><br>
+
+				    <div id="paisagem2">
+				    	<div class="titulo">Paisagem 2</div>
+				    </div>
+				</div>
+				    
+			</div>
+		    
+	    	<div class="row playInfo">
+		    	<div class="col-md-4">
+			    	<label for="playlistName">Nome da Playlist</label>
+		    		<input type="text" class="form-control" id="playlistName" placeholder="Nome">
+	      		</div>
+	      		
+	      		<div class="col-md-4">
+			    	<label for="playlistImg">Imagem</label>
+		    		<input type="file" class="form-control" id="playlistImg" placeholder="File">
+	      		</div>
+	      		
+	      		<div class="col-md-4">
+					<button type="button" class="btn btn-lg mainButton">Próximo</button>
+	      		</div>
+      		</div>
+	    
 		</div>
 	</div>
 }
