@@ -74,25 +74,30 @@
 		    <div class="row">
 		    	<div class="col-md-3">
 					<label for="genero1">Gênero da Paisagem 1</label>
-					<input type="text" class="form-control" name="genero1" placeholder="Gênero"><br>
+					<input type="text" class="form-control" id="genero1" placeholder="Gênero"><br>
 
 				    <div id="paisagem1">
 				    	<div class="titulo">Paisagem 1</div>
+				    	<div id=p1music></div>
 				    </div>
 			    </div>
 			    
 			    <div class="col-md-3">
 				    <div id="transicaoBox">
-				    	<div id="transicao"><div class="titulo">Música de transição</div></div>
+				    	<div id="transicao">
+				    		<div class="titulo">Música de transição</div>
+				    		<div id=tmusic></div>
+				    	</div>
 				    </div>
 			    </div>
 			    
 			    <div class="col-md-3">
 			    	<label for="genero2">Gênero da Paisagem 2</label>
-					<input type="text" class="form-control" name="genero2" placeholder="Gênero"><br>
+					<input type="text" class="form-control" id="genero2" placeholder="Gênero"><br>
 
 				    <div id="paisagem2">
 				    	<div class="titulo">Paisagem 2</div>
+				    	<div id=p2music></div>
 				    </div>
 				</div>
 				    
@@ -110,7 +115,7 @@
 	      		</div>
 	      		
 	      		<div class="col-md-4">
-					<button type="button" class="btn btn-lg mainButton">Próximo</button>
+					<button type="button" class="btn btn-lg mainButton" onclick="proximo()">Próximo</button>
 	      		</div>
       		</div>
 	    
