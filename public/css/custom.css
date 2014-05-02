@@ -133,14 +133,64 @@
 }
 
 /* ==================================================
+   Video Search
+================================================== */
+
+#videoSearch {
+	position: fixed;
+	width: 20%;
+	height: 90%;
+	background: #666666;
+	padding: 10px;
+	z-index: 100;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.searchCol {
+	margin: 0 0 10px 0;
+	padding: 1px;
+}
+
+#videoSearch .texto {
+	color: #FFFFFF;
+	font-style: italic;
+	text-align: center;
+}
+
+#videoSearch .t1 {
+	font-size:20px;
+	margin: 15px;
+}
+
+#videoSearch .t2 {
+	font-size:14px;
+	margin-top: 15px;
+}
+
+#videoSearch .t3 {
+	font-size:16px;
+	margin: 10px;
+}
+
+#searchOptions {
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.searchForm {
+	margin: 0px, 10px;
+}
+
+/* ==================================================
    Nova Playlist
 ================================================== */
 
 #creating {
 	position: fixed;
-	left: 20%;
 	width: 80%;
 	height: 90%;
+	left: 20%;
 	padding-left: 50px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -153,7 +203,6 @@
 
 #paisagem1, #paisagem2 {
 	position: relative;
-	width:300px;
 	height:300px;
 	padding:5px 10px;
 	border:2px solid #aaaaaa;
@@ -166,14 +215,12 @@
 
 #transicaoBox {
 	position: relative;
-	width:300px;
 	height:300px;
 }
 
 #transicao {
 	position: relative;
 	top:50%;
-	width:300px;
 	height:150px;
 	padding:5px 10px;
 	border:2px solid #aaaaaa;
@@ -241,54 +288,4 @@
 	padding-top: 20px;
 }
 
-
-/* ==================================================
-   Video Search
-================================================== */
-
-.searchCol {
-	margin: 0 0 10px 0;
-	padding: 1px;
-}
-
-#videoSearch {
-	position: fixed;
-	top:60px;
-	background: #666666;
-	width: 20%;
-	height: 95%;
-	padding: 5px;
-	z-index: 100;
-	overflow: auto;
-}
-
-#videoSearch .texto {
-	color: #FFFFFF;
-	font-style: italic;
-	text-align: center;
-}
-
-#videoSearch .t1 {
-	font-size:20px;
-	margin: 15px;
-}
-
-#videoSearch .t2 {
-	font-size:14px;
-	margin-top: 15px;
-}
-
-#videoSearch .t3 {
-	font-size:16px;
-	margin: 10px;
-}
-
-#searchOptions {
-	color: #FFFFFF;
-	text-align: center;
-}
-
-.searchForm {
-	margin: 0px, 10px;
-}
 
