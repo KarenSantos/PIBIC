@@ -1,0 +1,94 @@
+@()
+
+@import helper._
+
+@main("Projeto") {
+
+	<!-- Header -->
+	<header>
+	    <div class="sticky-nav">
+	    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+	        
+	        <div id="logo">
+	        	<a id="goUp" href="#" title="Projeto">Projeto</a>
+	        </div>
+	        
+	        <nav id="menu">
+	        	<ul id="menu-nav">
+	            	<li><a href="@routes.Application.index()">Home</a></li>
+	                <li><a onclick="goHome()">Playlists</a></li>
+	                <li><a href="www.youtube.com">Contato</a></li>
+	            </ul>
+	        </nav>
+	        
+	    </div>
+	</header>
+	<!-- End Header -->
+	
+	<!-- Nova Playlist Section -->
+		
+		<div id="videoSearch">
+			<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
+			
+		</div>
+	
+		<div id="creating">
+		   
+		    <!-- Title Page -->
+		    <div class="row">
+	            <div class="title-page">
+	                <h2 class="title">Crie sua playlist</h2>
+	                <h3 class="title-description">Para finalizar a criação de sua playlist preencha o questionário abaixo.</h3>
+	            </div>
+	        </div>
+		    
+		    <div class="row">
+		    	<div class="span4">
+		    		<div id="genero1" style="display:none">
+						<label for="primGenero">Gênero da Paisagem 1</label>
+						<input type="text" class="form-control" name="primGenero" placeholder="Gênero" required><br>
+					</div>
+	
+				    <div id="paisagem1">
+				    	<div class="titulo">Paisagem 1</div>
+				    	<div id=p1music></div>
+				    </div>
+			    </div>
+			    
+			    <div class="span4">
+				    <div id="transicaoBox">
+				    	<div id="transicao">
+				    		<div class="titulo">Música de transição</div>
+				    		<div id=tmusic></div>
+				    	</div>
+				    </div>
+			    </div>
+			    
+			    <div class="span4">
+			    	<div id="genero2" style="display:none">
+				    	<label for="segGenero">Gênero da Paisagem 2</label>
+						<input type="text" class="form-control" name="segGenero" placeholder="Gênero" required><br>
+					</div>
+	
+				    <div id="paisagem2">
+				    	<div class="titulo">Paisagem 2</div>
+				    	<div id=p2music></div>
+				    </div>
+				</div>
+				    
+			</div>
+		    
+	    	<div class="row playInfo">
+		      	
+		      	<div id="botao1">
+		      		<div class="span12">
+		      			<div class="floatRight">
+							<button type="button" class="btn btn-lg mainButton" onclick="salvarPlaylist()">Salvar</button>
+		      			</div>
+		      		</div>
+		      	</div>
+		      	
+	     	</div>
+	    </div>
+    
+}

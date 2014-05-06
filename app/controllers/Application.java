@@ -5,8 +5,7 @@ import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.create;
-import views.html.index;
+import views.html.*;
 
 public class Application extends Controller {
 
@@ -52,6 +51,15 @@ public class Application extends Controller {
 			projeto.configuraNovaPlaylist(playlistForm.get());
 			flash("error", "ok, estamos na proxima pagina");
 		}
-    	return redirect(routes.Application.novaPlaylist());
+    	return redirect(routes.Application.survey());
+    }
+    
+    public static Result survey(){
+    	return ok(survey.render());
+    }
+    
+    public static Result salvarPlaylist(){
+    	projeto.salvarPlaylist();
+    	return redirect(routes.Application.index());
     }
 }

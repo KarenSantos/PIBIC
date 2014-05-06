@@ -188,7 +188,6 @@ function voltar(){
 }
 
 function adicionaMusica(lugar, nome, id){
-	
 	$.ajax({
 		type : "GET",
 		url : "/add_" + lugar + "/" + nome + "/" + id,
@@ -199,5 +198,18 @@ function adicionaMusica(lugar, nome, id){
 			alert("Ocorreu um erro, tente mais tarde.");
 		}
 	});
-	
+}
+
+function salvarPlaylist(){
+	$.ajax({
+		type : "POST",
+		url : "/salvar",
+		data : "",
+		success : function() {
+			alert("sua playlist foi salva com sucesso");
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("Ocorreu um erro, tente mais tarde.");
+		}
+	});
 }

@@ -4,19 +4,45 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import play.db.ebean.Model;
+
 /**
  * Classe de playlists.
  * 
  * @author karen
  * 
  */
-public class Playlist {
+@Entity
+public class Playlist extends Model {
 
+	private static final long serialVersionUID = 1L;
+	
+	@Id
 	private int id;
 	private String nome, imagem, primGenero, segGenero;
-	private List<Musica> primPaisagem, segPaisagem;
+	
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "primeira_paisagem", joinColumns = @JoinColumn(name = "playlist"), inverseJoinColumns = @JoinColumn(name = "musica"))
+	private List<Musica> primPaisagem;
+	
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "segunda_paisagem", joinColumns = @JoinColumn(name = "playlist"), inverseJoinColumns = @JoinColumn(name = "musica"))
+	private List<Musica> segPaisagem;
+	
+	@ManyToOne (cascade = CascadeType.ALL)
 	private Musica transicao;
 
+	public static Finder<Integer, Playlist> find = new Finder<Integer, Playlist>(
+			Integer.class, Playlist.class);
+	
 	/**
 	 * Cria uma playlist vazia com listas de musicas vazias.
 	 */

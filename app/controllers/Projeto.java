@@ -74,7 +74,8 @@ public class Projeto {
 	}
 
 	/**
-	 * Configura a nova playlist que esta sendo criada com informacoes basicas da playlist do form.
+	 * Configura a nova playlist que esta sendo criada com informacoes basicas
+	 * da playlist do form e as musicas ja adicionadas.
 	 * 
 	 * @param playlist
 	 *            A playlist do form da pagina.
@@ -84,20 +85,9 @@ public class Projeto {
 		this.novaPlaylist.setImagem(playlist.getImagem());
 		this.novaPlaylist.setPrimGenero(playlist.getPrimGenero());
 		this.novaPlaylist.setSegGenero(playlist.getSegGenero());
-	}
-
-	/**
-	 * Adiciona ao catalogo de playlists a nova playlist que vem sendo criada.
-	 */
-	public void addPlaylist() {
-
 		this.novaPlaylist.setPrimPaisagem(this.primPaisagem);
 		this.novaPlaylist.setSegPaisagem(this.segPaisagem);
 		this.novaPlaylist.setTransicao(this.transicao);
-
-		catalogo.addPlaylist(novaPlaylist);
-
-		// pode salvar o catalogo aqui
 	}
 
 	/**
@@ -218,6 +208,11 @@ public class Projeto {
 	 */
 	public boolean isTransicaoSet() {
 		return this.transicao != null;
+	}
+
+	public void salvarPlaylist() {
+		catalogo.salvarPlaylist(novaPlaylist);
+		limpaNovaPlaylist();
 	}
 
 }
