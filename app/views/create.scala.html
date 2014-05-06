@@ -1,4 +1,4 @@
-@()
+@(form: play.data.Form[Playlist])
 
 @import helper._
 
@@ -26,44 +26,33 @@
 	<!-- End Header -->
 	
 	<!-- Nova Playlist Section -->
-	
-	
+		
 		<div id="videoSearch">
-			<div class="row">
-				<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
-			</div>
+			<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
 			
-			<div class="row">
-				<div class="span2 searchCol">
-					<input type="text" class="form-control" id="keyword"/>
-				</div>
-				<div class="span1 searchCol">
-					<button type="button" onclick="go_get()" class="btn btn-default" id="doSearch">Search</button>
-				</div>
+			<div class="span2 searchField">
+				<input type="text" class="form-control" id="keyword"/>
 			</div>
+			<div class="span1 searchButton">
+				<button type="button" onclick="go_get()" class="btn btn-default" id="doSearch">Search</button>
+			</div><br>
 	
-			<div class="row">
-				<div id="searchOptions" style="display:none">
-		
-					<div class="texto t2"><span class="glyphicon glyphicon-arrow-down"></span> Clique em <b>playlist</b> para ver as opções</div>				
-		
-					<iframe id="searchiframe" width="94%" height="250" controls="0" frameborder="0"></iframe>
+			<div id="searchOptions" style="display:none">
+	
+				<div class="texto t2"><i class="glyphicon glyphicon-arrow-down"></i> Clique em <b>playlist</b> para ver mais opções</div>				
+	
+				<iframe id="searchiframe" width="94%" height="250" controls="0" frameborder="0"></iframe>
+			
+				<form role="form" name="goTo">
+					<div class="texto t3">Clique no vídeo escolhido com o botão direito, e selecione "copiar URL do vídeo". Copie e cole aqui:</div>
+					<input type="text" class="form-control" id="link" placeholder="Link do vídeo"><br>
+	
+					<input type="radio" name="radioGoTo" value="1" required>Paisagem 1<br>
+					<input type="radio" name="radioGoTo" value="2">Transição<br>
+					<input type="radio" name="radioGoTo" value="3">Paisagem 2<br><br>
 				
-					<form class="" role="form" name="goTo">
-						<div class="texto t3">Clique no vídeo escolhido com o botão direito, e selecione "copiar URL do vídeo". Copie e cole aqui:</div>
-						<input type="text" class="form-control" id="link" placeholder="Link do vídeo"><br>
-		
-						<div class="span6">
-							<input type="radio" name="radioGoTo" value="1" required>Paisagem 1<br>
-							<input type="radio" name="radioGoTo" value="2">Transição<br>
-							<input type="radio" name="radioGoTo" value="3">Paisagem 2<br><br>
-						</div>
-						
-						<div class="span6">
-							<button type="button" onclick="adicionarMusica()" class="btn btn-default">Adicionar</button>
-						</div>
-					</form>
-				</div>
+					<button type="button" onclick="adicionarMusica()" class="btn btn-default">Adicionar</button>
+				</form>
 			</div>
 		</div>
 	
@@ -71,59 +60,71 @@
 		   
 		    <!-- Title Page -->
 		    <div class="row">
-	            <div class="title-page">
+	            <div class="title-page novaTitle">
 	                <h2 class="title">Crie sua playlist</h2>
 	                <h3 class="title-description">Escolha suas paisagens e sua música de transição</h3>
 	            </div>
-	           </div>
-		    
-		    <div class="row">
-		    	<div class="span4">
-					<label for="genero1">Gênero da Paisagem 1</label>
-					<input type="text" class="form-control" id="genero1" placeholder="Gênero"><br>
-	
-				    <div id="paisagem1">
-				    	<div class="titulo">Paisagem 1</div>
-				    	<div id=p1music></div>
-				    </div>
-			    </div>
-			    
-			    <div class="span4">
-				    <div id="transicaoBox">
-				    	<div id="transicao">
-				    		<div class="titulo">Música de transição</div>
-				    		<div id=tmusic></div>
-				    	</div>
-				    </div>
-			    </div>
-			    
-			    <div class="span4">
-			    	<label for="genero2">Gênero da Paisagem 2</label>
-					<input type="text" class="form-control" id="genero2" placeholder="Gênero"><br>
-	
-				    <div id="paisagem2">
-				    	<div class="titulo">Paisagem 2</div>
-				    	<div id=p2music></div>
-				    </div>
+	        </div>
+	        
+	        <div class="row">
+	        	<div id="error">
+		        	@if(flash.containsKey("error")){
+						<div class="alert alert-error">
+							@flash.get("error")
+						</div>
+					}
 				</div>
-				    
-			</div>
+	        </div>
 		    
-	    	<div class="row playInfo">
-		    	<div class="span4">
-			    	<label for="playlistName">Nome da Playlist</label>
-		    		<input type="text" class="form-control" id="playlistName" placeholder="Nome">
-	      		</div>
-	      		
-	      		<div class="span4">
-			    	<label for="playlistImg">Imagem</label>
-		    		<input type="file" class="form-control" id="playlistImg" placeholder="File">
-	      		</div>
-	      		
-	      		<div class="span3 offset3">
-					<button type="button" class="btn btn-lg mainButton" onclick="proximo()">Próximo</button>
-	      		</div>
-	     	</div>
+		    <form action="@routes.Application.criaPlaylist()" method="post">
+			    <div class="row">
+			    	<div class="span4">
+						<label for="primGenero">Gênero da Paisagem 1</label>
+						<input type="text" class="form-control" name="primGenero" placeholder="Gênero" required><br>
+		
+					    <div id="paisagem1">
+					    	<div class="titulo">Paisagem 1</div>
+					    	<div id=p1music></div>
+					    </div>
+				    </div>
+				    
+				    <div class="span4">
+					    <div id="transicaoBox">
+					    	<div id="transicao">
+					    		<div class="titulo">Música de transição</div>
+					    		<div id=tmusic></div>
+					    	</div>
+					    </div>
+				    </div>
+				    
+				    <div class="span4">
+				    	<label for="segGenero">Gênero da Paisagem 2</label>
+						<input type="text" class="form-control" name="segGenero" placeholder="Gênero" required><br>
+		
+					    <div id="paisagem2">
+					    	<div class="titulo">Paisagem 2</div>
+					    	<div id=p2music></div>
+					    </div>
+					</div>
+					    
+				</div>
+			    
+		    	<div class="row playInfo">
+			    	<div class="span4">
+				    	<label for="nome">Nome da Playlist</label>
+			    		<input type="text" class="form-control" name="nome" placeholder="Nome" required>
+		      		</div>
+		      		
+		      		<div class="span4">
+				    	<label for="imagem">Imagem</label>
+			    		<input type="file" class="form-control" name="imagem" placeholder="File">
+		      		</div>
+		      		
+		      		<div class="span4">
+						<button type="submit" class="btn btn-lg mainButton">Próximo</button>
+		      		</div>
+		     	</div>
+		     </form>
 	    </div>
     
 }

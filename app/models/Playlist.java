@@ -18,6 +18,12 @@ public class Playlist {
 	private Musica transicao;
 
 	/**
+	 * Cria uma playlist vazia.
+	 */
+	public Playlist() {
+	}
+
+	/**
 	 * Cria uma playlist com um id, uma lista de músicas da primeira paisagem,
 	 * uma lista de músicas da segunda paisagem, uma música de transição, um
 	 * nome e uma imagem.
@@ -62,6 +68,16 @@ public class Playlist {
 	}
 
 	/**
+	 * Altera o id da playlist.
+	 * 
+	 * @param id
+	 *            O novo id da playlist.
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
 	 * Retorna o nome da playlist.
 	 * 
 	 * @return O nome da playlist.
@@ -71,12 +87,127 @@ public class Playlist {
 	}
 
 	/**
+	 * Altera o nome da playlist.
+	 * 
+	 * @param nome
+	 *            O novo nome da playlist.
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	/**
 	 * Retonra o endereço para a imagem da playlist.
 	 * 
 	 * @return O endereço para a imagem da playlist.
 	 */
 	public String getImagem() {
 		return imagem;
+	}
+
+	/**
+	 * Altera a imagem da playlist.
+	 * 
+	 * @param imagem
+	 *            A nova imagem da playlist.
+	 */
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+	/**
+	 * Retorna o genero da primeira paisagem musical.
+	 * 
+	 * @return O genero da primeira paisagem musical.
+	 */
+	public String getPrimGenero() {
+		return this.primGenero;
+	}
+
+	/**
+	 * Altera o genero da primeira paisagem musical da playlist.
+	 * 
+	 * @param primGenero
+	 *            O nome genero da primeira paisagem musical da playlist.
+	 */
+	public void setPrimGenero(String primGenero) {
+		this.primGenero = primGenero;
+	}
+
+	/**
+	 * Retorna o genero da segunda paisagem musical.
+	 * 
+	 * @return O genero da segunda paisagem musical.
+	 */
+	public String getSegGenero() {
+		return this.segGenero;
+	}
+
+	/**
+	 * Altera o genero da segunda paisagem musical da playlist.
+	 * 
+	 * @param segGenero
+	 *            O nome genero da segunda paisagem musical da playlist.
+	 */
+	public void setSegGenero(String segGenero) {
+		this.segGenero = segGenero;
+	}
+
+	/**
+	 * Retorna a lista com as musicas da primeira paisagem musical.
+	 * 
+	 * @return A lista com as musicas da primeira paisagem musical.
+	 */
+	public List<Musica> getPrimPaisagem() {
+		return this.primPaisagem;
+	}
+
+	/**
+	 * Altera a lista das musicas da primeira paisagem musical.
+	 * 
+	 * @param primPaisagem
+	 *            A nova lista das musicas da primeira paisagem musical.
+	 */
+	public void setPrimPaisagem(List<Musica> primPaisagem) {
+		this.primPaisagem = primPaisagem;
+	}
+
+	/**
+	 * Retorna a lista com as musicas da segunda paisagem musical.
+	 * 
+	 * @return A lista com as musicas da segunda paisagem musical.
+	 */
+	public List<Musica> getSegPaisagem() {
+		return this.segPaisagem;
+	}
+
+	/**
+	 * Altera a lista das musicas da segunda paisagem musical.
+	 * 
+	 * @param segPaisagem
+	 *            A nova lista das musicas da segunda paisagem musical.
+	 */
+	public void setSegPaisagem(List<Musica> segPaisagem) {
+		this.segPaisagem = segPaisagem;
+	}
+
+	/**
+	 * Retorna a musica de transicao da playlist.
+	 * 
+	 * @return A musica de transicao da playlist.
+	 */
+	public Musica getTransicao() {
+		return this.transicao;
+	}
+
+	/**
+	 * Altera a musica de transicao da playlist.
+	 * 
+	 * @param transicao
+	 *            A nova musica de transicao da playlist.
+	 */
+	public void setTransicao(Musica transicao) {
+		this.transicao = transicao;
 	}
 
 	/**
@@ -102,21 +233,4 @@ public class Playlist {
 		return getMusicas().size();
 	}
 
-	/**
-	 * Retorna o genero da primeira paisagem musical.
-	 * 
-	 * @return O genero da primeira paisagem musical.
-	 */
-	public String getPrimGenero() {
-		return this.primGenero;
-	}
-	
-	/**
-	 * Retorna o genero da segunda paisagem musical.
-	 * 
-	 * @return O genero da segunda paisagem musical.
-	 */
-	public String getSegGenero() {
-		return this.segGenero;
-	}
 }

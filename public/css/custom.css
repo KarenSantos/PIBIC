@@ -139,16 +139,21 @@
 #videoSearch {
 	position: fixed;
 	width: 20%;
-	height: 90%;
+	height: 93%;
 	background: #666666;
-	padding: 10px;
+	padding: 5px;
 	z-index: 100;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
 
-.searchCol {
-	margin: 0 0 10px 0;
+.searchField {
+	margin: 0 0 10px 15px;
+	padding: 1px;
+}
+
+.searchButton {
+	margin: 0 0 10px 0px;
 	padding: 1px;
 }
 
@@ -165,7 +170,8 @@
 
 #videoSearch .t2 {
 	font-size:14px;
-	margin-top: 15px;
+	float: right;
+	margin: 15px 5px 0 0;
 }
 
 #videoSearch .t3 {
@@ -178,18 +184,18 @@
 	text-align: center;
 }
 
-.searchForm {
-	margin: 0px, 10px;
-}
-
 /* ==================================================
    Nova Playlist
 ================================================== */
 
+.novaTitle {
+	margin-bottom: 5px;
+}
+
 #creating {
 	position: fixed;
 	width: 80%;
-	height: 90%;
+	height: 93%;
 	left: 20%;
 	padding-left: 50px;
 	overflow-y: auto;
@@ -287,5 +293,3 @@
 .playInfo {
 	padding-top: 20px;
 }
-
-

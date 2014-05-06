@@ -39,7 +39,6 @@ function go_get() {
 	 if (search_field != "") {
 		 ifr.src = target_url ;
 
-		// $("#searchOptions").style.display = "block";
 		document.getElementById("searchOptions").style.display = "block";
 	 }
 }
@@ -151,20 +150,40 @@ function exibirMusicas() {
 
 function proximo(){
 	
+	alert("entrou no proximo");
+
 	var genero1 = document.getElementById("genero1").value;
 	var genero2 = document.getElementById("genero2").value;
-	
 	var nome = document.getElementById("playlistName").value;
 	
-	if (numMusP1 >= 3 && numMusP2 >=3){
-		if (numMusT == 1){
-			alert("ok vc pode ir");
-		} else {
-			alert("Insira uma música de transição entre as paisagens.")
+	//fazer o upload da imagem
+	var imagem = document.getElementById("playlistImg").value;;
+	
+	var playlistInfo = [nome, imagem, genero1, genero2];
+	
+	$.ajax({
+		type : "POST",
+		url : "/nova/" + playlistInfo,
+		data : "",
+		success : function() {
+			window.location = "/";
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("Não foi possível salvar sua playlist no momento, favor tentar mais tarde.");
 		}
-	} else {
-		alert("Suas paisagens devem ter pelo menos 3 músicas.")
-	}
+	});
+	
+//	if (numMusP1 >= 3 && numMusP2 >=3){
+//		if (numMusT == 1){
+//			alert("ok vc pode ir");
+//		} else {
+//			alert("Insira uma música de transição entre as paisagens.")
+//		}
+//	} else {
+//		alert("Suas paisagens devem ter pelo menos 3 músicas.")
+//	}
+	
+	
 }
 
 $("#keyword").keyup(function(event){
