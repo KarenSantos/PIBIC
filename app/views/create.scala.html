@@ -60,7 +60,7 @@
 		   
 		    <!-- Title Page -->
 		    <div class="row">
-	            <div class="title-page novaTitle">
+	            <div class="title-page">
 	                <h2 class="title">Crie sua playlist</h2>
 	                <h3 class="title-description">Escolha suas paisagens e sua música de transição</h3>
 	            </div>
@@ -79,8 +79,10 @@
 		    <form action="@routes.Application.criaPlaylist()" method="post">
 			    <div class="row">
 			    	<div class="span4">
-						<label for="primGenero">Gênero da Paisagem 1</label>
-						<input type="text" class="form-control" name="primGenero" placeholder="Gênero" required><br>
+			    		<div id="genero1" style="display:none">
+							<label for="primGenero">Gênero da Paisagem 1</label>
+							<input type="text" class="form-control" name="primGenero" placeholder="Gênero" required><br>
+						</div>
 		
 					    <div id="paisagem1">
 					    	<div class="titulo">Paisagem 1</div>
@@ -98,8 +100,10 @@
 				    </div>
 				    
 				    <div class="span4">
-				    	<label for="segGenero">Gênero da Paisagem 2</label>
-						<input type="text" class="form-control" name="segGenero" placeholder="Gênero" required><br>
+				    	<div id="genero2" style="display:none">
+					    	<label for="segGenero">Gênero da Paisagem 2</label>
+							<input type="text" class="form-control" name="segGenero" placeholder="Gênero" required><br>
+						</div>
 		
 					    <div id="paisagem2">
 					    	<div class="titulo">Paisagem 2</div>
@@ -110,19 +114,33 @@
 				</div>
 			    
 		    	<div class="row playInfo">
-			    	<div class="span4">
-				    	<label for="nome">Nome da Playlist</label>
-			    		<input type="text" class="form-control" name="nome" placeholder="Nome" required>
-		      		</div>
+		    		<div id="info" style="display:none">
+				    	<div class="span4">
+					    	<label for="nome">Nome da Playlist</label>
+				    		<input type="text" class="form-control" name="nome" placeholder="Nome" required>
+			      		</div>
+			      		
+			      		<div class="span4">
+					    	<label for="imagem">Imagem</label>
+				    		<input type="file" class="form-control" name="imagem" placeholder="File">
+			      		</div>
 		      		
-		      		<div class="span4">
-				    	<label for="imagem">Imagem</label>
-			    		<input type="file" class="form-control" name="imagem" placeholder="File">
-		      		</div>
-		      		
-		      		<div class="span4">
-						<button type="submit" class="btn btn-lg mainButton">Próximo</button>
-		      		</div>
+			      		<div class="span4">
+			      			<div class="floatRight">
+			      				<button type="button" class="btn btn-lg mainButton" onclick="voltar()">Voltar</button>
+								<button type="submit" class="btn btn-lg mainButton">Botao2</button>
+			      			</div>
+			      		</div>
+			      	</div>
+			      	
+			      	<div id="botao1">
+			      		<div class="span12">
+			      			<div class="floatRight">
+								<button type="button" class="btn btn-lg mainButton" onclick="proximo()">Botao1</button>
+			      			</div>
+			      		</div>
+			      	</div>
+			      	
 		     	</div>
 		     </form>
 	    </div>

@@ -8,24 +8,19 @@ package models;
  */
 public class Musica {
 
-	private String nome, artista, link;
+	private String nome, id;
 
 	/**
-	 * Cria uma música com um nome, um artista e um link da música para o
-	 * youtube.
+	 * Cria uma música com um nome e o id da música para o youtube.
 	 * 
 	 * @param nome
 	 *            O nome da música.
-	 * @param artista
-	 *            O artista da música.
-	 * @param link
-	 *            O link da música do youtube.
+	 * @param id
+	 *            O id da música do youtube.
 	 */
-	public Musica(String nome, String artista, String link) {
+	public Musica(String nome, String id) {
 		this.nome = nome;
-		this.artista = artista;
-
-		this.link = link.split("=")[1];
+		this.id = id;
 	}
 
 	/**
@@ -38,21 +33,32 @@ public class Musica {
 	}
 
 	/**
-	 * Retorna o artista da música.
+	 * Altera o nome da musica.
 	 * 
-	 * @return O artista da música.
+	 * @param nome
+	 *            O novo nome da musica.
 	 */
-	public String getArtista() {
-		return artista;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	/**
-	 * Retorna o link da música.
+	 * Retorna o id da música para o youtube.
 	 * 
-	 * @return O link da música.
+	 * @return O id da música.
 	 */
-	public String getLink() {
-		return link;
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * Altera o id da musica para o youtube.
+	 * 
+	 * @param id
+	 *            O novo id da musica.
+	 */
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

@@ -43,6 +43,12 @@ function go_get() {
 	 }
 }
 
+$("#keyword").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#doSearch").click();
+    }
+});
+
 function adicionarMusica() {
 	
 	var link = document.getElementById("link").value;
@@ -71,25 +77,29 @@ function adicionarMusica() {
 						numMusP1++;
 						var musica = "musica" + numMusP1;
 						paisagem1[musica] = [videoTitle, videoId];
-					
+						adicionaMusica(musicGoTo, videoTitle, videoId);
+
 					} else if (musicGoTo == "2") {
-						
+
 						if(numMusT > 0){
 							var trocar = confirm("Você já adicionou uma música de transição, deseja substituí-la?");
 							if (trocar){
 								transicao = [videoTitle, videoId];
+								adicionaMusica(musicGoTo, videoTitle, videoId);
 							}
-							
+
 						} else {
 							numMusT++;
 							transicao = [videoTitle, videoId];
+							adicionaMusica(musicGoTo, videoTitle, videoId);
 						}
-						
-					
+
+
 					} else {
 						numMusP2++;
 						var musica = "musica" + numMusP2;
 						paisagem2[musica] = [videoTitle, videoId];
+						adicionaMusica(musicGoTo, videoTitle, videoId);
 					}
 					
 					document.getElementById("link").value = ""; //limpando o text input do link
@@ -150,44 +160,44 @@ function exibirMusicas() {
 
 function proximo(){
 	
-	alert("entrou no proximo");
+	if (numMusP1 < 3 || numMusP2 < 3) {
+		alert("Cada paisagem deve ter no mínimo 3 músicas.")
+	} else if (numMusT == 0){
+		alert("Adicione uma música de transição.");
+	} else {
+		
+		document.getElementById("genero1").style.display = "block";
+		document.getElementById("genero2").style.display = "block";
+		document.getElementById("info").style.display = "block";
+		
+		document.getElementById("botao1").style.display = "none";
+		document.getElementById("searchOptions").style.display = "none";
+		
+	}
 
-	var genero1 = document.getElementById("genero1").value;
-	var genero2 = document.getElementById("genero2").value;
-	var nome = document.getElementById("playlistName").value;
+//	//fazer o upload da imagem
+}
+
+function voltar(){
+	document.getElementById("genero1").style.display = "none";
+	document.getElementById("genero2").style.display = "none";
+	document.getElementById("info").style.display = "none";
 	
-	//fazer o upload da imagem
-	var imagem = document.getElementById("playlistImg").value;;
-	
-	var playlistInfo = [nome, imagem, genero1, genero2];
+	document.getElementById("botao1").style.display = "block";
+	document.getElementById("searchOptions").style.display = "block";
+}
+
+function adicionaMusica(lugar, nome, id){
 	
 	$.ajax({
-		type : "POST",
-		url : "/nova/" + playlistInfo,
+		type : "GET",
+		url : "/add_" + lugar + "/" + nome + "/" + id,
 		data : "",
 		success : function() {
-			window.location = "/";
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("Não foi possível salvar sua playlist no momento, favor tentar mais tarde.");
+			alert("Ocorreu um erro, tente mais tarde.");
 		}
 	});
 	
-//	if (numMusP1 >= 3 && numMusP2 >=3){
-//		if (numMusT == 1){
-//			alert("ok vc pode ir");
-//		} else {
-//			alert("Insira uma música de transição entre as paisagens.")
-//		}
-//	} else {
-//		alert("Suas paisagens devem ter pelo menos 3 músicas.")
-//	}
-	
-	
 }
-
-$("#keyword").keyup(function(event){
-    if(event.keyCode == 13){
-        $("#doSearch").click();
-    }
-});

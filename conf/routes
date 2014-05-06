@@ -9,6 +9,9 @@ GET		/getPlaylist/:id			controllers.Application.getPlaylist(id: Int)
 # Nova Playlist
 
 GET		/nova_playlist				controllers.Application.novaPlaylist()
+GET		/add_1/:nome/:id			controllers.Application.addPrimPaisagem(nome: String, id: String)
+GET		/add_2/:nome/:id			controllers.Application.setTransicao(nome: String, id: String)
+GET		/add_3/:nome/:id			controllers.Application.addSegPaisagem(nome: String, id: String)
 POST	/cria_playlist				controllers.Application.criaPlaylist()
 
 #/:disciplinaId/:futuro/:atual		controllers.Application.mover(disciplinaId: String, futuro: Int, atual: Int)

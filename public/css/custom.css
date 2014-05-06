@@ -188,10 +188,6 @@
    Nova Playlist
 ================================================== */
 
-.novaTitle {
-	margin-bottom: 5px;
-}
-
 #creating {
 	position: fixed;
 	width: 80%;
@@ -204,7 +200,6 @@
 
 #creating .title-page {
 	padding-left: 30px;
-	padding-bottom: -10;
 }
 
 #paisagem1, #paisagem2 {
@@ -292,4 +287,8 @@
 
 .playInfo {
 	padding-top: 20px;
+}
+
+.floatRight {
+	float: right;
 }

@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import models.CatalogoDePlaylists;
@@ -16,12 +17,22 @@ public class Projeto {
 
 	private final int SAMPLE = 12;
 	private CatalogoDePlaylists catalogo;
+	private Playlist novaPlaylist;
+	private List<Musica> primPaisagem;
+	private List<Musica> segPaisagem;
+	private Musica transicao;
 
 	/**
 	 * Cria um PROJETO com um catalogo de playlists.
 	 */
 	public Projeto() {
+		// se o catalogo ja existir carregar ele
 		catalogo = new CatalogoDePlaylists();
+
+		novaPlaylist = new Playlist();
+		primPaisagem = new ArrayList<Musica>();
+		segPaisagem = new ArrayList<Musica>();
+		transicao = null;
 	}
 
 	/**
@@ -54,30 +65,39 @@ public class Projeto {
 	}
 
 	/**
-	 * Cria uma playlist com uma lista de músicas da primeira paisagem, uma
-	 * lista de músicas da segunda paisagem, uma música de transição um nome e
-	 * uma imagem.
+	 * Retorna a nova playlist que esta sendo criada.
 	 * 
-	 * @param primPaisagem
-	 *            A lista de músicas da primeira paisagem.
-	 * @param segPaisagem
-	 *            A lista de músicas da segunda paisagem.
-	 * @param transicao
-	 *            A música de transição.
-	 * @param primGenero
-	 *            O gênero da primeira paisagem musical.
-	 * @param segGenero
-	 *            O gênero da segunda paisagem musical.
-	 * @param nome
-	 *            O nome da playlist.
-	 * @param imagem
-	 *            A imagem da playlist.
+	 * @return A nova playlist que esta sendo criada.
 	 */
-	public void criarPlaylist(List<Musica> primPaisagem,
-			List<Musica> segPaisagem, Musica transicao, String primGenero,
-			String segGenero, String nome, String imagem) {
-		catalogo.criarPlaylist(primPaisagem, segPaisagem, transicao,
-				primGenero, segGenero, nome, imagem);
+	public Playlist getNovaPlaylist() {
+		return this.novaPlaylist;
+	}
+
+	/**
+	 * Configura a nova playlist que esta sendo criada com informacoes basicas da playlist do form.
+	 * 
+	 * @param playlist
+	 *            A playlist do form da pagina.
+	 */
+	public void configuraNovaPlaylist(Playlist playlist) {
+		this.novaPlaylist.setNome(playlist.getNome());
+		this.novaPlaylist.setImagem(playlist.getImagem());
+		this.novaPlaylist.setPrimGenero(playlist.getPrimGenero());
+		this.novaPlaylist.setSegGenero(playlist.getSegGenero());
+	}
+
+	/**
+	 * Adiciona ao catalogo de playlists a nova playlist que vem sendo criada.
+	 */
+	public void addPlaylist() {
+
+		this.novaPlaylist.setPrimPaisagem(this.primPaisagem);
+		this.novaPlaylist.setSegPaisagem(this.segPaisagem);
+		this.novaPlaylist.setTransicao(this.transicao);
+
+		catalogo.addPlaylist(novaPlaylist);
+
+		// pode salvar o catalogo aqui
 	}
 
 	/**
@@ -90,6 +110,114 @@ public class Projeto {
 	 */
 	public List<Playlist> getSamplePlaylists() {
 		return catalogo.getSamplePlaylists(SAMPLE);
+	}
+
+	/**
+	 * Retorna a lista com as musicas da primeira paisagem da playlist sendo
+	 * criada.
+	 * 
+	 * @return A lista com as musicas da primeira paisagem.
+	 */
+	public List<Musica> getPrimPaisagem() {
+		return this.primPaisagem;
+	}
+
+	/**
+	 * Adiciona uma musica com um nome e um id na primeira paisagem da playlist
+	 * sendo criada.
+	 * 
+	 * @param nome
+	 *            O nome da musica a ser adicionada.
+	 * @param id
+	 *            O id da musica a ser adicionada.
+	 */
+	public void addMusicaPrimPaisagem(String nome, String id) {
+		// checar se musica ja existe
+		this.primPaisagem.add(new Musica(nome, id));
+	}
+
+	/**
+	 * Retorna a lista com as musicas da segunda paisagem da playlist sendo
+	 * criada.
+	 * 
+	 * @return A lista com as musicas da segunda paisagem.
+	 */
+	public List<Musica> getSegPaisagem() {
+		return this.segPaisagem;
+	}
+
+	/**
+	 * Adiciona uma musica com um nome e um id na segunda paisagem da playlist
+	 * sendo criada.
+	 * 
+	 * @param nome
+	 *            O nome da musica a ser adicionada.
+	 * @param id
+	 *            O id da musica a ser adicionada.
+	 */
+	public void addMusicaSegPaisagem(String nome, String id) {
+		// checar se musica ja existe
+		this.segPaisagem.add(new Musica(nome, id));
+	}
+
+	/**
+	 * Retorna a musica de transicao da playlist sendo criada.
+	 * 
+	 * @return A musica de transicao.
+	 */
+	public Musica getTransicao() {
+		return this.transicao;
+	}
+
+	/**
+	 * Define uma musica de transicao para a playlist sendo criada.
+	 * 
+	 * @param nome
+	 *            O nome da musica de transicao.
+	 * @param id
+	 *            O id da musica de transicao.
+	 */
+	public void setMusicaTransicao(String nome, String id) {
+		// checar se musica ja existe
+		this.transicao = new Musica(nome, id);
+	}
+
+	/**
+	 * Limpa a playlist que esta sendo criada.
+	 */
+	public void limpaNovaPlaylist() {
+		this.novaPlaylist = null;
+		this.primPaisagem = new ArrayList<Musica>();
+		this.segPaisagem = new ArrayList<Musica>();
+		this.transicao = null;
+	}
+
+	/**
+	 * Retorna o total de musicas da primeira paisagem.
+	 * 
+	 * @return O total de musicas da primeira paisagem.
+	 */
+	public int getTotalMusicasPrimPaisagem() {
+		return this.primPaisagem.size();
+	}
+
+	/**
+	 * Retorna o total de musicas da seg paisagem.
+	 * 
+	 * @return O total de musicas da seg paisagem.
+	 */
+	public int getTotalMusicasSegPaisagem() {
+		return this.segPaisagem.size();
+	}
+
+	/**
+	 * Retorna se a musica de transicao ja foi setada.
+	 * 
+	 * @return True se a musica de transicao ja foi setada ou false caso
+	 *         contrario.
+	 */
+	public boolean isTransicaoSet() {
+		return this.transicao != null;
 	}
 
 }

@@ -1,18 +1,19 @@
 package controllers;
 
-import models.*;
+import models.Playlist;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
 import views.html.create;
+import views.html.index;
 
 public class Application extends Controller {
 
 	private static Projeto projeto = new Projeto();
-	
+		
     public static Result index() {
+    	projeto.limpaNovaPlaylist();
         return ok(index.render(projeto.getSamplePlaylists()));
     }
 
@@ -24,18 +25,33 @@ public class Application extends Controller {
     public static Result novaPlaylist() {
     	return ok(create.render(Form.form(Playlist.class)));
     }
+    
+    public static Result addPrimPaisagem(String nome, String id){
+    	projeto.addMusicaPrimPaisagem(nome, id);
+    	return ok();
+    }
+    
+    public static Result addSegPaisagem(String nome, String id){
+    	projeto.addMusicaSegPaisagem(nome, id);
+    	return ok();
+    }
+ 
+	public static Result setTransicao(String nome, String id){
+		projeto.setMusicaTransicao(nome, id);
+		return ok();
+	}
 
     public static Result criaPlaylist(){
-    	
-    	Playlist novaPlaylist = null;
-    	
+
     	Form<Playlist> playlistForm = Form.form(Playlist.class).bindFromRequest();
-		if (playlistForm.hasErrors()) {
+    	
+    	if (playlistForm.hasErrors()) {
 			return badRequest(create.render(playlistForm));
-		} else {
-			novaPlaylist = playlistForm.get();
+		
+    	} else {
+			projeto.configuraNovaPlaylist(playlistForm.get());
+			flash("error", "ok, estamos na proxima pagina");
 		}
-		flash("error", novaPlaylist.getNome());
-		return redirect(routes.Application.novaPlaylist());
+    	return redirect(routes.Application.novaPlaylist());
     }
 }

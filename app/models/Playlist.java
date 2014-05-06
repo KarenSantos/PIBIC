@@ -18,18 +18,16 @@ public class Playlist {
 	private Musica transicao;
 
 	/**
-	 * Cria uma playlist vazia.
+	 * Cria uma playlist vazia com listas de musicas vazias.
 	 */
 	public Playlist() {
 	}
 
 	/**
-	 * Cria uma playlist com um id, uma lista de músicas da primeira paisagem,
+	 * Cria uma playlist com uma lista de músicas da primeira paisagem,
 	 * uma lista de músicas da segunda paisagem, uma música de transição, um
 	 * nome e uma imagem.
 	 * 
-	 * @param id
-	 *            O id da playlist.
 	 * @param primPaisagem
 	 *            A lista de músicas da primeira paisagem.
 	 * @param segPaisagem
@@ -45,10 +43,9 @@ public class Playlist {
 	 * @param imagem
 	 *            O endereço da imagem da playlist.
 	 */
-	public Playlist(int id, List<Musica> primPaisagem,
+	public Playlist(List<Musica> primPaisagem,
 			List<Musica> segPaisagem, Musica transicao, String primGenero,
 			String segGenero, String nome, String imagem) {
-		this.id = id;
 		this.primPaisagem = primPaisagem;
 		this.segPaisagem = segPaisagem;
 		this.transicao = transicao;
