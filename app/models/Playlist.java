@@ -26,7 +26,7 @@ public class Playlist extends Model {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private int id;
+	private String id;
 	private String nome, imagem, primGenero, segGenero;
 	
 	@ManyToMany (cascade = CascadeType.ALL)
@@ -40,8 +40,8 @@ public class Playlist extends Model {
 	@ManyToOne (cascade = CascadeType.ALL)
 	private Musica transicao;
 
-	public static Finder<Integer, Playlist> find = new Finder<Integer, Playlist>(
-			Integer.class, Playlist.class);
+	public static Finder<String, Playlist> find = new Finder<String, Playlist>(
+			String.class, Playlist.class);
 	
 	/**
 	 * Cria uma playlist vazia com listas de musicas vazias.
@@ -86,7 +86,7 @@ public class Playlist extends Model {
 	 * 
 	 * @return O id da playlist;
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -96,7 +96,7 @@ public class Playlist extends Model {
 	 * @param id
 	 *            O novo id da playlist.
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

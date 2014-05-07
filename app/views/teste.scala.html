@@ -1,0 +1,79 @@
+@(form: play.data.Form[Playlist])
+
+@import helper._
+
+@main("Projeto") {
+
+	<!-- Header -->
+	<header>
+	    <div class="sticky-nav">
+	    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+	        
+	        <div id="logo">
+	        	<a id="goUp" href="#" title="Projeto">Projeto</a>
+	        </div>
+	        
+	        <nav id="menu">
+	        	<ul id="menu-nav">
+	            	<li><a href="@routes.Application.index()">Home</a></li>
+	                <li><a onclick="goHome()">Playlists</a></li>
+	                <li><a href="www.youtube.com">Contato</a></li>
+	            </ul>
+	        </nav>
+	        
+	    </div>
+	</header>
+	<!-- End Header -->
+	
+	<!-- Nova Playlist Section -->
+		
+		<div id="videoSearch">
+			<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
+			
+			<div id="searchForm">
+				<div class="searchButton">
+					<button type="button" onclick="go_get()" class="btn btn-default" id="doSearch">Search</button>
+				</div>
+				<div class="searchField">
+					<input type="text" class="form-control" id="keyword"/>
+				</div>
+			</div>
+		
+		</div>
+	
+		<div id="creating">
+		   
+		    <!-- Title Page -->
+		    <div class="row">
+	            <div class="title-page">
+	                <h2 class="title">Crie sua playlist</h2>
+	                <h3 class="title-description">Escolha suas paisagens e sua música de transição</h3>
+	            </div>
+	        </div>
+	        
+	            
+		    <form action="@routes.Application.upload()" method="post" enctype="multipart/form-data">
+			    <div class="row">
+			    				    
+		    	<div class="row playInfo">
+			    	<div class="span4">
+				    	<label for="nome">Nome da Playlist</label>
+			    		<input type="text" class="form-control" name="nome" placeholder="Nome" required>
+		      		</div>
+		      		
+		      		<div class="span4">
+				    	<label for="imagem">Imagem</label>
+			    		<input type="file" class="form-control" name="imagem" placeholder="File">
+		      		</div>
+	      		
+		      		<div class="span4">
+		      			<div class="floatRight">
+							<button type="submit" class="btn btn-lg mainButton">Finalizar</button>
+		      			</div>
+		      		</div>
+			      	
+		     	</div>
+		     </form>
+	    </div>
+    
+}

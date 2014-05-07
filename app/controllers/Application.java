@@ -1,9 +1,14 @@
 package controllers;
 
+import java.io.File;
+import java.io.InputStream;
+
 import models.Playlist;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import views.html.*;
 
@@ -51,6 +56,14 @@ public class Application extends Controller {
 			projeto.configuraNovaPlaylist(playlistForm.get());
 			flash("error", "ok, estamos na proxima pagina");
 		}
+    	
+    	MultipartFormData body = request().body().asMultipartFormData();
+    	FilePart picture = body.getFile("picture");
+   		String fileName = picture.getFilename();
+   		String contentType = picture.getContentType(); 
+   		File file = picture.getFile();
+   		System.out.println(file.getAbsolutePath());
+    	
     	return redirect(routes.Application.survey());
     }
     
@@ -61,5 +74,28 @@ public class Application extends Controller {
     public static Result salvarPlaylist(){
     	projeto.salvarPlaylist();
     	return redirect(routes.Application.index());
+    }
+    
+    public static Result teste(){
+    	return ok(teste.render(Form.form(Playlist.class)));
+    }
+    
+    public static Result upload(){
+    	Form<Playlist> playlistForm = Form.form(Playlist.class).bindFromRequest();
+    	
+    	if (playlistForm.hasErrors()) {
+			return badRequest(create.render(playlistForm));
+    	} else {
+    		Playlist play = playlistForm.get();
+		}
+    	
+    	MultipartFormData body = request().body().asMultipartFormData();
+    	FilePart imagem = body.getFile("imagem");
+   		String fileName = imagem.getFilename();
+   		String contentType = imagem.getContentType(); 
+   		File file = imagem.getFile();
+   		System.out.println(file.getAbsolutePath());
+    	
+    	return redirect(routes.Application.survey());
     }
 }

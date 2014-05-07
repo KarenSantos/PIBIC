@@ -30,12 +30,14 @@
 		<div id="videoSearch">
 			<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
 			
-			<div class="span2 searchField">
-				<input type="text" class="form-control" id="keyword"/>
+			<div id="searchForm">
+				<div class="searchButton">
+					<button type="button" onclick="go_get()" class="btn btn-default" id="doSearch">Search</button>
+				</div>
+				<div class="searchField">
+					<input type="text" class="form-control" id="keyword"/>
+				</div>
 			</div>
-			<div class="span1 searchButton">
-				<button type="button" onclick="go_get()" class="btn btn-default" id="doSearch">Search</button>
-			</div><br>
 	
 			<div id="searchOptions" style="display:none">
 	
@@ -67,16 +69,13 @@
 	        </div>
 	        
 	        <div class="row">
-	        	<div id="error">
-		        	@if(flash.containsKey("error")){
-						<div class="alert alert-error">
-							@flash.get("error")
-						</div>
-					}
+				<div id="error" class="alert alert-error" style="display:none">
+					<div id="errorText" class="floatLeft"></div>
+					<a class="glyphicon glyphicon-remove aerror" onclick="fecharErro()"></a>
 				</div>
 	        </div>
 		    
-		    <form action="@routes.Application.criaPlaylist()" method="post">
+		    <form action="@routes.Application.criaPlaylist()" method="post" enctype="multipart/form-data">
 			    <div class="row">
 			    	<div class="span4">
 			    		<div id="genero1" style="display:none">
@@ -128,7 +127,7 @@
 			      		<div class="span4">
 			      			<div class="floatRight">
 			      				<button type="button" class="btn btn-lg mainButton" onclick="voltar()">Voltar</button>
-								<button type="submit" class="btn btn-lg mainButton">Botao2</button>
+								<button type="submit" class="btn btn-lg mainButton">Finalizar</button>
 			      			</div>
 			      		</div>
 			      	</div>
@@ -136,7 +135,7 @@
 			      	<div id="botao1">
 			      		<div class="span12">
 			      			<div class="floatRight">
-								<button type="button" class="btn btn-lg mainButton" onclick="proximo()">Botao1</button>
+								<button type="button" class="btn btn-lg mainButton" onclick="proximo()">Próximo</button>
 			      			</div>
 			      		</div>
 			      	</div>

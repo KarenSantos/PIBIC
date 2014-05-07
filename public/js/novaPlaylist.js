@@ -161,9 +161,11 @@ function exibirMusicas() {
 function proximo(){
 	
 	if (numMusP1 < 3 || numMusP2 < 3) {
-		alert("Cada paisagem deve ter no mínimo 3 músicas.")
+		document.getElementById("errorText").innerHTML = "Cada paisagem deve ter no mínimo 3 músicas. &nbsp;&nbsp;";
+		document.getElementById("error").style.display = "block";
 	} else if (numMusT == 0){
-		alert("Adicione uma música de transição.");
+		document.getElementById("errorText").innerHTML = "Adicione uma música de transição. &nbsp;&nbsp;";
+		document.getElementById("error").style.display = "block";
 	} else {
 		
 		document.getElementById("genero1").style.display = "block";
@@ -212,4 +214,8 @@ function salvarPlaylist(){
 			alert("Ocorreu um erro, tente mais tarde.");
 		}
 	});
+}
+
+function fecharErro(){
+	document.getElementById("error").style.display = "none";
 }

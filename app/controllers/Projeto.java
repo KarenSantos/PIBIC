@@ -26,7 +26,6 @@ public class Projeto {
 	 * Cria um PROJETO com um catalogo de playlists.
 	 */
 	public Projeto() {
-		// se o catalogo ja existir carregar ele
 		catalogo = new CatalogoDePlaylists();
 
 		novaPlaylist = new Playlist();
