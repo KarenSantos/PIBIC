@@ -209,9 +209,10 @@ function salvarPlaylist(){
 		data : "",
 		success : function() {
 			alert("sua playlist foi salva com sucesso");
+			window.location = "/";
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("Ocorreu um erro, tente mais tarde.");
+			alert("Você chegou aqui por caminhos alternativos, volte e crie sua playlist.");
 		}
 	});
 }

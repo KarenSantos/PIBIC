@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
 )     
 
 val appDependencies = Seq(
-  javaEbean
+  javaEbean,
+  "commons-io" % "commons-io" % "2.3"
 )
 
 play.Project.playJavaSettings

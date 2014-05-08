@@ -31,7 +31,7 @@ function playlistStart(playlist) {
 
 	for (var i = 0; i < playlist.musicas.length; i++){
 		musicasPlaylist.push(playlist.musicas[i]);
-		videoIDs.push(playlist.musicas[i].link);
+		videoIDs.push(playlist.musicas[i].id);
 	}
 	
 	function onYouTubeIframeAPIReady() {

@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.File;
-import java.io.InputStream;
+import java.io.IOException;
+
+//import org.apache.commons.io.FileUtils;
 
 import models.Playlist;
 import play.data.Form;
@@ -72,8 +74,12 @@ public class Application extends Controller {
     }
     
     public static Result salvarPlaylist(){
-    	projeto.salvarPlaylist();
-    	return redirect(routes.Application.index());
+    	if (projeto.isTransicaoSet()){
+    		projeto.salvarPlaylist();
+    		return ok();
+    	} else {
+    		return badRequest();
+    	}
     }
     
     public static Result teste(){
@@ -94,8 +100,17 @@ public class Application extends Controller {
    		String fileName = imagem.getFilename();
    		String contentType = imagem.getContentType(); 
    		File file = imagem.getFile();
-   		System.out.println(file.getAbsolutePath());
+   		System.out.println("nome = " + fileName);
+   		System.out.println("content = " + contentType);
+   		
+//   		try {
+//            FileUtils.moveFile(file, new File("public/img/playImgs", fileName));
+//        } catch (IOException ioe) {
+//            System.out.println("Problem operating on filesystem");
+//        }
+   		System.out.println("file = " + file.getAbsolutePath());
+   		
     	
-    	return redirect(routes.Application.survey());
+    	return redirect(routes.Application.teste());
     }
 }

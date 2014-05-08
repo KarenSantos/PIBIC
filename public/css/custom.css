@@ -67,23 +67,13 @@
 
 #musicaAtual {
 	position: absolute;
-	width: 45%;
-	top: 2px;
-	left: 53%;
+	width: calc(100% - 300px);
+	top: 5px;
+	left: 303px;
 	color: #333333;
 	font-weight: bold;
 	overflow:hidden;
 	line-height:20px;
-}
-
-#artistaAtual{
-	position: absolute;
-	width: 45%;
-	bottom: 0px;
-	left: 53%;
-	color: #333333;
-	overflow:hidden;
-	font-size: 10px;
 }
 
 #proxima {
@@ -304,4 +294,8 @@
 
 .floatLeft {
 	float: left;
+}
+
+.formulario {
+	text-align: center;
 }

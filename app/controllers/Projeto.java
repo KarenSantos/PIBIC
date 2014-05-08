@@ -121,8 +121,11 @@ public class Projeto {
 	 *            O id da musica a ser adicionada.
 	 */
 	public void addMusicaPrimPaisagem(String nome, String id) {
-		// checar se musica ja existe
-		this.primPaisagem.add(new Musica(nome, id));
+		Musica musica = Musica.find.byId(id);
+		if (musica == null){
+			musica = new Musica(nome, id);
+		}
+		this.primPaisagem.add(musica);
 	}
 
 	/**
@@ -145,8 +148,11 @@ public class Projeto {
 	 *            O id da musica a ser adicionada.
 	 */
 	public void addMusicaSegPaisagem(String nome, String id) {
-		// checar se musica ja existe
-		this.segPaisagem.add(new Musica(nome, id));
+		Musica musica = Musica.find.byId(id);
+		if (musica == null){
+			musica = new Musica(nome, id);
+		}
+		this.segPaisagem.add(musica);
 	}
 
 	/**
@@ -167,8 +173,11 @@ public class Projeto {
 	 *            O id da musica de transicao.
 	 */
 	public void setMusicaTransicao(String nome, String id) {
-		// checar se musica ja existe
-		this.transicao = new Musica(nome, id);
+		Musica musica = Musica.find.byId(id);
+		if (musica == null){
+			musica = new Musica(nome, id);
+		}
+		this.transicao = musica;
 	}
 
 	/**
