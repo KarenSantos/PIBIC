@@ -2,6 +2,9 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.start;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +17,7 @@ public class ProjetoTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		start(fakeApplication(inMemoryDatabase()));
 		projeto = new Projeto();
 	}
 
@@ -25,8 +29,7 @@ public class ProjetoTest {
 	@Test
 	public void deveTerDetalhesSobreAsPlaylists() {
 		
-		// informacoes da playlist sample criada
-		
+		// informacoes de sample playlists criadas
 		assertEquals("Playlist de André", projeto.getPlaylist(0).getNome());  
 		assertEquals(6, projeto.getPlaylist(0).getTotalDeMusicas());
 		assertEquals("0.jpg", projeto.getPlaylist(0).getImagem());
@@ -36,7 +39,7 @@ public class ProjetoTest {
 	
 	@Test
 	public void deveCriarAmostraDePlaylists() {
-		
+		// amostra de playlists com numero limitado para pagina principal
 		assertEquals(5, projeto.getTotalDePlaylists());
 		assertEquals(5, projeto.getSamplePlaylists().size());
 	}
