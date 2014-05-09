@@ -1,4 +1,4 @@
-@()
+@(playlistId: String)
 
 @import helper._
 
@@ -38,9 +38,39 @@
 		    <div class="row">
 	            <div class="title-page">
 	                <h2 class="title">Crie sua playlist</h2>
-	                <h3 class="title-description">Para finalizar a criação de sua playlist preencha o questionário abaixo.</h3>
+	                <h3 class="title-description">Para nos ajudar com nossa pesquisa por gentileza responda algumas perguntas relacionadas à criação de sua playlist. Sinta-se à vontade para responder quantas perguntas quiser.</h3>
 	            </div>
 	        </div>
+		    
+		    <form role="form">
+			   <div class="form-group">
+			      <label for="name">Name</label>
+			      <input type="text" class="form-control" id="name" 
+			         placeholder="Enter Name">
+			   </div>
+			   
+			   <div class="radio">
+				   <label>
+				      <input type="radio" name="optionsRadios" id="optionsRadios1" 
+				         value="option1" checked> Option 1
+				   </label>
+				</div>
+				<div class="radio">
+				   <label>
+				      <input type="radio" name="optionsRadios" id="optionsRadios2" 
+				         value="option2">
+				         Option 2 - selecting it will deselect option 1
+				   </label>
+				</div>
+			   
+			   
+			   <div class="checkbox">
+			      <label>
+			      <input type="checkbox"> Check me out
+			      </label>
+			   </div>
+			   <button type="submit" class="btn btn-default">Submit</button>
+			</form>
 		    
 		    <div class="row formulario">
 		    	<iframe src="https://docs.google.com/forms/d/1pc14o-Ri-q-HDt1zpR5uJRhjp4qcKirIMTUCcHEm9NI/viewform?embedded=true" width="760" height="450" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>

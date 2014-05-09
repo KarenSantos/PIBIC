@@ -49,7 +49,6 @@ function playlistStart(playlist) {
 		event.target.loadVideoById(videoIDs[currentSong]);
 		
 		document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
-		document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
 		document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
 	}
 
@@ -60,7 +59,6 @@ function playlistStart(playlist) {
 				player.loadVideoById(videoIDs[currentSong]);
 				
 				document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
-				document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
 				
 				if (currentSong++ < videoIDs.length) {
 					document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;

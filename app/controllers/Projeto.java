@@ -122,7 +122,7 @@ public class Projeto {
 	 */
 	public void addMusicaPrimPaisagem(String nome, String id) {
 		Musica musica = Musica.find.byId(id);
-		if (musica == null){
+		if (musica == null) {
 			musica = new Musica(nome, id);
 		}
 		this.primPaisagem.add(musica);
@@ -149,7 +149,7 @@ public class Projeto {
 	 */
 	public void addMusicaSegPaisagem(String nome, String id) {
 		Musica musica = Musica.find.byId(id);
-		if (musica == null){
+		if (musica == null) {
 			musica = new Musica(nome, id);
 		}
 		this.segPaisagem.add(musica);
@@ -174,7 +174,7 @@ public class Projeto {
 	 */
 	public void setMusicaTransicao(String nome, String id) {
 		Musica musica = Musica.find.byId(id);
-		if (musica == null){
+		if (musica == null) {
 			musica = new Musica(nome, id);
 		}
 		this.transicao = musica;
@@ -218,9 +218,16 @@ public class Projeto {
 		return this.transicao != null;
 	}
 
-	public void salvarPlaylist() {
-		catalogo.salvarPlaylist(novaPlaylist);
+	/**
+	 * Adiciona a nova playlist no catalogo de playlists e retorna o id da
+	 * playlist adicionada.
+	 * 
+	 * @return O id da playlist adicionada.
+	 */
+	public String salvarPlaylist() {
+		String id = catalogo.salvarPlaylist(novaPlaylist);
 		limpaNovaPlaylist();
+		return id;
 	}
 
 }

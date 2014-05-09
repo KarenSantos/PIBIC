@@ -9,9 +9,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-
 import models.Playlist;
 import play.data.Form;
 import play.libs.Json;
@@ -23,6 +20,9 @@ import views.html.*;
 
 public class Application extends Controller {
 
+	private static final int imgWidth = 270;
+	private static final int imgHeight = 160;
+	
 	private static Projeto projeto = new Projeto();
 		
     public static Result index() {
@@ -57,84 +57,44 @@ public class Application extends Controller {
     public static Result criaPlaylist(){
 
     	Form<Playlist> playlistForm = Form.form(Playlist.class).bindFromRequest();
+    	String playlistId = null;
     	
     	if (playlistForm.hasErrors()) {
 			return badRequest(create.render(playlistForm));
 		
     	} else {
 			projeto.configuraNovaPlaylist(playlistForm.get());
-			flash("error", "ok, estamos na proxima pagina");
-		}
-    	
-    	MultipartFormData body = request().body().asMultipartFormData();
-    	FilePart picture = body.getFile("picture");
-   		String fileName = picture.getFilename();
-   		String contentType = picture.getContentType(); 
-   		File file = picture.getFile();
-   		System.out.println(file.getAbsolutePath());
-    	
-    	return redirect(routes.Application.survey());
-    }
-    
-    public static Result survey(){
-    	return ok(survey.render());
-    }
-    
-    public static Result salvarPlaylist(){
-    	if (projeto.isTransicaoSet()){
-    		projeto.salvarPlaylist();
-    		return ok();
-    	} else {
-    		return badRequest();
-    	}
-    }
-    
-    public static Result teste(){
-    	return ok(teste.render(Form.form(Playlist.class)));
-    }
-    
-    public static Result upload(){
-    	Form<Playlist> playlistForm = Form.form(Playlist.class).bindFromRequest();
-    	Playlist play = new Playlist();
-    	if (playlistForm.hasErrors()) {
-			return badRequest(create.render(playlistForm));
-    	} else {
-    		play = playlistForm.get();
+			playlistId = projeto.salvarPlaylist();
 		}
     	
     	MultipartFormData body = request().body().asMultipartFormData();
     	FilePart imagem = body.getFile("imagem");
-   		String fileName = imagem.getFilename();
-   		String contentType = imagem.getContentType(); 
    		File file = imagem.getFile();
-   		
-   		System.out.println(file.length());
-   		File playImg = new File("public/img/playImgs", fileName);
-   		
-//   		try {
-//            FileUtils.moveFile(file, playImg);
-//        } catch (IOException ioe) {
-//        	ioe.printStackTrace();
-//        }
    		
    		BufferedImage img;
    		BufferedImage resized = null;
+   		//creates an image from the uploaded file and resizes it
 		try {
-			img = ImageIO.read(playImg);
-			resized = resizeImgTo(img, 10, 10);
+			img = ImageIO.read(file);
+			resized = resizeImgTo(img, imgWidth, imgHeight);
 		} catch (IOException e) {
 			e.printStackTrace();
-			flash("erro", e.getMessage());
+			flash("erro", "Um problema foi encontrado ao fazer o upload da imagem.");
 		}
 
+		//converts the image back to file
 		try {
-			ImageIO.write(resized, FilenameUtils.removeExtension(fileName), playImg);
+			ImageIO.write(resized, "jpg", new File("public/img/playImgs", playlistId));
 		} catch (IOException e) {
 			e.printStackTrace();
-			flash("erro", e.getMessage());
+			flash("erro", "Um problema foi encontrado ao fazer o upload da imagem.");
 		}
     	
-    	return redirect(routes.Application.teste());
+    	return redirect(routes.Application.survey(playlistId));
+    }
+    
+    public static Result survey(String id){
+    	return ok(survey.render(id));
     }
     
     private static BufferedImage resizeImgTo(Image srcImg, int w, int h){

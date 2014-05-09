@@ -70,16 +70,18 @@ public class CatalogoDePlaylists {
 	}
 
 	/**
-	 * Adiciona uma playlist a lista de playlists do catalogo e seta seu id.
+	 * Salva uma playlist no BD, criando um novo id e adicionando esta playlist no catalogo.
 	 * 
 	 * @param playlist
 	 *            A playlist a ser adicionada.
+	 * @return O id da nova playlist no BD.
 	 */
-	public void salvarPlaylist(Playlist playlist) {
-		int id = Playlist.find.all().size();
-		playlist.setId(id + "");
+	public String salvarPlaylist(Playlist playlist) {
+		String id = Playlist.find.all().size() + "";
+		playlist.setId(id);
 		playlist.save();
 		playlists = Playlist.find.all();
+		return id;
 	}
 
 	/**
