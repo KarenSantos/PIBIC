@@ -1,9 +1,16 @@
 package controllers;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-//import org.apache.commons.io.FileUtils;
+import javax.imageio.ImageIO;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import models.Playlist;
 import play.data.Form;
@@ -88,11 +95,11 @@ public class Application extends Controller {
     
     public static Result upload(){
     	Form<Playlist> playlistForm = Form.form(Playlist.class).bindFromRequest();
-    	
+    	Playlist play = new Playlist();
     	if (playlistForm.hasErrors()) {
 			return badRequest(create.render(playlistForm));
     	} else {
-    		Playlist play = playlistForm.get();
+    		play = playlistForm.get();
 		}
     	
     	MultipartFormData body = request().body().asMultipartFormData();
@@ -100,17 +107,42 @@ public class Application extends Controller {
    		String fileName = imagem.getFilename();
    		String contentType = imagem.getContentType(); 
    		File file = imagem.getFile();
-   		System.out.println("nome = " + fileName);
-   		System.out.println("content = " + contentType);
+   		
+   		System.out.println(file.length());
+   		File playImg = new File("public/img/playImgs", fileName);
    		
 //   		try {
-//            FileUtils.moveFile(file, new File("public/img/playImgs", fileName));
+//            FileUtils.moveFile(file, playImg);
 //        } catch (IOException ioe) {
-//            System.out.println("Problem operating on filesystem");
+//        	ioe.printStackTrace();
 //        }
-   		System.out.println("file = " + file.getAbsolutePath());
    		
+   		BufferedImage img;
+   		BufferedImage resized = null;
+		try {
+			img = ImageIO.read(playImg);
+			resized = resizeImgTo(img, 10, 10);
+		} catch (IOException e) {
+			e.printStackTrace();
+			flash("erro", e.getMessage());
+		}
+
+		try {
+			ImageIO.write(resized, FilenameUtils.removeExtension(fileName), playImg);
+		} catch (IOException e) {
+			e.printStackTrace();
+			flash("erro", e.getMessage());
+		}
     	
     	return redirect(routes.Application.teste());
+    }
+    
+    private static BufferedImage resizeImgTo(Image srcImg, int w, int h){
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.dispose();
+        return resizedImg;
     }
 }

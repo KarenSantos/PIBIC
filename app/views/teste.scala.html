@@ -51,6 +51,16 @@
 	            </div>
 	        </div>
 	        
+	        <div class="row">
+				@if(flash.containsKey("erro")){
+					<div id="error" class="alert alert-error">
+						<div id="errorText" class="floatLeft">
+								@flash.get("erro")
+						</div>
+						<a class="glyphicon glyphicon-remove aerror" onclick="fecharErro()"></a>
+					</div>
+				}
+	        </div>
 	            
 		    <form action="@routes.Application.upload()" method="post" enctype="multipart/form-data">
 			    <div class="row">
