@@ -27,67 +27,106 @@
 	
 	<!-- Nova Playlist Section -->
 		
-		<div id="videoSearch">
-			<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
-			
-		</div>
-	
-		<div id="creating">
-		   
-		    <!-- Title Page -->
-		    <div class="row">
-	            <div class="title-page">
-	                <h2 class="title">Crie sua playlist</h2>
-	                <h3 class="title-description">Para nos ajudar com nossa pesquisa por gentileza responda algumas perguntas relacionadas à criação de sua playlist. Sinta-se à vontade para responder quantas perguntas quiser.</h3>
-	            </div>
-	        </div>
-		    
-		    <form role="form">
-			   <div class="form-group">
-			      <label for="name">Name</label>
-			      <input type="text" class="form-control" id="name" 
-			         placeholder="Enter Name">
-			   </div>
-			   
-			   <div class="radio">
-				   <label>
-				      <input type="radio" name="optionsRadios" id="optionsRadios1" 
-				         value="option1" checked> Option 1
-				   </label>
-				</div>
-				<div class="radio">
-				   <label>
-				      <input type="radio" name="optionsRadios" id="optionsRadios2" 
-				         value="option2">
-				         Option 2 - selecting it will deselect option 1
-				   </label>
-				</div>
-			   
-			   
-			   <div class="checkbox">
-			      <label>
-			      <input type="checkbox"> Check me out
-			      </label>
-			   </div>
-			   <button type="submit" class="btn btn-default">Submit</button>
-			</form>
-		    
-		    <div class="row formulario">
-		    	<iframe src="https://docs.google.com/forms/d/1pc14o-Ri-q-HDt1zpR5uJRhjp4qcKirIMTUCcHEm9NI/viewform?embedded=true" width="760" height="450" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
-				    
-			</div>
-		    
-	    	<div class="row playInfo">
-		      	
-		      	<div id="botao1">
-		      		<div class="span12">
-		      			<div class="formulario">
-							<button type="button" class="btn btn-lg mainButton" onclick="salvarPlaylist()">Salvar</button>
-		      			</div>
-		      		</div>
-		      	</div>
-		      	
-	     	</div>
+	<div id="videoSearch">
+		<div class="texto t1">Pesquise sua música através dos vídeos do YouTube.</div>
+		
+	</div>
+
+	<div id="creating">
+	   
+	    <!-- Title Page -->
+	    <div class="row">
+            <div class="title-page">
+                <h2 class="title">Crie sua playlist</h2>
+                <h3 class="title-description">Gostaria de colaborar com nossa pesquisa?</h3>
+                <p>Responda algumas perguntas relacionadas à criação de sua playlist. Sinta-se à vontade para responder quantas perguntas quiser.</p>
+            </div>
+        </div>
+	    
+	    <div class="row">
+	    	<div class="span9">
+				<form role="form" action="@routes.Application.respostas()" method="post">
+					<div id="formulario">
+					
+						<label for="q1">Com que frequência você escuta música?</label>
+						<div id="q1">
+							<div class="radio radioOption">
+								<label><input type="radio" name="question1" value="q1o1">
+									Pelo menos uma vez por dia
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question1" value="q1o2">
+									Pelo menos uma vez por semana
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question1" value="q1o3">
+									Mais de uma vez por semana
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question1" value="q1o4">
+									Pelo menos uma vez por mês
+								</label></div>
+						</div>
+						
+						<label for="q2">Que gêneros de música você gosta de ouvir?</label>
+						<div id="q2">
+							<div class="radio radioOption">
+								<label><input type="radio" name="question2" value="q2o1">
+									Apenas de um gênero musical
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question2" value="q2o2">
+									Poucos gêneros musicais
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question2" value="q2o3">
+									Muitos gêneros musicais
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question2" value="q2o4">
+									Gosto de qualquer tipo de música
+								</label></div>
+						</div>
+						
+							
+						<label for="q3">Que gêneros de música você gosta de ouvir?</label>
+						<div id="q3">
+							<div class="radio radioOption">
+								<label><input type="radio" name="question3" value="q2o1">
+									Apenas de um gênero musical
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question3" value="q2o2">
+									Poucos gêneros musicais
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question3" value="q2o3">
+									Muitos gêneros musicais
+								</label></div>
+							<div class="radio radioOption">
+								<label><input type="radio" name="question3" value="q2o4">
+									Gosto de qualquer tipo de música
+								</label></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control" id="name" placeholder="Enter Name">
+						</div>
+					
+					</div>
+
+					<div id="botao1" class="floatRight">
+				   		<button type="submit" class="btn btn-lg mainButton">Enviar</button>
+					</div>
+				</form>
+			    
+			    <!-- <div class="row formulario">
+			    	<iframe src="https://docs.google.com/forms/d/1pc14o-Ri-q-HDt1zpR5uJRhjp4qcKirIMTUCcHEm9NI/viewform?embedded=true" width="760" height="450" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
+				</div> -->
+				
+		     </div>
 	    </div>
+    </div>
     
 }

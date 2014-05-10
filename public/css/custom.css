@@ -296,6 +296,29 @@
 	float: left;
 }
 
-.formulario {
-	text-align: center;
+/* ==================================================
+   Survey
+================================================== */
+
+#formulario {
+	position: relative;
+	height:400px;
+	overflow:auto;
+	margin-left:20px;
+	margin-bottom: 30px;
+	background: white;
+	padding:20px;
+}
+
+#creating h3 {
+	margin: 0px;
+}
+
+.question {
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.radioOption {
+	margin-left:30px;
 }

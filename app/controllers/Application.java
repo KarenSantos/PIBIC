@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import models.Playlist;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -104,5 +105,16 @@ public class Application extends Controller {
         g2.drawImage(srcImg, 0, 0, w, h, null);
         g2.dispose();
         return resizedImg;
+    }
+    
+    public static Result respostas(){
+    	
+    	DynamicForm requestData = Form.form().bindFromRequest();
+        String q1 = requestData.get("question1");
+        String q2 = requestData.get("question2");
+    	
+    	System.out.println(q1);
+    	
+    	return redirect(routes.Application.survey("1"));
     }
 }

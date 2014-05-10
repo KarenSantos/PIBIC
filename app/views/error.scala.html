@@ -1,0 +1,39 @@
+@(error: String)
+
+@import helper._
+
+@main("Projeto") {
+
+	<!-- Header -->
+	<header>
+	    <div class="sticky-nav">
+	    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+	        
+	        <div id="logo">
+	        	<a id="goUp" href="#" title="Projeto">Projeto</a>
+	        </div>
+	        
+	        <nav id="menu">
+	        	<ul id="menu-nav">
+	            	<li><a href="@routes.Application.index()">Home</a></li>
+	                <li><a onclick="goHome()">Playlists</a></li>
+	                <li><a href="www.youtube.com">Contato</a></li>
+	            </ul>
+	        </nav>
+	        
+	    </div>
+	</header>
+	<!-- End Header -->
+	
+	<!-- Nova Playlist Section -->
+		
+	<!-- Title Page -->
+	<div class="container">
+	    <div class="row">
+            <div class="title-page">
+                <h2 class="title">Ops!</h2>
+                <h3 class="title-description">@error</h3>
+            </div>
+        </div>
+    </div>
+}
