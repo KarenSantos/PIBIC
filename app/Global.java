@@ -25,8 +25,7 @@ public class Global extends GlobalSettings {
 	
 	public void onStart(Application app) {
 		
-		
-
+		//criar as perguntas e a survey
 		
 	}  
 }
