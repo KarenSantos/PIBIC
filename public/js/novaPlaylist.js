@@ -53,9 +53,12 @@ function adicionarMusica() {
 	
 	var link = document.getElementById("link").value;
 	if (link == ""){
-		alert("Insira um link válido.");
+		alert("Insira um link.");
 	
+	} else if (!isValidURL(link)){
+		alert("Insira um link de vídeo do YouTube válido.")
 	} else {
+		
 		var musicGoTo = RadioHab();
 		if (musicGoTo == null){
 			alert("Selecione para onde vai a música adicionada.");
@@ -107,12 +110,22 @@ function adicionarMusica() {
 									
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("Ocorreu um erro. Tente mais tarde.");
+					alert("O link inserido não corresponde a um vídeo do youtube. Insira um link válido.");
 				}
 			});
 		}
 	}
 }
+
+function isValidURL(url){
+    var RegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+
+    if(RegExp.test(url)){
+        return true;
+    }else{
+        return false;
+    }
+} 
 
 function RadioHab() {
 	var musicGoTo = null;

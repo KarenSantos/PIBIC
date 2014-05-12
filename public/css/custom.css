@@ -197,7 +197,7 @@
 	padding-left: 30px;
 }
 
-#paisagem1, #paisagem2 {
+#paisagem1, #pais2 {
 	position: relative;
 	height:300px;
 	padding:5px 10px;
@@ -243,14 +243,14 @@
 	background: #FFAD5C;
 }
 
-#paisagem2 button {
+#pais2 button {
 	border: 1px solid #aaaaaa;
 	border-radius: 5px;
 	padding: 5px;
 	background: #C5E2FF;
 }
 
-#paisagem2 button:hover {
+#pais2 button:hover {
 	background: #85ADFF;
 }
 
@@ -276,16 +276,16 @@
 	margin-bottom: 5px;
 }
 
-#creating button:hover{
-	background-color: #FF8C53;
-}
-
 .aerror {
 	color: #F8D6D5;
 }
 
 .playInfo {
 	padding-top: 20px;
+}
+
+.playInfo button:hover{
+	background: #FF8C53;
 }
 
 .floatRight {
