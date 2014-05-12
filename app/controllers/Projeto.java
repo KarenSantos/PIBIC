@@ -50,7 +50,7 @@ public class Projeto {
 	 *            O id da playlist.
 	 * @return A playlist.
 	 */
-	public Playlist getPlaylist(int id) {
+	public Playlist getPlaylist(String id) {
 		return catalogo.getPlaylist(id);
 	}
 

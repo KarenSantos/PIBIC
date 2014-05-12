@@ -22,17 +22,19 @@ function openPlaylist(id) {
 
 function playlistStart(playlist) {
 	
+	alert(player == null);
+	player = null;
+	alert(player == null);
+	
 	document.getElementById("faixaPlayer").style.display = "block";
 	document.getElementById("nomePlaylist").innerHTML = playlist.nome;
 
-	var musicasPlaylist = [];
+	var videoTitles = [];
 	var videoIDs = [];
 	var currentSong = 0;
 
-	for (var i = 0; i < playlist.musicas.length; i++){
-		musicasPlaylist.push(playlist.musicas[i]);
-		videoIDs.push(playlist.musicas[i].id);
-	}
+	listSongs(playlist, videoTitles, videoIDs);
+	alert(videoTitles + "\n\n" + videoIDs + "\n\n" + currentSong)
 	
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
@@ -48,8 +50,8 @@ function playlistStart(playlist) {
 	function onPlayerReady(event) {
 		event.target.loadVideoById(videoIDs[currentSong]);
 		
-		document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
-		document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
+		document.getElementById("musicaAtual").innerHTML = '"' + videoTitles[currentSong] + '"';
+		document.getElementById("proxima").innerHTML = "Próxima: " + videoTitles[currentSong+1];
 	}
 
 	function onPlayerStateChange(event) {
@@ -58,10 +60,10 @@ function playlistStart(playlist) {
 			if (currentSong < videoIDs.length) {
 				player.loadVideoById(videoIDs[currentSong]);
 				
-				document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
+				document.getElementById("musicaAtual").innerHTML = '"' + videoTitles[currentSong] + '"';
 				
-				if (currentSong++ < videoIDs.length) {
-					document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
+				if (currentSong+1 < videoIDs.length) {
+					document.getElementById("proxima").innerHTML = "Próxima: " + videoTitles[currentSong+1];
 				}
 				
 			}
@@ -72,28 +74,29 @@ function playlistStart(playlist) {
 		onYouTubeIframeAPIReady();
 	} else {
 		player.loadVideoById(videoIDs[currentSong]);
-		document.getElementById("musicaAtual").innerHTML = '"' + musicasPlaylist[currentSong].nome + '"';
-		document.getElementById("artistaAtual").innerHTML = musicasPlaylist[currentSong].artista;
-		document.getElementById("proxima").innerHTML = "Próxima: " + musicasPlaylist[currentSong+1].nome;
+		document.getElementById("musicaAtual").innerHTML = '"' + videoTitles[currentSong] + '"';
+		document.getElementById("proxima").innerHTML = "Próxima: " + videoTitles[currentSong+1];
 	}
 	
 }
 
 function closePlaylist() {
 	player.stopVideo();
-
-	if (player == null){
-		alert("conseguiu fazer player nulo");
-	}
 	document.getElementById("faixaPlayer").style.display = "none";
-	// $('#faixaPlayer').style.display = "none";
 }
 
-function murderEvent(evt) {
-	 evt.cancel=true;
-	 evt.returnValue=false;
-	 evt.cancelBubble=true;
-	 if (evt.stopPropagation) evt.stopPropagation();
-	 if (evt.preventDefault) evt.preventDefault();
-	 return false;
+function listSongs(playlist, titleList, idList){
+	
+	for (var i = 0; i < playlist.primPaisagem.length; i++){
+		titleList.push(playlist.primPaisagem[i].nome);
+		idList.push(playlist.primPaisagem[i].id);
+	}
+	
+	titleList.push(playlist.transicao.nome);
+	idList.push(playlist.transicao.id);
+	
+	for (var i = 0; i < playlist.segPaisagem.length; i++){
+		titleList.push(playlist.segPaisagem[i].nome);
+		idList.push(playlist.segPaisagem[i].id);
+	}
 }

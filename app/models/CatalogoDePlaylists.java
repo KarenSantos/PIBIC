@@ -45,19 +45,8 @@ public class CatalogoDePlaylists {
 	 *            O id da playlist desejada.
 	 * @return A playlist do id indicado.
 	 */
-	public Playlist getPlaylist(int id) {
-		return playlists.get(id);
-	}
-
-	/**
-	 * Retorna uma playlist a partir de um id.
-	 * 
-	 * @param id
-	 *            O id da playlist desejada.
-	 * @return A playlist do id indicado.
-	 */
 	public Playlist getPlaylist(String id) {
-		return playlists.get(Integer.parseInt(id));
+		return Playlist.find.byId(id);
 	}
 
 	/**

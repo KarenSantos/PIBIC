@@ -30,11 +30,11 @@ public class ProjetoTest {
 	public void deveTerDetalhesSobreAsPlaylists() {
 		
 		// informacoes de sample playlists criadas
-		assertEquals("Playlist de André", projeto.getPlaylist(0).getNome());  
-		assertEquals(6, projeto.getPlaylist(0).getTotalDeMusicas());
-		assertEquals("0.jpg", projeto.getPlaylist(0).getImagem());
-		assertEquals("Rock Instrumental", projeto.getPlaylist(0).getPrimGenero());
-		assertEquals("Metal Melódico", projeto.getPlaylist(0).getSegGenero());
+		assertEquals("Playlist de André", projeto.getPlaylist("1").getNome());  
+		assertEquals(6, projeto.getPlaylist("1").getTotalDeMusicas());
+		assertEquals("1.jpg", projeto.getPlaylist("1").getImagem());
+		assertEquals("Rock Instrumental", projeto.getPlaylist("1").getPrimGenero());
+		assertEquals("Metal Melódico", projeto.getPlaylist("1").getSegGenero());
 	}
 	
 	@Test

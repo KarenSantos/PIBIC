@@ -4,7 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET		/getPlaylist/:id			controllers.Application.getPlaylist(id: Int)
+GET		/getPlaylist/:id			controllers.Application.getPlaylist(id: String)
 
 # Nova Playlist
 

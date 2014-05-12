@@ -32,7 +32,7 @@ public class Application extends Controller {
         return ok(index.render(projeto.getSamplePlaylists()));
     }
 
-    public static Result getPlaylist(int id) {
+    public static Result getPlaylist(String id) {
     	Playlist playlist = projeto.getPlaylist(id);
         return ok(Json.toJson(playlist));
     }
