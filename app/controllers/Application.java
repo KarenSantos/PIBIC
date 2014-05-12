@@ -21,8 +21,9 @@ import views.html.*;
 
 public class Application extends Controller {
 
-	private static final int imgWidth = 270;
-	private static final int imgHeight = 160;
+	private static final int IMG_WIDTH = 270;
+	private static final int IMG_HEIGHT = 160;
+	private static final String IMAGEM_PADRAO = "0";
 	
 	private static Projeto projeto = new Projeto();
 		
@@ -55,56 +56,44 @@ public class Application extends Controller {
 		return ok();
 	}
 
-    public static Result criaPlaylist(){
+	public static Result criaPlaylist(){
 
     	Form<Playlist> playlistForm = Form.form(Playlist.class).bindFromRequest();
-    	String playlistId = null;
+    	Playlist playlist = null;
     	
     	if (playlistForm.hasErrors()) {
 			return badRequest(create.render(playlistForm));
 		
     	} else {
-			projeto.configuraNovaPlaylist(playlistForm.get());
-			playlistId = projeto.salvarPlaylist();
-		}
-    	
-    	MultipartFormData body = request().body().asMultipartFormData();
-    	FilePart imagem = body.getFile("imagem");
-   		File file = imagem.getFile();
-   		
-   		BufferedImage img;
-   		BufferedImage resized = null;
-   		//creates an image from the uploaded file and resizes it
-		try {
-			img = ImageIO.read(file);
-			resized = resizeImgTo(img, imgWidth, imgHeight);
-		} catch (IOException e) {
-			e.printStackTrace();
-			flash("erro", "Um problema foi encontrado ao fazer o upload da imagem.");
-		}
+    		
+    		playlist = playlistForm.get();
+    		playlist.setId(Playlist.find.all().size() + 1 + "");
+    		
+    		MultipartFormData body = request().body().asMultipartFormData();
+    		FilePart imagem = body.getFile("imagem");
+    		File file = imagem.getFile();
+    		
+    		if (imagem == null){
+    			playlist.setImagem(IMAGEM_PADRAO);
+    		} else {
 
-		//converts the image back to file
-		try {
-			ImageIO.write(resized, "jpg", new File("public/img/playImgs", playlistId));
-		} catch (IOException e) {
-			e.printStackTrace();
-			flash("erro", "Um problema foi encontrado ao fazer o upload da imagem.");
+    			try {
+    				configuraImagem(file, playlist.getId());
+    				playlist.setImagem(playlist.getId());
+    			} catch (IOException e){
+    				playlist.setImagem(IMAGEM_PADRAO);
+    				flash("erro", "Um problema foi encontrado ao fazer o upload da imagem. Sua playlist foi salva com a imagem padrão.");
+    			}
+    		}
+			projeto.configuraNovaPlaylist(playlist);
+			projeto.salvarPlaylist();
 		}
     	
-    	return redirect(routes.Application.survey(playlistId));
+    	return redirect(routes.Application.survey(playlist.getId()));
     }
     
     public static Result survey(String id){
     	return ok(survey.render(id));
-    }
-    
-    private static BufferedImage resizeImgTo(Image srcImg, int w, int h){
-        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(srcImg, 0, 0, w, h, null);
-        g2.dispose();
-        return resizedImg;
     }
     
     public static Result respostas(){
@@ -116,5 +105,29 @@ public class Application extends Controller {
     	System.out.println(q1);
     	
     	return redirect(routes.Application.survey("1"));
+    }
+
+    private static File configuraImagem(File file, String id) throws IOException{
+    	BufferedImage img;
+		BufferedImage resized = null;
+		
+		//creates an image from the uploaded file and resizes it
+		img = ImageIO.read(file);
+		resized = resizeImgTo(img, IMG_WIDTH, IMG_HEIGHT);
+		
+		//converts the image back to file
+		File newImage = new File("public/img/playImgs", id + ".jpg");
+		ImageIO.write(resized, "jpg", newImage);
+
+		return newImage;
+    }
+    
+    private static BufferedImage resizeImgTo(Image srcImg, int w, int h){
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.dispose();
+        return resizedImg;
     }
 }

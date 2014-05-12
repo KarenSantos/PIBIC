@@ -70,18 +70,14 @@ public class CatalogoDePlaylists {
 	}
 
 	/**
-	 * Salva uma playlist no BD, criando um novo id e adicionando esta playlist no catalogo.
+	 * Salva uma playlist no BD e adiciona esta playlist no catalogo.
 	 * 
 	 * @param playlist
 	 *            A playlist a ser adicionada.
-	 * @return O id da nova playlist no BD.
 	 */
-	public String salvarPlaylist(Playlist playlist) {
-		String id = Playlist.find.all().size() + "";
-		playlist.setId(id);
+	public void salvarPlaylist(Playlist playlist) {
 		playlist.save();
 		playlists = Playlist.find.all();
-		return id;
 	}
 
 	/**
@@ -127,7 +123,8 @@ public class CatalogoDePlaylists {
 		List<Musica> andrePais2 = new ArrayList<Musica>();
 		andrePais2.add(new Musica("Fullmoon", "sTqX4hY74KA"));
 		andrePais2.add(new Musica("Late Redemption", "RiQwEknXPqo"));
-		Playlist playlist = new Playlist(andrePais1, andrePais2, andreTrans, "Rock Instrumental", "Metal Melódico", "Playlist de André","0.jpg");
+		Playlist playlist = new Playlist(andrePais1, andrePais2, andreTrans, "Rock Instrumental", "Metal Melódico", "Playlist de André", "1.jpg");
+		playlist.setId(Playlist.find.all().size() + 1 + "");
 		salvarPlaylist(playlist);
 		
 		// Playlist Diego Vilela
@@ -142,7 +139,8 @@ public class CatalogoDePlaylists {
 		diegoPais2.add(new Musica("O Preço", "GH7MB6a35aU"));
 		diegoPais2.add(new Musica("A Thousand Years", "rtOvBOTyX00"));
 		diegoPais2.add(new Musica("Forasteiro", "wbKRLtfWPdI"));
-		playlist = new Playlist(diegoPais1, diegoPais2, diegoTrans, "Música Agitada", "Música Lenta", "Playlist de Diego","1.jpg");
+		playlist = new Playlist(diegoPais1, diegoPais2, diegoTrans, "Música Agitada", "Música Lenta", "Playlist de Diego", "2.jpg");
+		playlist.setId(Playlist.find.all().size() + 1 + "");
 		salvarPlaylist(playlist);
 		
 		// Playlist Andrew Marques
@@ -159,7 +157,8 @@ public class CatalogoDePlaylists {
 		andrewPais2.add(new Musica("Wild For the Night", "4A-5SexRmtI"));
 		andrewPais2.add(new Musica("Scream & Shout (remix)", "lEKOWKcUxdU"));
 		andrewPais2.add(new Musica("Mercy", "7Dqgr0wNyPo"));
-		playlist = new Playlist(andrewPais1, andrewPais2, andrewTrans, "Música Eletrônica", "Rap", "Playlist de Andrew", "2.jpg");
+		playlist = new Playlist(andrewPais1, andrewPais2, andrewTrans, "Música Eletrônica", "Rap", "Playlist de Andrew", "3.jpg");
+		playlist.setId(Playlist.find.all().size() + 1 + "");
 		salvarPlaylist(playlist);
 		
 		
@@ -179,7 +178,8 @@ public class CatalogoDePlaylists {
 		djaildoPais2.add(new Musica("Gimme Shelter", "n_a0zOLMAfw"));
 		djaildoPais2.add(new Musica("Since I’ve Been Loving You", "Bkjv9SscotY"));
 		djaildoPais2.add(new Musica("Once", "I19X-m3vWnk"));
-		playlist = new Playlist(djaildoPais1, djaildoPais2, djaildoTrans, "Música Feliz", "Música Melancólica", "Playlist de Djaildo", "3.gif");
+		playlist = new Playlist(djaildoPais1, djaildoPais2, djaildoTrans, "Música Feliz", "Música Melancólica", "Playlist de Djaildo", "4.jpg");
+		playlist.setId(Playlist.find.all().size() + 1 + "");
 		salvarPlaylist(playlist);
 		
 		
@@ -195,7 +195,8 @@ public class CatalogoDePlaylists {
 		vitorPais2.add(new Musica("New Jerusalem", "UB8Qx_Hce1s"));
 		vitorPais2.add(new Musica("Setting Sail, Coming Home", "GDflVhOpS4E"));
 		vitorPais2.add(new Musica("I Was Born for This", "qizpBpHTzkU"));
-		playlist = new Playlist(vitorPais1, vitorPais2, vitorTrans, "Metal", "Música Árabe", "Playlist de Vitor", "4.jpg");
+		playlist = new Playlist(vitorPais1, vitorPais2, vitorTrans, "Metal", "Música Árabe", "Playlist de Vitor", "5.jpg");
+		playlist.setId(Playlist.find.all().size() + 1 + "");
 		salvarPlaylist(playlist);
 	}
 

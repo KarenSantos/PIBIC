@@ -1,10 +1,15 @@
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Musica;
+import models.Playlist;
+import controllers.Projeto;
 import play.*;
 import play.mvc.*;
 import play.mvc.Http.*;
 import play.libs.F.*;
 import views.html.*;
-
 import static play.mvc.Results.*;
 
 public class Global extends GlobalSettings {

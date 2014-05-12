@@ -80,7 +80,7 @@ function adicionarMusica() {
 						numMusP1++;
 						var musica = "musica" + numMusP1;
 						paisagem1[musica] = [videoTitle, videoId];
-						adicionaMusica(musicGoTo, videoTitle, videoId);
+						enviarMusica(musicGoTo, videoTitle, videoId);
 
 					} else if (musicGoTo == "2") {
 
@@ -88,13 +88,13 @@ function adicionarMusica() {
 							var trocar = confirm("Você já adicionou uma música de transição, deseja substituí-la?");
 							if (trocar){
 								transicao = [videoTitle, videoId];
-								adicionaMusica(musicGoTo, videoTitle, videoId);
+								enviarMusica(musicGoTo, videoTitle, videoId);
 							}
 
 						} else {
 							numMusT++;
 							transicao = [videoTitle, videoId];
-							adicionaMusica(musicGoTo, videoTitle, videoId);
+							enviarMusica(musicGoTo, videoTitle, videoId);
 						}
 
 
@@ -102,7 +102,7 @@ function adicionarMusica() {
 						numMusP2++;
 						var musica = "musica" + numMusP2;
 						paisagem2[musica] = [videoTitle, videoId];
-						adicionaMusica(musicGoTo, videoTitle, videoId);
+						enviarMusica(musicGoTo, videoTitle, videoId);
 					}
 					
 					document.getElementById("link").value = ""; //limpando o text input do link
@@ -186,8 +186,8 @@ function proximo(){
 		document.getElementById("info").style.display = "block";
 		
 		document.getElementById("botao1").style.display = "none";
+		document.getElementById("searchForm").style.display = "none";
 		document.getElementById("searchOptions").style.display = "none";
-		
 	}
 
 //	//fazer o upload da imagem
@@ -199,10 +199,11 @@ function voltar(){
 	document.getElementById("info").style.display = "none";
 	
 	document.getElementById("botao1").style.display = "block";
+	document.getElementById("searchForm").style.display = "block";
 	document.getElementById("searchOptions").style.display = "block";
 }
 
-function adicionaMusica(lugar, nome, id){
+function enviarMusica(lugar, nome, id){
 	$.ajax({
 		type : "GET",
 		url : "/add_" + lugar + "/" + nome + "/" + id,

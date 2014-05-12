@@ -276,6 +276,12 @@
 	margin-bottom: 5px;
 }
 
+#note {
+	font-style: italic;
+	float: left;
+	font-size:12px;
+}
+
 .aerror {
 	color: #F8D6D5;
 }

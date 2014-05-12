@@ -219,15 +219,11 @@ public class Projeto {
 	}
 
 	/**
-	 * Adiciona a nova playlist no catalogo de playlists e retorna o id da
-	 * playlist adicionada.
-	 * 
-	 * @return O id da playlist adicionada.
+	 * Adiciona a nova playlist no catalogo de playlists.
 	 */
-	public String salvarPlaylist() {
-		String id = catalogo.salvarPlaylist(novaPlaylist);
+	public void salvarPlaylist() {
+		catalogo.salvarPlaylist(novaPlaylist);
 		limpaNovaPlaylist();
-		return id;
 	}
 
 }
