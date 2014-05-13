@@ -9,7 +9,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import models.AlocacaoInvalidaException;
 import models.Playlist;
+import models.PlaylistIncompletaException;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.libs.Json;
@@ -23,7 +25,7 @@ public class Application extends Controller {
 
 	private static final int IMG_WIDTH = 270;
 	private static final int IMG_HEIGHT = 160;
-	private static final String IMAGEM_PADRAO = "0";
+	private static final String IMAGEM_PADRAO = "0.jpg";
 	
 	private static Projeto projeto = new Projeto();
 		
@@ -42,17 +44,29 @@ public class Application extends Controller {
     }
     
     public static Result addPrimPaisagem(String nome, String id){
-    	projeto.addMusicaPrimPaisagem(nome, id);
+    	try{
+    		projeto.addMusicaPrimPaisagem(nome, id);
+    	} catch (AlocacaoInvalidaException a){
+    		return badRequest();
+    	}
     	return ok();
     }
     
     public static Result addSegPaisagem(String nome, String id){
-    	projeto.addMusicaSegPaisagem(nome, id);
+    	try {
+			projeto.addMusicaSegPaisagem(nome, id);
+		} catch (AlocacaoInvalidaException e) {
+			return badRequest();
+		}
     	return ok();
     }
  
 	public static Result setTransicao(String nome, String id){
-		projeto.setMusicaTransicao(nome, id);
+		try {
+			projeto.setMusicaTransicao(nome, id);
+		} catch (AlocacaoInvalidaException e) {
+			return badRequest();
+		}
 		return ok();
 	}
 
@@ -68,15 +82,17 @@ public class Application extends Controller {
     		
     		playlist = playlistForm.get();
     		playlist.setId(Playlist.find.all().size() + 1 + "");
+    		System.out.println("playlist do form ok");
     		
     		MultipartFormData body = request().body().asMultipartFormData();
     		FilePart imagem = body.getFile("imagem");
-    		File file = imagem.getFile();
     		
-    		if (imagem == null){
+    		if (imagem == null) {
+    			System.out.println("imagem é nula");
     			playlist.setImagem(IMAGEM_PADRAO);
     		} else {
-
+    			System.out.println("imagem nao é nula");
+    			File file = imagem.getFile();
     			try {
     				configuraImagem(file, playlist.getId());
     				playlist.setImagem(playlist.getId());
@@ -85,8 +101,15 @@ public class Application extends Controller {
     				flash("erro", "Um problema foi encontrado ao fazer o upload da imagem. Sua playlist foi salva com a imagem padrão.");
     			}
     		}
+    		System.out.println("passou das coisas da imagem");
 			projeto.configuraNovaPlaylist(playlist);
-			projeto.salvarPlaylist();
+			
+			try {
+				projeto.salvarPlaylist();
+			} catch (PlaylistIncompletaException e) {
+				flash("error", "Um erro ocorreu ao tentar salvar sua playlist. Tente mais tarde");
+				return redirect(routes.Application.novaPlaylist());
+			}
 		}
     	
     	return redirect(routes.Application.survey(playlist.getId()));

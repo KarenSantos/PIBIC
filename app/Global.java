@@ -1,22 +1,19 @@
 
-import java.util.ArrayList;
-import java.util.List;
-
-import models.Musica;
-import models.Playlist;
-import controllers.Projeto;
-import play.*;
-import play.mvc.*;
-import play.mvc.Http.*;
-import play.libs.F.*;
-import views.html.*;
-import static play.mvc.Results.*;
+import static play.mvc.Results.badRequest;
+import static play.mvc.Results.internalServerError;
+import static play.mvc.Results.notFound;
+import play.Application;
+import play.GlobalSettings;
+import play.libs.F.Promise;
+import play.mvc.Http.RequestHeader;
+import play.mvc.SimpleResult;
+import views.html.error;
 
 public class Global extends GlobalSettings {
 
 	public Promise<SimpleResult> onError(RequestHeader request, Throwable t) {
 		return Promise.<SimpleResult>pure(internalServerError(error.render("Erro encontrado:\n"
-													+ t.getMessage())));
+													+ t.getStackTrace())));
     }
 	
 	public Promise<SimpleResult> onHandlerNotFound(RequestHeader request) {

@@ -44,7 +44,7 @@ public class Playlist extends Model {
 			String.class, Playlist.class);
 	
 	/**
-	 * Cria uma playlist vazia com listas de musicas vazias.
+	 * Cria uma playlist vazia.
 	 */
 	public Playlist() {
 	}

@@ -49,7 +49,7 @@ CHAKRA.listenerMenu = function(){
 CHAKRA.slider = function(){
 	$.supersized({
 		// Functionality
-		slideshow               :   1,			// Slideshow on/off
+		slideshow               :   0,			// Slideshow on/off
 		autoplay				:	1,			// Slideshow starts playing automatically
 		start_slide             :   1,			// Start slide (0 is random)
 		stop_loop				:	0,			// Pauses slideshow on last slide

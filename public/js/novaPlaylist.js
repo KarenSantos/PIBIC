@@ -49,70 +49,58 @@ $("#keyword").keyup(function(event){
     }
 });
 
-function adicionarMusica() {
+function requisitarVideo() {
 	
 	var link = document.getElementById("link").value;
 	if (link == ""){
-		alert("Insira um link.");
+		mostrarErro("Insira um link.");
 	
 	} else if (!isValidURL(link)){
-		alert("Insira um link de vídeo do YouTube válido.")
+		mostrarErro("Insira um link de vídeo do YouTube válido.")
 	} else {
 		
 		var musicGoTo = RadioHab();
 		if (musicGoTo == null){
-			alert("Selecione para onde vai a música adicionada.");
+			mostrarErro("Selecione para onde vai a música adicionada.");
 		
 		} else {
-			
 			var APIKey = "AIzaSyDrBArU_WZxTHmQc62_YdktmhQsFZ4PnAg";
 			var videoId = link.split("=")[1].split("&")[0];
-			
-			$.ajax({
-				type : "GET",
-				url : "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + APIKey,
-				datatype : "application/json",
-				success : function(data) {
-					
-					var videoTitle = data.items[0]['snippet']['title'];
-					
-					if (musicGoTo == "1"){
-						numMusP1++;
-						var musica = "musica" + numMusP1;
-						paisagem1[musica] = [videoTitle, videoId];
-						enviarMusica(musicGoTo, videoTitle, videoId);
 
-					} else if (musicGoTo == "2") {
+			if (isAlreadyAdded(videoId)){
+				mostrarErro("Este vídeo já foi adicionado.");
+			} else {
 
-						if(numMusT > 0){
-							var trocar = confirm("Você já adicionou uma música de transição, deseja substituí-la?");
-							if (trocar){
-								transicao = [videoTitle, videoId];
-								enviarMusica(musicGoTo, videoTitle, videoId);
+				$.ajax({
+					type : "GET",
+					url : "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + APIKey,
+					datatype : "application/json",
+					success : function(data) {
+						
+						var videoTitle = data.items[0]['snippet']['title'];
+						
+						if (musicGoTo == "2"){
+							if(numMusT > 0){
+								var trocar = confirm("Você já adicionou uma música de transição, deseja substituí-la?");
+								if (trocar){
+									enviarMusicaProjeto(musicGoTo, videoTitle, videoId);
+								}
+	
+							} else {
+								enviarMusicaProjeto(musicGoTo, videoTitle, videoId);
 							}
-
-						} else {
-							numMusT++;
-							transicao = [videoTitle, videoId];
-							enviarMusica(musicGoTo, videoTitle, videoId);
+	
+						} else  {
+							enviarMusicaProjeto(musicGoTo, videoTitle, videoId);
 						}
-
-
-					} else {
-						numMusP2++;
-						var musica = "musica" + numMusP2;
-						paisagem2[musica] = [videoTitle, videoId];
-						enviarMusica(musicGoTo, videoTitle, videoId);
+						
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						mostrarErro("O link inserido não corresponde a um vídeo do youtube. Insira um link válido.");
 					}
-					
-					document.getElementById("link").value = ""; //limpando o text input do link
-					exibirMusicas();
-									
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("O link inserido não corresponde a um vídeo do youtube. Insira um link válido.");
-				}
-			});
+				});
+			}
+			document.getElementById("link").value = ""; //limpando o text input do link
 		}
 	}
 }
@@ -134,6 +122,7 @@ function RadioHab() {
 	for(var i=0; i < option.length; i++) {
 		if(option[i].checked) {
 			musicGoTo = option[i].value;
+			option[i].checked = false;
 			break;
 		}
 	}
@@ -153,32 +142,91 @@ function drop(ev, goTo){
 	
 }
 
+function enviarMusicaProjeto(lugar, nome, id){
+	$.ajax({
+		type : "GET",
+		url : "/add_" + lugar + "/" + nome + "/" + id,
+		data : "",
+		success : function() {
+			adicionarMusica(lugar, nome, id);
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			mostrarErro("Este vídeo apresentou problemas, melhor tentar outro.");
+		}
+	});
+}
+
+function adicionarMusica(lugar, nome, id){
+	if (lugar == "1"){
+		numMusP1++;
+		var musica = "musica" + numMusP1;
+		paisagem1[musica] = [nome, id];
+
+	} else if (lugar == "2") {
+		numMusT++;
+		transicao = [nome, id];
+
+	} else if (lugar == "3") {
+		numMusP2++;
+		var musica = "musica" + numMusP2;
+		paisagem2[musica] = [nome, id];
+	}
+	exibirMusicas();
+}
+
 function exibirMusicas() {
-	
+
 	document.getElementById("p1music").innerHTML = "";
 	for (var p1mus in paisagem1){
-		document.getElementById("p1music").innerHTML += "<button type='button'>" + paisagem1[p1mus][0] + "</button>";
+		document.getElementById("p1music").innerHTML += "<button type='button'>" + paisagem1[p1mus][0] + "</button><br>";
 	}
 	
 	if (transicao.length > 0){
-		document.getElementById("tmusic").innerHTML = "<button type='button'>" + transicao[0] + "</button>";
+		document.getElementById("tmusic").innerHTML = "<button type='button'>" + transicao[0] + "</button><br>";
 	}
 	
 	document.getElementById("p2music").innerHTML = "";
 	for (var p2mus in paisagem2){
-		document.getElementById("p2music").innerHTML += "<button type='button'>" + paisagem2[p2mus][0] + "</button>";
+		document.getElementById("p2music").innerHTML += "<button type='button'>" + paisagem2[p2mus][0] + "</button><br>";
 	}
 		
+}
+
+function isAlreadyAdded(id){
+	for (var p1mus in paisagem1){
+		if (paisagem1[p1mus][1] === id){
+			return true;
+		}
+	}
+		
+	if (transicao[1] === id){
+		return true;
+	}
+	
+	for (var p2mus in paisagem2){
+		if (paisagem2[p2mus][1] === id){
+			return true;
+		}
+	}
+	return false;
+}
+
+function mostrarErro(erro){
+	document.getElementById("errorText").innerHTML = erro + " &nbsp;&nbsp;";
+	document.getElementById("error").style.display = "block";
+}
+
+function fecharErro(){
+	document.getElementById("errorText").innerHTML = "";
+	document.getElementById("error").style.display = "none";
 }
 
 function proximo(){
 	
 	if (numMusP1 < 3 || numMusP2 < 3) {
-		document.getElementById("errorText").innerHTML = "Cada paisagem deve ter no mínimo 3 músicas. &nbsp;&nbsp;";
-		document.getElementById("error").style.display = "block";
+		mostrarErro("Cada paisagem deve ter no mínimo 3 músicas.");
 	} else if (numMusT == 0){
-		document.getElementById("errorText").innerHTML = "Adicione uma música de transição. &nbsp;&nbsp;";
-		document.getElementById("error").style.display = "block";
+		mostrarErro("Adicione uma música de transição.");
 	} else {
 		
 		document.getElementById("genero1").style.display = "block";
@@ -189,8 +237,6 @@ function proximo(){
 		document.getElementById("searchForm").style.display = "none";
 		document.getElementById("searchOptions").style.display = "none";
 	}
-
-//	//fazer o upload da imagem
 }
 
 function voltar(){
@@ -201,36 +247,4 @@ function voltar(){
 	document.getElementById("botao1").style.display = "block";
 	document.getElementById("searchForm").style.display = "block";
 	document.getElementById("searchOptions").style.display = "block";
-}
-
-function enviarMusica(lugar, nome, id){
-	$.ajax({
-		type : "GET",
-		url : "/add_" + lugar + "/" + nome + "/" + id,
-		data : "",
-		success : function() {
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("Ocorreu um erro, tente mais tarde.");
-		}
-	});
-}
-
-function salvarPlaylist(){
-	$.ajax({
-		type : "POST",
-		url : "/salvar",
-		data : "",
-		success : function() {
-			alert("sua playlist foi salva com sucesso");
-			window.location = "/";
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("Você chegou aqui por caminhos alternativos, volte e crie sua playlist.");
-		}
-	});
-}
-
-function fecharErro(){
-	document.getElementById("error").style.display = "none";
 }

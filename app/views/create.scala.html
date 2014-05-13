@@ -53,7 +53,7 @@
 					<input type="radio" name="radioGoTo" value="2">Transição<br>
 					<input type="radio" name="radioGoTo" value="3">Paisagem 2<br><br>
 				
-					<button type="button" onclick="adicionarMusica()" class="btn btn-default">Adicionar</button>
+					<button type="button" onclick="requisitarVideo()" class="btn btn-default">Adicionar</button>
 				</form>
 			</div>
 		</div>
@@ -73,6 +73,13 @@
 					<div id="errorText" class="floatLeft"></div>
 					<a class="glyphicon glyphicon-remove aerror" onclick="fecharErro()"></a>
 				</div>
+				
+				@if(flash.containsKey("error")){
+				<div class="alert alert-erro">
+					@flash.get("error")
+				</div>
+			}
+				
 	        </div>
 		    
 		    <form action="@routes.Application.criaPlaylist()" method="post" enctype="multipart/form-data">
@@ -133,7 +140,7 @@
 			      		</div>
 			      	</div>
 			      	
-			      	<div id="botao1">
+			      	<div id="botao1" style="display:block">
 			      		<div class="span12">
 			      			<div class="floatRight">
 								<button type="button" class="btn btn-lg mainButton" onclick="proximo()">Próximo</button>
