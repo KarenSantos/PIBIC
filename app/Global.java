@@ -2,6 +2,17 @@
 import static play.mvc.Results.badRequest;
 import static play.mvc.Results.internalServerError;
 import static play.mvc.Results.notFound;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Question;
+import models.Survey;
 import play.Application;
 import play.GlobalSettings;
 import play.libs.F.Promise;
@@ -27,7 +38,52 @@ public class Global extends GlobalSettings {
 	
 	public void onStart(Application app) {
 		
-		//criar as perguntas e a survey
-		
-	}  
+		if (Survey.find.byId("survey") == null){
+			criaSurvey();
+		}
+	}
+	
+	private void criaSurvey(){
+		List<Question> questions = new ArrayList<Question>();
+		BufferedReader reader = null;
+		try {
+ 
+			int num = 1;
+			String currentLine;
+			File surveyText = new File("./public/survey.txt");
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(surveyText), "ISO-8859-1"));
+			Question q = new Question();
+ 
+			while ((currentLine = reader.readLine()) != null) {
+				
+				String s = currentLine;
+				
+				if (s.startsWith("q")){
+            		q.setQuestion(s.split("-")[1]);
+            	} else if (s.startsWith("o")){
+            		q.addOption(s.split("-")[1]);
+            	} else if (s.startsWith(".")){
+            		q.setId(num+"");
+            		questions.add(q);
+            		num++;
+            		q = new Question();
+            	}
+			}
+			
+			salvaSurvey(questions);
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (reader != null)reader.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+	
+	private void salvaSurvey(List<Question> questions){
+		questions.get(1).save();
+	}
 }

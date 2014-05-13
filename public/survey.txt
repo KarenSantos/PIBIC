@@ -1,0 +1,59 @@
+q-Com que frequência você escuta música?
+o-Pelo menos uma vez por dia
+o-Pelo menos uma vez por semana
+o-Mais de uma vez por semana
+o-Pelo menos uma vez por mês
+.
+q-Quantos gêneros musicais você gosta de ouvir?
+o-Apenas de um gênero musical
+o-Poucos gêneros musicais
+o-Muitos gêneros musicais
+o-Gosto de qualquer tipo de música
+.
+q-Qual o seu nível de conhecimento musical?
+o-Sou apenas ouvinte
+o-Conheço um pouco de teoria musical
+o-Eu toco um instrumento musical
+o-Conheço teoria musical e toco um instrumento
+o-Sou músico profissional
+.
+q-Você costuma criar playlists musicais?
+o-Nunca criei uma playlist musical
+o-Crio playlists de músicas aleatórias
+o-Crio playlists com diferentes critérios de seleção
+.
+q-Indique o nível de dificuldade encontrado ao criar sua playlist.
+o-Muito fácil
+o-Fácil
+o-Médio
+o-Difícil
+o-Muito difícil
+.
+q-Por onde você começou a montar sua playlist?
+o-Escolhendo músicas avulsas
+o-Pela primeira paisagem musical
+o-Pela segunda paisagem musical
+o-Pela música de transição
+.
+q-Indique o nível de dificuldade encontrado para montar as paisagens musicais.
+o-Muito fácil
+o-Fácil
+o-Médio
+o-Difícil
+o-Muito difícil
+.
+q-Indique o nível de dificuldade encontrado para encontrar a música de transição.
+o-Muito fácil
+o-Fácil
+o-Médio
+o-Difícil
+o-Muito difícil
+.
+q-Você acha que pessoas que entendem de música tem mais facilidade em criar essa playlist?
+o-Sim
+o-Não
+o-Talvez
+.
+q-Gostaria de deixar algum comentário?
+c
+e

@@ -1,7 +1,19 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import play.db.ebean.Model;
 
 /**
  * Question class.
@@ -9,11 +21,27 @@ import java.util.List;
  * @author Karen
  * 
  */
-public class Question {
+@Entity
+public class Question extends Model {
 
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private String id;
 	private String question;
+
+//	@ManyToMany
+//	@JoinTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "option"))
+	
+	@ElementCollection
+	@CollectionTable(name="foo_bars", joinColumns=@JoinColumn(name="bar_id"))
+	@Column(name="foo")
 	private List<String> options;
 	private int answer;
+	private String comment;
+	
+	public static Finder<String, Question> find = new Finder<String, Question>(
+			String.class, Question.class);
 
 	/**
 	 * Creates an object question with no question, an empty list of options and
@@ -23,6 +51,7 @@ public class Question {
 		this.question = "";
 		this.options = new ArrayList<String>();
 		this.answer = -1;
+		this.comment = "";
 	}
 
 	/**
@@ -34,10 +63,30 @@ public class Question {
 	 * @param options
 	 *            The list of options to answer the question.
 	 */
-	public Question(String question, List<String> options) {
+	public Question(String id, String question, List<String> options) {
+		this.id = id;
 		this.question = question;
 		this.options = options;
 		this.answer = -1;
+	}
+
+	/**
+	 * Returns the id of the question.
+	 * 
+	 * @return The Id of the question.
+	 */
+	public String getId() {
+		return this.id;
+	}
+
+	/**
+	 * Sets the id of the question.
+	 * 
+	 * @param id
+	 *            The new id of the question.
+	 */
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**
@@ -84,7 +133,7 @@ public class Question {
 	 * @param opt
 	 *            The new option to be added.
 	 */
-	public void addOptions(String opt) {
+	public void addOption(String opt) {
 		this.options.add(opt);
 	}
 
@@ -112,6 +161,25 @@ public class Question {
 	 */
 	public void setAnswer(int answer) {
 		this.answer = answer - 1;
+	}
+
+	/**
+	 * Return the comment on the question.
+	 * 
+	 * @return The comment on the question.
+	 */
+	public String getComment() {
+		return this.comment;
+	}
+
+	/**
+	 * Adds a comment for the question.
+	 * 
+	 * @param comment
+	 *            The comment for the question.
+	 */
+	public void addComment(String comment) {
+		this.comment = comment;
 	}
 
 }

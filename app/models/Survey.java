@@ -6,17 +6,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import play.db.ebean.Model;
+
 /**
  * Survey class.
  * 
  * @author Karen
  * 
  */
-public class Survey {
+@Entity
+public class Survey extends Model {
 
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	private String id;
+	
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "survey_questions", joinColumns = @JoinColumn(name = "survey_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private List<Question> questions;
 
+	public static Finder<String, Survey> find = new Finder<String, Survey>(
+			String.class, Survey.class);
+	
 	/**
 	 * Creates a survey with blank id and empty list of questions.
 	 */

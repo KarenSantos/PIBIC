@@ -46,4 +46,18 @@ public class BDTest {
 		assertNotNull(Playlist.find.all());
 	}
 	
+	@Test
+	public void deveSalvarQuestionsNoBD() {
+		Question question = new Question();
+		question.setId("1");
+		question.setQuestion("qual?");
+		question.addOption("opcao1");
+		
+		question.save();
+		
+		assertNotNull(Question.find.byId("1"));
+		assertEquals("qual?", Question.find.byId("1").getQuestion());
+		assertEquals("opcao1", Question.find.byId("1").getOptions().get(0));
+	}
+	
 }
