@@ -11,8 +11,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Question;
-import models.Survey;
+import models.*;
 import play.Application;
 import play.GlobalSettings;
 import play.libs.F.Promise;
@@ -21,6 +20,8 @@ import play.mvc.SimpleResult;
 import views.html.error;
 
 public class Global extends GlobalSettings {
+	
+	private final String ID_SURVEY_PADRAO = "padrao";
 
 	public Promise<SimpleResult> onError(RequestHeader request, Throwable t) {
 		return Promise.<SimpleResult>pure(internalServerError(error.render("Erro encontrado:\n"
@@ -38,7 +39,7 @@ public class Global extends GlobalSettings {
 	
 	public void onStart(Application app) {
 		
-		if (Survey.find.byId("survey") == null){
+		if (Survey.find.byId(ID_SURVEY_PADRAO) == null){
 			criaSurvey();
 		}
 	}
@@ -48,12 +49,12 @@ public class Global extends GlobalSettings {
 		BufferedReader reader = null;
 		try {
  
-			int num = 1;
 			String currentLine;
 			File surveyText = new File("./public/survey.txt");
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(surveyText), "ISO-8859-1"));
 			Question q = new Question();
- 
+			int num = 1;
+			
 			while ((currentLine = reader.readLine()) != null) {
 				
 				String s = currentLine;
@@ -61,12 +62,13 @@ public class Global extends GlobalSettings {
 				if (s.startsWith("q")){
             		q.setQuestion(s.split("-")[1]);
             	} else if (s.startsWith("o")){
-            		q.addOption(s.split("-")[1]);
-            	} else if (s.startsWith(".")){
-            		q.setId(num+"");
-            		questions.add(q);
+            		QuestionOption opt = new QuestionOption(num, s.split("-")[1]);
+            		q.addOption(opt);
             		num++;
+            	} else if (s.startsWith(".")){
+            		questions.add(q);
             		q = new Question();
+            		num = 1;
             	}
 			}
 			
@@ -84,6 +86,8 @@ public class Global extends GlobalSettings {
 	}
 	
 	private void salvaSurvey(List<Question> questions){
-		questions.get(1).save();
+		Survey survey = new Survey(ID_SURVEY_PADRAO);
+		survey.setQuestions(questions);
+		survey.save();
 	}
 }

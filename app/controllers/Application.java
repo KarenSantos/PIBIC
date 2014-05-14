@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import models.AlocacaoInvalidaException;
 import models.Playlist;
 import models.PlaylistIncompletaException;
+import models.Survey;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.libs.Json;
@@ -116,10 +117,10 @@ public class Application extends Controller {
     }
     
     public static Result survey(String id){
-    	return ok(survey.render(id));
+    	return ok(survey.render(id, projeto.getSurveyPadrao()));
     }
     
-    public static Result respostas(){
+    public static Result respostas(String playlistId){
     	
     	DynamicForm requestData = Form.form().bindFromRequest();
         String q1 = requestData.get("question1");

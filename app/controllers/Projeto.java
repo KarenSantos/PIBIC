@@ -13,12 +13,15 @@ import models.*;
  */
 public class Projeto {
 
+	private final String ID_SURVEY_PADRAO = "padrao";
 	private final int SAMPLE = 12;
+
 	private CatalogoDePlaylists catalogo;
 	private Playlist novaPlaylist;
 	private List<Musica> primPaisagem;
 	private List<Musica> segPaisagem;
 	private Musica transicao;
+	private Survey novaSurvey;
 
 	/**
 	 * Cria um PROJETO com um catalogo de playlists.
@@ -289,6 +292,55 @@ public class Projeto {
 	}
 
 	/**
+	 * Retorna a survey padrao do projeto.
+	 * 
+	 * @return A survey padrao do projeto.
+	 */
+	public Survey getSurveyPadrao() {
+		return Survey.find.byId(ID_SURVEY_PADRAO);
+	}
+
+	/**
+	 * Cria a nova survey com o id da nova playlist e as perguntas da survey
+	 * padrao.
+	 * 
+	 * @param playlistId
+	 *            O id da nova playlist.
+	 */
+	public void criaNovaSurvey(String playlistId) {
+		Survey survey = new Survey(playlistId);
+		survey.copySurveyQuestions(Survey.find.byId(ID_SURVEY_PADRAO));
+		this.novaSurvey = survey;
+	}
+
+	/**
+	 * Retorna a nova survey criada.
+	 * 
+	 * @return A nova survey criada.
+	 */
+	public Survey getNovaSurvey() {
+		return this.novaSurvey;
+	}
+
+	/**
+	 * Responde as perguntas da nova survey de acordo com a lista de respostas
+	 * recebido.
+	 * 
+	 * @param answers
+	 *            A lista de respostas recebido para a survey.
+	 */
+	public void respondeNovaSurvey(int[] answers) {
+		novaSurvey.setAllAnswers(answers);
+	}
+
+	/**
+	 * Salva a nova survey no BD
+	 */
+	public void salvaNovaSurvey() {
+		novaSurvey.save();
+	}
+
+	/**
 	 * Indica se a musica do id recebido ja esta adicionada na nova playlist.
 	 * 
 	 * @param id
@@ -315,11 +367,11 @@ public class Projeto {
 	 */
 	private boolean musicIsMissing() {
 		boolean resp = false;
-		if (this.primPaisagem.size() < 3){
+		if (this.primPaisagem.size() < 3) {
 			resp = true;
-		} else if (this.segPaisagem.size() < 3){
+		} else if (this.segPaisagem.size() < 3) {
 			resp = true;
-		} else if (!isTransicaoSet()){
+		} else if (!isTransicaoSet()) {
 			resp = true;
 		}
 		return resp;

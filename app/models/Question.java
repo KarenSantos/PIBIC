@@ -1,13 +1,11 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -27,16 +25,13 @@ public class Question extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue
 	private String id;
 	private String question;
 
-//	@ManyToMany
-//	@JoinTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "option"))
-	
-	@ElementCollection
-	@CollectionTable(name="foo_bars", joinColumns=@JoinColumn(name="bar_id"))
-	@Column(name="foo")
-	private List<String> options;
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "option_id"))
+	private List<QuestionOption> options;
 	private int answer;
 	private String comment;
 	
@@ -49,7 +44,7 @@ public class Question extends Model {
 	 */
 	public Question() {
 		this.question = "";
-		this.options = new ArrayList<String>();
+		this.options = new ArrayList<QuestionOption>();
 		this.answer = -1;
 		this.comment = "";
 	}
@@ -63,7 +58,7 @@ public class Question extends Model {
 	 * @param options
 	 *            The list of options to answer the question.
 	 */
-	public Question(String id, String question, List<String> options) {
+	public Question(String id, String question, List<QuestionOption> options) {
 		this.id = id;
 		this.question = question;
 		this.options = options;
@@ -113,7 +108,7 @@ public class Question extends Model {
 	 * 
 	 * @return The list of options that answer the question.
 	 */
-	public List<String> getOptions() {
+	public List<QuestionOption> getOptions() {
 		return this.options;
 	}
 
@@ -123,7 +118,7 @@ public class Question extends Model {
 	 * @param options
 	 *            The list of options.
 	 */
-	public void setOptions(List<String> options) {
+	public void setOptions(List<QuestionOption> options) {
 		this.options = options;
 	}
 
@@ -133,7 +128,7 @@ public class Question extends Model {
 	 * @param opt
 	 *            The new option to be added.
 	 */
-	public void addOption(String opt) {
+	public void addOption(QuestionOption opt) {
 		this.options.add(opt);
 	}
 
@@ -146,9 +141,9 @@ public class Question extends Model {
 	public String getAnswer() {
 		String resp;
 		if (answer == -1) {
-			resp = "Question not answered";
+			resp = "Pergunta não respondida.";
 		} else {
-			resp = options.get(answer);
+			resp = options.get(answer).getOption();
 		}
 		return resp;
 	}

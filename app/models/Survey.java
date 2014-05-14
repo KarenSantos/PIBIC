@@ -28,19 +28,28 @@ public class Survey extends Model {
 
 	@Id
 	private String id;
-	
-	@ManyToMany (cascade = CascadeType.ALL)
+
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "survey_questions", joinColumns = @JoinColumn(name = "survey_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private List<Question> questions;
 
 	public static Finder<String, Survey> find = new Finder<String, Survey>(
 			String.class, Survey.class);
-	
+
 	/**
-	 * Creates a survey with blank id and empty list of questions.
+	 * Creates an empty survey.
 	 */
 	public Survey() {
-		this.id = "";
+	}
+
+	/**
+	 * Creates a survey with an id.
+	 * 
+	 * @param id
+	 *            The id of the survey.
+	 */
+	public Survey(String id) {
+		this.id = id;
 		this.questions = new ArrayList<Question>();
 	}
 
@@ -97,6 +106,18 @@ public class Survey extends Model {
 	}
 
 	/**
+	 * Returns the question ordered with that number from the questions list
+	 * starting with 1.
+	 * 
+	 * @param num
+	 *            The number of the question from the list.
+	 * @return The question with that number.
+	 */
+	public Question getQuestion(int num) {
+		return this.questions.get(num - 1);
+	}
+
+	/**
 	 * Adds a question to the list of questions of the survey.
 	 * 
 	 * @param question
@@ -120,14 +141,17 @@ public class Survey extends Model {
 	}
 
 	/**
-	 * Sets all the answers for all the questions of the survey.
+	 * Sets all the answers for all the questions of the survey if the amount of
+	 * answers given is smaller or is the same of the questions.
 	 * 
 	 * @param answers
 	 *            The array with all the answers for the questions.
 	 */
 	public void setAllAnswers(int[] answers) {
-		for (int i = 0; i < answers.length; i++) {
-			this.questions.get(i).setAnswer(answers[i]);
+		if (answers.length <= getQuestions().size()) {
+			for (int i = 0; i < answers.length; i++) {
+				this.questions.get(i).setAnswer(answers[i]);
+			}
 		}
 	}
 
@@ -146,6 +170,21 @@ public class Survey extends Model {
 			survey.put(question.getQuestion(), question.getAnswer());
 		}
 		return survey;
+	}
+
+	/**
+	 * Copy the questions and question options of the survey received to itself.
+	 * 
+	 * @param survey
+	 *            The survey from which the questions will be copied.
+	 */
+	public void copySurveyQuestions(Survey survey) {
+		for (Question ques : survey.getQuestions()) {
+			Question myQuestion = new Question();
+			myQuestion.setQuestion(ques.getQuestion());
+			myQuestion.setOptions(ques.getOptions());
+			this.addQuestion(myQuestion);
+		}
 	}
 
 }

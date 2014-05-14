@@ -1,4 +1,4 @@
-@(playlistId: String)
+@(playlistId: String, survey: Survey)
 
 @import helper._
 
@@ -45,69 +45,35 @@
 	    
 	    <div class="row">
 	    	<div class="span9">
-				<form role="form" action="@routes.Application.respostas()" method="post">
+				<form role="form" action="@routes.Application.respostas(" + @playlistId + ")" method="post">
 					<div id="formulario">
 					
-						<label for="q1">Com que frequência você escuta música?</label>
-						<div id="q1">
-							<div class="radio radioOption">
-								<label><input type="radio" name="question1" value="q1o1">
-									Pelo menos uma vez por dia
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question1" value="q1o2">
-									Pelo menos uma vez por semana
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question1" value="q1o3">
-									Mais de uma vez por semana
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question1" value="q1o4">
-									Pelo menos uma vez por mês
-								</label></div>
-						</div>
+						@for(question <- survey.getQuestions){
 						
-						<label for="q2">Que gêneros de música você gosta de ouvir?</label>
-						<div id="q2">
-							<div class="radio radioOption">
-								<label><input type="radio" name="question2" value="q2o1">
-									Apenas de um gênero musical
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question2" value="q2o2">
-									Poucos gêneros musicais
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question2" value="q2o3">
-									Muitos gêneros musicais
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question2" value="q2o4">
-									Gosto de qualquer tipo de música
-								</label></div>
-						</div>
-						
-							
-						<label for="q3">Que gêneros de música você gosta de ouvir?</label>
-						<div id="q3">
-							<div class="radio radioOption">
-								<label><input type="radio" name="question3" value="q2o1">
-									Apenas de um gênero musical
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question3" value="q2o2">
-									Poucos gêneros musicais
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question3" value="q2o3">
-									Muitos gêneros musicais
-								</label></div>
-							<div class="radio radioOption">
-								<label><input type="radio" name="question3" value="q2o4">
-									Gosto de qualquer tipo de música
-								</label></div>
-						</div>
+							<label for="q@question.getId">@question.getQuestion</label>
+							<div id="q@question.getId">
+								<div class="radio radioOption">
+									@for(option <- question.getOptions){
+										<label><input type="radio" name="question@question.getId" value="@option.getNumber"/>
+											@option.getOption-
+										</label>
+									}
+								</div>
+								
+								<div class="radio radioOption">
+									<label><input type="radio" name="question1" value="q1o2">
+										Pelo menos uma vez por semana
+									</label></div>
+								<div class="radio radioOption">
+									<label><input type="radio" name="question1" value="q1o3">
+										Mais de uma vez por semana
+									</label></div>
+								<div class="radio radioOption">
+									<label><input type="radio" name="question1" value="q1o4">
+										Pelo menos uma vez por mês
+									</label></div>
+							</div>
+						}
 						
 						<div class="form-group">
 							<label for="name">Name</label>

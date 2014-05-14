@@ -258,4 +258,19 @@ public class ProjetoTest {
 		}
 		// falta adicionar uma transicao
 	}
+	
+	@Test
+	public void deveTerUmaSurveyPadraoSalvaAoIniciar() {
+		assertNotNull(Survey.find.byId("padrao"));
+	}
+	
+	@Test
+	public void deveCriarNovaSurveyAPartirDaSurveyPadrao(){
+		projeto.criaNovaSurvey("playlistId");
+		projeto.respondeNovaSurvey(new int[]{1});
+		projeto.salvaNovaSurvey();
+		
+		assertEquals("Pergunta não respondida.", Survey.find.byId("padrao").getQuestion(1).getAnswer());
+		assertEquals("Pelo menos uma vez por dia", Survey.find.byId("playlistId").getQuestion(1).getAnswer());
+	}
 }

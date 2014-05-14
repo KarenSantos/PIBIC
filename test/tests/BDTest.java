@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.start;
+
 import models.*;
 
 import org.junit.Before;
@@ -48,16 +49,46 @@ public class BDTest {
 	
 	@Test
 	public void deveSalvarQuestionsNoBD() {
+		
+		QuestionOption op1 = new QuestionOption(1, "opcao1");
+		QuestionOption op2 = new QuestionOption(2, "opcao2");
+		
 		Question question = new Question();
-		question.setId("1");
 		question.setQuestion("qual?");
-		question.addOption("opcao1");
+		question.addOption(op1);
+		question.addOption(op2);
 		
 		question.save();
 		
-		assertNotNull(Question.find.byId("1"));
-		assertEquals("qual?", Question.find.byId("1").getQuestion());
-		assertEquals("opcao1", Question.find.byId("1").getOptions().get(0));
+		assertNotNull(Question.find.all().get(0));
+		assertEquals("qual?", Question.find.all().get(0).getQuestion());
+		assertEquals("opcao1", Question.find.all().get(0).getOptions().get(0).getOption());
 	}
+	
+	@Test
+	public void deveSalvarSurveyNoBD() {
+		QuestionOption op1 = new QuestionOption(1, "opcao1");
+		QuestionOption op2 = new QuestionOption(2, "opcao2");
+		
+		Question question1 = new Question();
+		question1.setQuestion("qual?");
+		question1.addOption(op1);
+		question1.addOption(op2);
+		
+		Question question2 = new Question();
+		question2.setQuestion("quem?");
+		question2.addOption(op1);
+		question2.addOption(op2);
+		
+		Survey survey = new Survey("id");
+		survey.addQuestion(question1);
+		survey.addQuestion(question2);
+		survey.save();
+		
+		assertNotNull(Survey.find.byId("id"));
+		assertEquals("qual?", Survey.find.byId("id").getQuestion(1).getQuestion());
+	}
+	
+	
 	
 }
