@@ -21,7 +21,7 @@ public class Projeto {
 	private List<Musica> primPaisagem;
 	private List<Musica> segPaisagem;
 	private Musica transicao;
-	private Survey novaSurvey;
+	private SurveyAnswer surveyAnswer;
 
 	/**
 	 * Cria um PROJETO com um catalogo de playlists.
@@ -301,25 +301,31 @@ public class Projeto {
 	}
 
 	/**
-	 * Cria a nova survey com o id da nova playlist e as perguntas da survey
+	 * Cria a nova survey answer da nova playlist e as perguntas da survey
 	 * padrao.
 	 * 
 	 * @param playlistId
 	 *            O id da nova playlist.
+	 * @throws PlaylistIncompletaException
+	 *             Se a nova playlist ainda nao foi criada.
 	 */
-	public void criaNovaSurvey(String playlistId) {
-		Survey survey = new Survey(playlistId);
-		survey.copySurveyQuestions(Survey.find.byId(ID_SURVEY_PADRAO));
-		this.novaSurvey = survey;
+	public void criaSurveyAnswerParaNovaPlaylist()
+			throws PlaylistIncompletaException {
+		// se a playlist ja foi salva podemos criar a survey
+		if (!catalogo.getPlaylists().contains(novaPlaylist)) {
+			throw new PlaylistIncompletaException(
+					"Nenhuma playlist foi criada para responder a survey.");
+		}
+		this.surveyAnswer = new SurveyAnswer(Survey.find.byId(ID_SURVEY_PADRAO));
 	}
 
 	/**
-	 * Retorna a nova survey criada.
+	 * Retorna a nova survey answer criada.
 	 * 
-	 * @return A nova survey criada.
+	 * @return A nova survey answer criada.
 	 */
-	public Survey getNovaSurvey() {
-		return this.novaSurvey;
+	public SurveyAnswer getSurveyAnswer() {
+		return this.surveyAnswer;
 	}
 
 	/**
@@ -328,16 +334,19 @@ public class Projeto {
 	 * 
 	 * @param answers
 	 *            A lista de respostas recebido para a survey.
+	 * @throws NumeroInvalidoException
+	 *             Se os numeros nao correspondem a opcoes validas nas perguntas
 	 */
-	public void respondeNovaSurvey(int[] answers) {
-		novaSurvey.setAllAnswers(answers);
+	public void respondePlaylistSurvey(int[] answers)
+			throws NumeroInvalidoException {
+		surveyAnswer.setAllAnswers(answers);
 	}
 
 	/**
 	 * Salva a nova survey no BD
 	 */
 	public void salvaNovaSurvey() {
-		novaSurvey.save();
+		surveyAnswer.save();
 	}
 
 	/**

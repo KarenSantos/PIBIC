@@ -4,11 +4,12 @@ import static org.junit.Assert.*;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.start;
-
 import models.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import controllers.Projeto;
 
 
 public class BDTest {
@@ -44,7 +45,14 @@ public class BDTest {
 	@Test
 	public void deveRecuperarSamplePlaylistsDoBD() {
 		//Projeto ja inicia com sample playlists criadas
-		assertNotNull(Playlist.find.all());
+		Projeto projeto = new Projeto();
+		assertNotNull(Playlist.find.all().get(0));
+	}
+	
+	@Test
+	public void deveRecuperarSurveyPadraoDoBD() {
+		//Projeto inicia com survey padrao
+		assertNotNull(Survey.find.all().get(0));
 	}
 	
 	@Test
@@ -66,7 +74,7 @@ public class BDTest {
 	}
 	
 	@Test
-	public void deveSalvarSurveyNoBD() {
+	public void deveSalvarSurveyNoBD() throws NumeroInvalidoException {
 		QuestionOption op1 = new QuestionOption(1, "opcao1");
 		QuestionOption op2 = new QuestionOption(2, "opcao2");
 		

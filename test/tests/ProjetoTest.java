@@ -260,17 +260,29 @@ public class ProjetoTest {
 	}
 	
 	@Test
-	public void deveTerUmaSurveyPadraoSalvaAoIniciar() {
-		assertNotNull(Survey.find.byId("padrao"));
-	}
-	
-	@Test
-	public void deveCriarNovaSurveyAPartirDaSurveyPadrao(){
-		projeto.criaNovaSurvey("playlistId");
-		projeto.respondeNovaSurvey(new int[]{1});
-		projeto.salvaNovaSurvey();
+	public void devePoderCriarSurveyAnswerSePlaylistForCriada() throws AlocacaoInvalidaException {
+		projeto.addMusicaPrimPaisagem("mus1", "yW39pSIu4kk");
+		projeto.addMusicaPrimPaisagem("mus1", "huFra1mnIVE");
+		projeto.addMusicaPrimPaisagem("mus1", "T0ip40j82ws");
+		projeto.addMusicaSegPaisagem("mus2", "B07iK9uh9qY");
+		projeto.addMusicaSegPaisagem("mus2", "gxYLlBsGGGM");
+		projeto.addMusicaSegPaisagem("mus2", "-am7iYzCfdE");
+		projeto.setMusicaTransicao("transicao", "eZEE0hRR378");
 		
-		assertEquals("Pergunta não respondida.", Survey.find.byId("padrao").getQuestion(1).getAnswer());
-		assertEquals("Pelo menos uma vez por dia", Survey.find.byId("playlistId").getQuestion(1).getAnswer());
+		Playlist playlist = new Playlist();
+		playlist.setId("myId");
+		playlist.setNome("My Playlist");
+		playlist.setImagem("0.jpg");
+		playlist.setPrimGenero("genero1");
+		playlist.setSegGenero("genero2");
+		
+		projeto.configuraNovaPlaylist(playlist);
+		
+		try {
+			projeto.salvarPlaylist();
+			projeto.criaSurveyAnswerParaNovaPlaylist();
+		} catch (PlaylistIncompletaException e){
+			fail("Nao deveria ter lancado excecao");
+		}
 	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,44 +24,38 @@ public class Question extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
 	private String id;
 	private String question;
 
-	@ManyToMany (cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "option_id"))
 	private List<QuestionOption> options;
-	private int answer;
-	private String comment;
-	
+
 	public static Finder<String, Question> find = new Finder<String, Question>(
 			String.class, Question.class);
 
 	/**
-	 * Creates an object question with no question, an empty list of options and
-	 * the answer set to -1.
+	 * Creates an empty question with a generated id.
 	 */
 	public Question() {
+		this.id = Question.find.all().size() + "";
 		this.question = "";
 		this.options = new ArrayList<QuestionOption>();
-		this.answer = -1;
-		this.comment = "";
 	}
 
 	/**
-	 * Creates an object question with a question, a list of options and the
-	 * answer set to -1.
+	 * Creates an object question with a question and a list of options and a
+	 * generated id.
 	 * 
 	 * @param question
 	 *            The question.
 	 * @param options
 	 *            The list of options to answer the question.
 	 */
-	public Question(String id, String question, List<QuestionOption> options) {
-		this.id = id;
+	public Question(String question, List<QuestionOption> options) {
+		this.id = Question.find.all().size() + "";
 		this.question = question;
 		this.options = options;
-		this.answer = -1;
 	}
 
 	/**
@@ -123,6 +116,22 @@ public class Question extends Model {
 	}
 
 	/**
+	 * Returns the question option with the given number.
+	 * 
+	 * @param num
+	 *            The number of the question option starting with 1.
+	 * @return The question option with the given number.
+	 * @throws NumeroInvalidoException
+	 *             If the given number is not a valid question option.
+	 */
+	public QuestionOption getOption(int num) throws NumeroInvalidoException {
+		if (num < 0 || num > options.size()){
+			throw new NumeroInvalidoException("Não existe uma opção com o número indicado.");
+		}
+		return options.get(num - 1);
+	}
+
+	/**
 	 * Adds an option to the list of options that answer the question.
 	 * 
 	 * @param opt
@@ -131,50 +140,4 @@ public class Question extends Model {
 	public void addOption(QuestionOption opt) {
 		this.options.add(opt);
 	}
-
-	/**
-	 * Returns the answer for the question.
-	 * 
-	 * @return Returns the answer for the question from the options list or
-	 *         Question not answered if the answer is not set.
-	 */
-	public String getAnswer() {
-		String resp;
-		if (answer == -1) {
-			resp = "Pergunta não respondida.";
-		} else {
-			resp = options.get(answer).getOption();
-		}
-		return resp;
-	}
-
-	/**
-	 * Sets an answer for the question as the number of the chosen option.
-	 * 
-	 * @param answer
-	 *            The number for the chosen option starting with 1.
-	 */
-	public void setAnswer(int answer) {
-		this.answer = answer - 1;
-	}
-
-	/**
-	 * Return the comment on the question.
-	 * 
-	 * @return The comment on the question.
-	 */
-	public String getComment() {
-		return this.comment;
-	}
-
-	/**
-	 * Adds a comment for the question.
-	 * 
-	 * @param comment
-	 *            The comment for the question.
-	 */
-	public void addComment(String comment) {
-		this.comment = comment;
-	}
-
 }

@@ -86,8 +86,8 @@ public class Global extends GlobalSettings {
 	}
 	
 	private void salvaSurvey(List<Question> questions){
-		Survey survey = new Survey(ID_SURVEY_PADRAO);
-		survey.setQuestions(questions);
-		survey.save();
+//		Survey survey = new Survey(ID_SURVEY_PADRAO);
+//		survey.setQuestions(questions);
+//		survey.save();
 	}
 }

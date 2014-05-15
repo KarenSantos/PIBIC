@@ -2,9 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -106,14 +104,19 @@ public class Survey extends Model {
 	}
 
 	/**
-	 * Returns the question ordered with that number from the questions list
-	 * starting with 1.
+	 * Returns the question ordered with the given number from the questions
+	 * list.
 	 * 
 	 * @param num
-	 *            The number of the question from the list.
-	 * @return The question with that number.
+	 *            The number of the question from the list starting with 1.
+	 * @return The question with the given number.
+	 * @throws NumeroInvalidoException
+	 *             If the given number is not a valid question.
 	 */
-	public Question getQuestion(int num) {
+	public Question getQuestion(int num) throws NumeroInvalidoException {
+		if (num < 0 || num > questions.size()) {
+			throw new NumeroInvalidoException("Não existe pergunta com o número indicado.");
+		}
 		return this.questions.get(num - 1);
 	}
 
@@ -126,65 +129,4 @@ public class Survey extends Model {
 	public void addQuestion(Question question) {
 		this.questions.add(question);
 	}
-
-	/**
-	 * Sets an answer for one specific questions of the survey.
-	 * 
-	 * @param question
-	 *            The number of the question in the list starting with 1.
-	 * @param answer
-	 *            The number of the question option to be the answer starting
-	 *            with 1.
-	 */
-	public void setAnswerToQuestion(int question, int answer) {
-		this.questions.get(question - 1).setAnswer(answer);
-	}
-
-	/**
-	 * Sets all the answers for all the questions of the survey if the amount of
-	 * answers given is smaller or is the same of the questions.
-	 * 
-	 * @param answers
-	 *            The array with all the answers for the questions.
-	 */
-	public void setAllAnswers(int[] answers) {
-		if (answers.length <= getQuestions().size()) {
-			for (int i = 0; i < answers.length; i++) {
-				this.questions.get(i).setAnswer(answers[i]);
-			}
-		}
-	}
-
-	/**
-	 * Returns the survey with the question and the corresponding answer as a
-	 * map.
-	 * 
-	 * @return The survey with the questions and the answers.
-	 */
-	public Map<String, String> getSurvey() {
-		Map<String, String> survey = new HashMap<String, String>();
-
-		survey.put("Playlist ID", this.id);
-
-		for (Question question : this.questions) {
-			survey.put(question.getQuestion(), question.getAnswer());
-		}
-		return survey;
-	}
-
-	/**
-	 * Copy the questions and question options of the survey received to itself.
-	 * 
-	 * @param survey
-	 *            The survey from which the questions will be copied.
-	 */
-	public void copySurveyQuestions(Survey survey) {
-		for (Question ques : survey.getQuestions()) {
-			Question myQuestion = new Question();
-			myQuestion.setQuestion(ques.getQuestion());
-			myQuestion.setOptions(ques.getOptions());
-			this.addQuestion(myQuestion);
-		}
-	}
-
 }

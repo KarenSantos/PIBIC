@@ -24,25 +24,28 @@ import play.db.ebean.Model;
 public class Playlist extends Model {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String id;
 	private String nome, imagem, primGenero, segGenero;
-	
-	@ManyToMany (cascade = CascadeType.ALL)
+
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "primeira_paisagem", joinColumns = @JoinColumn(name = "playlist"), inverseJoinColumns = @JoinColumn(name = "musica"))
 	private List<Musica> primPaisagem;
-	
-	@ManyToMany (cascade = CascadeType.ALL)
+
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "segunda_paisagem", joinColumns = @JoinColumn(name = "playlist"), inverseJoinColumns = @JoinColumn(name = "musica"))
 	private List<Musica> segPaisagem;
-	
-	@ManyToOne (cascade = CascadeType.ALL)
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Musica transicao;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private SurveyAnswer surveyAnswer;
 
 	public static Finder<String, Playlist> find = new Finder<String, Playlist>(
 			String.class, Playlist.class);
-	
+
 	/**
 	 * Cria uma playlist vazia.
 	 */
@@ -50,9 +53,9 @@ public class Playlist extends Model {
 	}
 
 	/**
-	 * Cria uma playlist com uma lista de músicas da primeira paisagem,
-	 * uma lista de músicas da segunda paisagem, uma música de transição, um
-	 * nome e uma imagem.
+	 * Cria uma playlist com uma lista de músicas da primeira paisagem, uma
+	 * lista de músicas da segunda paisagem, uma música de transição, um nome e
+	 * uma imagem.
 	 * 
 	 * @param primPaisagem
 	 *            A lista de músicas da primeira paisagem.
@@ -69,9 +72,9 @@ public class Playlist extends Model {
 	 * @param imagem
 	 *            O endereço da imagem da playlist.
 	 */
-	public Playlist(List<Musica> primPaisagem,
-			List<Musica> segPaisagem, Musica transicao, String primGenero,
-			String segGenero, String nome, String imagem) {
+	public Playlist(List<Musica> primPaisagem, List<Musica> segPaisagem,
+			Musica transicao, String primGenero, String segGenero, String nome,
+			String imagem) {
 		this.primPaisagem = primPaisagem;
 		this.segPaisagem = segPaisagem;
 		this.transicao = transicao;
@@ -256,4 +259,22 @@ public class Playlist extends Model {
 		return getMusicas().size();
 	}
 
+	/**
+	 * Returns the survey answered about the playlist creation.
+	 * 
+	 * @return The survey answered about the playlist creation.
+	 */
+	public SurveyAnswer getSurveyAnswer() {
+		return surveyAnswer;
+	}
+
+	/**
+	 * Sets the survey answer for the playlist.
+	 * 
+	 * @param surveyAnswer
+	 *            The new survey answer for the playlist.
+	 */
+	public void setSurveyAnswer(SurveyAnswer surveyAnswer) {
+		this.surveyAnswer = surveyAnswer;
+	}
 }
