@@ -103,4 +103,9 @@ public class QuestionOption extends Model {
 	public void setOption(String option) {
 		this.option = option;
 	}
+	
+	@Override
+	public String toString() {
+		return "Question option: " + getOption();
+	}
 }

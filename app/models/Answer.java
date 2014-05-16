@@ -1,9 +1,9 @@
 package models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import play.db.ebean.Model;
@@ -23,10 +23,10 @@ public class Answer extends Model {
 	@GeneratedValue
 	private int id;
 
-	@ManyToMany
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Question question;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private QuestionOption answerOption;
 	private String comment;
 
@@ -37,6 +37,11 @@ public class Answer extends Model {
 	 * Creates an empty answer.
 	 */
 	public Answer() {}
+
+	public Answer(Question question){
+		this.question = question;
+		this.answerOption = null;
+	}
 	
 	/**
 	 * Creates an answer with a question option as the answer.
@@ -99,6 +104,21 @@ public class Answer extends Model {
 	}
 
 	/**
+	 * Returns the chosen question option for the answer.
+	 * 
+	 * @return The chosen question option for the answer.
+	 */
+	public String getAnswerOption() {
+		String option;
+		if (getAnswer() == null){
+			option = "Sem resposta";
+		} else {
+			option = answerOption.getOption();
+		}
+		return option;
+	}
+
+	/**
 	 * Sets the answer as a question option.
 	 * 
 	 * @param answer
@@ -125,6 +145,33 @@ public class Answer extends Model {
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	/**
+	 * Returns if the answer was answered or not.
+	 * 
+	 * @return True if the answer has a question option or a comment, and false
+	 *         otherwise.
+	 */
+	public boolean isAnswered() {
+		boolean resp = false;
+		if (getAnswer() != null) {
+			resp = true;
+		} else if (!getComment().equals("")) {
+			resp = true;
+		}
+		return resp;
+	}
+
+	@Override
+	public String toString() {
+		String s;
+		if (getAnswer() == null){
+			s = "Sem resposta";
+		} else {
+			s = getAnswerOption();
+		}
+		return "Answer: " + s;
 	}
 
 }

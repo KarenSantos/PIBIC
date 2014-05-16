@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
 
@@ -40,7 +41,7 @@ public class Playlist extends Model {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Musica transicao;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private SurveyAnswer surveyAnswer;
 
 	public static Finder<String, Playlist> find = new Finder<String, Playlist>(

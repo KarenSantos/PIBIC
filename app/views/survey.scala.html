@@ -52,34 +52,20 @@
 						
 							<label for="q@question.getId">@question.getQuestion</label>
 							<div id="q@question.getId">
-								<div class="radio radioOption">
-									@for(option <- question.getOptions){
-										<label><input type="radio" name="question@question.getId" value="@option.getNumber"/>
-											@option.getOption-
-										</label>
-									}
-								</div>
-								
-								<div class="radio radioOption">
-									<label><input type="radio" name="question1" value="q1o2">
-										Pelo menos uma vez por semana
-									</label></div>
-								<div class="radio radioOption">
-									<label><input type="radio" name="question1" value="q1o3">
-										Mais de uma vez por semana
-									</label></div>
-								<div class="radio radioOption">
-									<label><input type="radio" name="question1" value="q1o4">
-										Pelo menos uma vez por mês
-									</label></div>
+								@if(question.hasOptions){
+									<div class="radio radioOption">
+										@for(option <- question.getOptions){
+											<label><input type="radio" name="question@question.getId" value="@option.getNumber">
+												@option.getOption
+											</label>
+										}
+									</div>
+								} else {
+									<textarea name="comment"  rows="3" class="form-control"></textarea>
+								}
 							</div>
 						}
 						
-						<div class="form-group">
-							<label for="name">Name</label>
-							<input type="text" class="form-control" id="name" placeholder="Enter Name">
-						</div>
-					
 					</div>
 
 					<div id="botao1" class="floatRight">

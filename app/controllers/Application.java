@@ -117,6 +117,12 @@ public class Application extends Controller {
     }
     
     public static Result survey(String id){
+//    	try {
+//			projeto.criaSurveyAnswerParaNovaPlaylist();
+//		} catch (PlaylistIncompletaException e) {
+//			flash("error", "Você precisa criar uma playlist para poder responder a survey.");
+//			return redirect(routes.Application.novaPlaylist());
+//		}
     	return ok(survey.render(id, projeto.getSurveyPadrao()));
     }
     

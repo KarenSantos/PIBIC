@@ -278,11 +278,17 @@ public class ProjetoTest {
 		
 		projeto.configuraNovaPlaylist(playlist);
 		
+		assertEquals(0, SurveyAnswer.find.all().size());
+		
 		try {
 			projeto.salvarPlaylist();
 			projeto.criaSurveyAnswerParaNovaPlaylist();
+			projeto.salvaNovaSurvey();
 		} catch (PlaylistIncompletaException e){
 			fail("Nao deveria ter lancado excecao");
 		}
+
+		assertEquals(1, SurveyAnswer.find.all().size());
 	}
+	
 }

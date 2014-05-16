@@ -288,7 +288,6 @@ public class Projeto {
 		}
 
 		catalogo.salvarPlaylist(novaPlaylist);
-		limpaNovaPlaylist();
 	}
 
 	/**
@@ -347,6 +346,7 @@ public class Projeto {
 	 */
 	public void salvaNovaSurvey() {
 		surveyAnswer.save();
+		limpaNovaPlaylist();
 	}
 
 	/**

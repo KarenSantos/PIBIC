@@ -53,22 +53,25 @@ public class Global extends GlobalSettings {
 			File surveyText = new File("./public/survey.txt");
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(surveyText), "ISO-8859-1"));
 			Question q = new Question();
-			int num = 1;
+			int optionNum = 1;
+			int questionNum = 0;
 			
 			while ((currentLine = reader.readLine()) != null) {
 				
 				String s = currentLine;
 				
 				if (s.startsWith("q")){
+					q.setId(questionNum + "");
             		q.setQuestion(s.split("-")[1]);
+            		questionNum++;
             	} else if (s.startsWith("o")){
-            		QuestionOption opt = new QuestionOption(num, s.split("-")[1]);
+            		QuestionOption opt = new QuestionOption(optionNum, s.split("-")[1]);
             		q.addOption(opt);
-            		num++;
+            		optionNum++;
             	} else if (s.startsWith(".")){
             		questions.add(q);
             		q = new Question();
-            		num = 1;
+            		optionNum = 1;
             	}
 			}
 			
@@ -86,8 +89,8 @@ public class Global extends GlobalSettings {
 	}
 	
 	private void salvaSurvey(List<Question> questions){
-//		Survey survey = new Survey(ID_SURVEY_PADRAO);
-//		survey.setQuestions(questions);
-//		survey.save();
+		Survey survey = new Survey(ID_SURVEY_PADRAO);
+		survey.setQuestions(questions);
+		survey.save();
 	}
 }

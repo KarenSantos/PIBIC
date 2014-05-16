@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -27,9 +30,12 @@ public class SurveyAnswer extends Model {
 	@Id
 	@GeneratedValue
 	private int id;
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Survey survey;
-	@ManyToMany
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "survey_answer_answers", joinColumns = @JoinColumn(name = "survey_answer_id"), inverseJoinColumns = @JoinColumn(name = "answer_id"))
 	private List<Answer> answers;
 
 	public static Finder<String, SurveyAnswer> find = new Finder<String, SurveyAnswer>(
@@ -51,11 +57,10 @@ public class SurveyAnswer extends Model {
 		this.survey = survey;
 		this.answers = new ArrayList<Answer>();
 		for (Question question : survey.getQuestions()) {
-			QuestionOption option = new QuestionOption(0, "Sem resposta");
 			Answer answer = Answer.find.where().eq("question", question)
-					.eq("answerOption", option).findUnique();
+					.eq("answerOption", null).findUnique();
 			if (answer == null) {
-				answer = new Answer(question, option);
+				answer = new Answer(question);
 			}
 			answers.add(answer);
 		}
@@ -109,6 +114,17 @@ public class SurveyAnswer extends Model {
 	}
 
 	/**
+	 * Returns the answer for the question with the given number.
+	 * 
+	 * @param num
+	 *            The number of the question starting with 1.
+	 * @return The answer for the question with the given number.
+	 */
+	public Answer getAnswerToQuestion(int num) {
+		return answers.get(num - 1);
+	}
+
+	/**
 	 * Sets the list of answers for the survey.
 	 * 
 	 * @param answers
@@ -132,12 +148,12 @@ public class SurveyAnswer extends Model {
 	 */
 	public void setAnswerToQuestion(int question, int answer)
 			throws NumeroInvalidoException {
-		Question quest = survey.getQuestion(question - 1);
-		QuestionOption option = quest.getOption(answer - 1);
+		Question quest = survey.getQuestion(question);
+		QuestionOption option = quest.getOption(answer);
 		Answer ans = Answer.find.where().eq("question", quest)
 				.eq("answerOption", option).findUnique();
 		if (ans == null) {
-			ans = new Answer(quest, quest.getOption(answer - 1));
+			ans = new Answer(quest, quest.getOption(answer));
 		}
 		answers.set(question - 1, ans);
 
@@ -162,6 +178,10 @@ public class SurveyAnswer extends Model {
 		}
 	}
 
+	public void setCommentToQuestion(int num, String comment) {
+
+	}
+
 	/**
 	 * Returns the survey with the question and the corresponding answer as a
 	 * map of strings.
@@ -172,9 +192,27 @@ public class SurveyAnswer extends Model {
 		Map<String, String> survey = new HashMap<String, String>();
 
 		for (Answer answer : getAnswers()) {
-			survey.put(answer.getQuestion().getQuestion(), answer.getAnswer().getOption());
+			survey.put(answer.getQuestion().getQuestion(), answer.getAnswer()
+					.getOption());
 		}
 		return survey;
+	}
+
+	/**
+	 * Returns if the survey answer has at least one real answer.
+	 * 
+	 * @return True if the survey has at least one answer for one question,
+	 *         false otherwise.
+	 */
+	public boolean isSurveyAnswered() {
+		boolean resp = false;
+		for (Answer answer : answers) {
+			if (answer.isAnswered()) {
+				resp = true;
+				break;
+			}
+		}
+		return resp;
 	}
 
 }

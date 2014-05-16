@@ -38,22 +38,22 @@ public class Question extends Model {
 	 * Creates an empty question with a generated id.
 	 */
 	public Question() {
-		this.id = Question.find.all().size() + "";
 		this.question = "";
 		this.options = new ArrayList<QuestionOption>();
 	}
 
 	/**
-	 * Creates an object question with a question and a list of options and a
-	 * generated id.
+	 * Creates an object question with an id, a question and a list of options.
 	 * 
+	 * @param id
+	 *            The id of the question.
 	 * @param question
 	 *            The question.
 	 * @param options
 	 *            The list of options to answer the question.
 	 */
-	public Question(String question, List<QuestionOption> options) {
-		this.id = Question.find.all().size() + "";
+	public Question(String id, String question, List<QuestionOption> options) {
+		this.id = id;
 		this.question = question;
 		this.options = options;
 	}
@@ -125,8 +125,9 @@ public class Question extends Model {
 	 *             If the given number is not a valid question option.
 	 */
 	public QuestionOption getOption(int num) throws NumeroInvalidoException {
-		if (num < 0 || num > options.size()){
-			throw new NumeroInvalidoException("Não existe uma opção com o número indicado.");
+		if (num < 0 || num > options.size()) {
+			throw new NumeroInvalidoException(
+					"Não existe uma opção com o número indicado.");
 		}
 		return options.get(num - 1);
 	}
@@ -139,5 +140,20 @@ public class Question extends Model {
 	 */
 	public void addOption(QuestionOption opt) {
 		this.options.add(opt);
+	}
+
+	/**
+	 * Returns if the questions has a list of options or is an open question
+	 * with no options.
+	 * 
+	 * @return True if the question has options and false otherwise.
+	 */
+	public boolean hasOptions() {
+		return getOptions().size() > 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Question: " + getQuestion();
 	}
 }
