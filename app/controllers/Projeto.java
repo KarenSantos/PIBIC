@@ -311,10 +311,10 @@ public class Projeto {
 	public void criaSurveyAnswerParaNovaPlaylist()
 			throws PlaylistIncompletaException {
 		// se a playlist ja foi salva podemos criar a survey
-		if (!catalogo.getPlaylists().contains(novaPlaylist)) {
-			throw new PlaylistIncompletaException(
-					"Nenhuma playlist foi criada para responder a survey.");
-		}
+		// if (!catalogo.getPlaylists().contains(novaPlaylist)) {
+		// throw new PlaylistIncompletaException(
+		// "Nenhuma playlist foi criada para responder a survey.");
+		// }
 		this.surveyAnswer = new SurveyAnswer(Survey.find.byId(ID_SURVEY_PADRAO));
 	}
 
@@ -328,17 +328,53 @@ public class Projeto {
 	}
 
 	/**
-	 * Responde as perguntas da nova survey de acordo com a lista de respostas
-	 * recebido.
+	 * Responde a pergunta da answer indicada com a opcao do numero indicado.
 	 * 
-	 * @param answers
-	 *            A lista de respostas recebido para a survey.
-	 * @throws NumeroInvalidoException
-	 *             Se os numeros nao correspondem a opcoes validas nas perguntas
+	 * @param answer
+	 *            A answer cuja pergunta vai ser respondida na survey answer.
+	 * @param option
+	 *            O numero da opcao que vai ser a resposta da pergunta.
+	 * @throws ParametroInvalidoException
+	 *             Se a answer passada nao existe na survey asnwer ou se o
+	 *             numero da opcao e invalido.
 	 */
-	public void respondePlaylistSurvey(int[] answers)
-			throws NumeroInvalidoException {
-		surveyAnswer.setAllAnswers(answers);
+	public void respondePerguntaComOption(Answer answer, QuestionOption option)
+			throws ParametroInvalidoException {
+		surveyAnswer.setOptionToAnswer(answer, option);
+	}
+
+	/**
+	 * Responde uma pergunta da nova survey com uma resposta aberta.
+	 * 
+	 * @param question
+	 *            O numero da pergunta da nova survey.
+	 * @param resposta
+	 *            A string resposta para a pergunta.
+	 * @throws ParametroInvalidoException
+	 *             Se o numero da pergunta nao corresponde a uma pergunta da
+	 *             lista da nova survey.
+	 */
+	public void respondePerguntaAberta(int question, String resposta)
+			throws ParametroInvalidoException {
+		surveyAnswer.setAnswerComment(question, resposta);
+	}
+
+	/**
+	 * Returna uma question option para a question e o numero da question option
+	 * indicado.
+	 * 
+	 * @param answer
+	 *            A resposta que tem a question que se quer saber a option do numero indicado.
+	 * @param optionNumber
+	 *            O numero da question option da pergunta.
+	 * @return The QuestionOption com o numero indicado.
+	 * @throws ParametroInvalidoException
+	 *             Se o numero indicado nao for um numero de option valido para
+	 *             a pergunta.
+	 */
+	public QuestionOption getOptionForQuestion(Answer answer,
+			int optionNumber) throws ParametroInvalidoException {
+		return answer.getQuestion().getOption(optionNumber);
 	}
 
 	/**

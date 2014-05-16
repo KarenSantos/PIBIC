@@ -24,7 +24,7 @@ public class Question extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	private int id;
 	private String question;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -52,8 +52,8 @@ public class Question extends Model {
 	 * @param options
 	 *            The list of options to answer the question.
 	 */
-	public Question(String id, String question, List<QuestionOption> options) {
-		this.id = id;
+	public Question(String question, List<QuestionOption> options) {
+//		this.id = id;
 		this.question = question;
 		this.options = options;
 	}
@@ -63,7 +63,7 @@ public class Question extends Model {
 	 * 
 	 * @return The Id of the question.
 	 */
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
@@ -73,7 +73,7 @@ public class Question extends Model {
 	 * @param id
 	 *            The new id of the question.
 	 */
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -121,12 +121,12 @@ public class Question extends Model {
 	 * @param num
 	 *            The number of the question option starting with 1.
 	 * @return The question option with the given number.
-	 * @throws NumeroInvalidoException
+	 * @throws ParametroInvalidoException
 	 *             If the given number is not a valid question option.
 	 */
-	public QuestionOption getOption(int num) throws NumeroInvalidoException {
+	public QuestionOption getOption(int num) throws ParametroInvalidoException {
 		if (num < 0 || num > options.size()) {
-			throw new NumeroInvalidoException(
+			throw new ParametroInvalidoException(
 					"Não existe uma opção com o número indicado.");
 		}
 		return options.get(num - 1);

@@ -1,4 +1,4 @@
-@(playlistId: String, survey: Survey)
+@(playlistId: String, surveyAnswer: SurveyAnswer)
 
 @import helper._
 
@@ -45,21 +45,21 @@
 	    
 	    <div class="row">
 	    	<div class="span9">
-				<form role="form" action="@routes.Application.respostas(" + @playlistId + ")" method="post">
+				<form role="form" action="@routes.Application.respostas()" method="post">
 					<div id="formulario">
 					
-						@for(question <- survey.getQuestions){
+						@for(answer <- surveyAnswer.getAnswers){
 						
-							<label for="q@question.getId">@question.getQuestion</label>
-							<div id="q@question.getId">
-								@if(question.hasOptions){
-									<div class="radio radioOption">
-										@for(option <- question.getOptions){
-											<label><input type="radio" name="question@question.getId" value="@option.getNumber">
+							<label for="q@answer.getQuestion.getId">@answer.getQuestion.getQuestion</label>
+							<div id="q@answer.getQuestion.getId">
+								@if(answer.getQuestion.hasOptions){
+									@for(option <- answer.getQuestion.getOptions){
+										<div class="radio radioOption">
+											<label><input type="radio" name="question@answer.getQuestion.getId" value="@option.getNumber">
 												@option.getOption
-											</label>
-										}
-									</div>
+											</label><br>
+										</div>
+									}
 								} else {
 									<textarea name="comment"  rows="3" class="form-control"></textarea>
 								}
@@ -73,10 +73,6 @@
 					</div>
 				</form>
 			    
-			    <!-- <div class="row formulario">
-			    	<iframe src="https://docs.google.com/forms/d/1pc14o-Ri-q-HDt1zpR5uJRhjp4qcKirIMTUCcHEm9NI/viewform?embedded=true" width="760" height="450" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
-				</div> -->
-				
 		     </div>
 	    </div>
     </div>

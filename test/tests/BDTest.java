@@ -66,7 +66,7 @@ public class BDTest {
 		QuestionOption op2 = new QuestionOption(2, "opcao2");
 		
 		Question question = new Question();
-		question.setId("primeira");
+//		question.setId("primeira");
 		question.setQuestion("qual?");
 		question.addOption(op1);
 		question.addOption(op2);
@@ -80,18 +80,18 @@ public class BDTest {
 	}
 	
 	@Test
-	public void deveSalvarSurveyNoBD() throws NumeroInvalidoException {
+	public void deveSalvarSurveyNoBD() throws ParametroInvalidoException {
 		QuestionOption op1 = new QuestionOption(1, "opcao1");
 		QuestionOption op2 = new QuestionOption(2, "opcao2");
 		
 		Question question1 = new Question();
-		question1.setId("q1");
+//		question1.setId("q1");
 		question1.setQuestion("qual?");
 		question1.addOption(op1);
 		question1.addOption(op2);
 		
 		Question question2 = new Question();
-		question2.setId("q2");
+//		question2.setId("q2");
 		question2.setQuestion("quem?");
 		question2.addOption(op1);
 		question2.addOption(op2);
@@ -112,7 +112,7 @@ public class BDTest {
 	}
 	
 	@Test
-	public void devePoderSalvarAnswerNoBD() throws NumeroInvalidoException {
+	public void devePoderSalvarAnswerNoBD() throws ParametroInvalidoException {
 		
 		assertEquals(0, Answer.find.all().size());
 		
@@ -125,7 +125,7 @@ public class BDTest {
 	}
 	
 	@Test
-	public void devePoderSalvarSurveyAnswerNoBD() throws NumeroInvalidoException {
+	public void devePoderSalvarSurveyAnswerNoBD() throws ParametroInvalidoException {
 		
 		assertEquals(0, SurveyAnswer.find.all().size());
 		
@@ -137,17 +137,34 @@ public class BDTest {
 
 		assertNotNull(Answer.find.all().get(0));
 		assertEquals(10, Answer.find.all().size());
-		System.out.println(sa.getAnswers());
 		
 		assertEquals("Sem resposta", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
 		
-		sa.setAnswerToQuestion(1, 2);
+		Answer ans1 = sa.getAnswerToQuestion(1);
+		QuestionOption opt1 = ans1.getQuestion().getOption(2);
+		sa.setOptionToAnswer(ans1, opt1);
 		sa.save();
 		
-		System.out.println(sa.getAnswers());
-		assertEquals(11, Answer.find.all().size());
+		assertEquals(10, Answer.find.all().size());
 		
-//		assertEquals("Pelo menos uma vez por semana", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
+		assertEquals("Pelo menos uma vez por semana", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
 		assertEquals(1, SurveyAnswer.find.all().size());
+		
+		Answer ans2 = sa.getAnswerToQuestion(2);
+		QuestionOption opt2 = ans2.getQuestion().getOption(4);
+		sa.setOptionToAnswer(ans2, opt2);
+		sa.save();
+		
+		assertEquals(10, Answer.find.all().size());
+		
+		assertEquals("Gosto de qualquer tipo de música", SurveyAnswer.find.all().get(0).getAnswerToQuestion(2).getAnswerOption());
+		assertEquals(1, SurveyAnswer.find.all().size());
+		
+		ans1 = sa.getAnswerToQuestion(1);
+		opt1 = ans1.getQuestion().getOption(3);
+		sa.setOptionToAnswer(ans1, opt1);
+		sa.save();
+		assertEquals("Mais de uma vez por semana", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
+
 	}
 }

@@ -10,9 +10,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import models.AlocacaoInvalidaException;
+import models.Answer;
+import models.ParametroInvalidoException;
 import models.Playlist;
 import models.PlaylistIncompletaException;
-import models.Survey;
+import models.Question;
+import models.QuestionOption;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.libs.Json;
@@ -20,7 +23,9 @@ import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
-import views.html.*;
+import views.html.create;
+import views.html.index;
+import views.html.survey;
 
 public class Application extends Controller {
 
@@ -117,22 +122,32 @@ public class Application extends Controller {
     }
     
     public static Result survey(String id){
-//    	try {
-//			projeto.criaSurveyAnswerParaNovaPlaylist();
-//		} catch (PlaylistIncompletaException e) {
-//			flash("error", "Você precisa criar uma playlist para poder responder a survey.");
-//			return redirect(routes.Application.novaPlaylist());
-//		}
-    	return ok(survey.render(id, projeto.getSurveyPadrao()));
+    	try {
+			projeto.criaSurveyAnswerParaNovaPlaylist();
+		} catch (PlaylistIncompletaException e) {
+			flash("error", "Você precisa criar uma playlist para poder responder a survey.");
+			return redirect(routes.Application.novaPlaylist());
+		}
+    	return ok(survey.render(id, projeto.getSurveyAnswer()));
     }
     
-    public static Result respostas(String playlistId){
+    public static Result respostas(){
     	
     	DynamicForm requestData = Form.form().bindFromRequest();
-        String q1 = requestData.get("question1");
-        String q2 = requestData.get("question2");
+        
+        for(Answer answer : projeto.getSurveyAnswer().getAnswers()){
+        	String stringAnswer = requestData.get("question" + answer.getQuestion().getId());
+        	int option = Integer.parseInt(stringAnswer);
+        	
+        	if(answer.getQuestion().hasOptions()){
+        		try {
+					projeto.respondePerguntaComOption(answer, projeto.getOptionForQuestion(answer, option);
+				} catch (ParametroInvalidoException e) {
+					e.printStackTrace();
+				}
+        	}
+        }
     	
-    	System.out.println(q1);
     	
     	return redirect(routes.Application.survey("1"));
     }

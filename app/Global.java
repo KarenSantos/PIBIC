@@ -25,7 +25,7 @@ public class Global extends GlobalSettings {
 
 	public Promise<SimpleResult> onError(RequestHeader request, Throwable t) {
 		return Promise.<SimpleResult>pure(internalServerError(error.render("Erro encontrado:\n"
-													+ t.getStackTrace())));
+													+ t.getMessage())));
     }
 	
 	public Promise<SimpleResult> onHandlerNotFound(RequestHeader request) {
@@ -54,16 +54,16 @@ public class Global extends GlobalSettings {
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(surveyText), "ISO-8859-1"));
 			Question q = new Question();
 			int optionNum = 1;
-			int questionNum = 0;
+//			int questionNum = 0;
 			
 			while ((currentLine = reader.readLine()) != null) {
 				
 				String s = currentLine;
 				
 				if (s.startsWith("q")){
-					q.setId(questionNum + "");
+//					q.setId(questionNum + "");
             		q.setQuestion(s.split("-")[1]);
-            		questionNum++;
+//            		questionNum++;
             	} else if (s.startsWith("o")){
             		QuestionOption opt = new QuestionOption(optionNum, s.split("-")[1]);
             		q.addOption(opt);

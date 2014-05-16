@@ -14,7 +14,7 @@ GET		/add_2/:nome/:id			controllers.Application.setTransicao(nome: String, id: S
 GET		/add_3/:nome/:id			controllers.Application.addSegPaisagem(nome: String, id: String)
 POST	/cria_playlist				controllers.Application.criaPlaylist()
 GET		/survey/:playlistId			controllers.Application.survey(playlistId: String)
-POST	/respostas/:playlistId		controllers.Application.respostas(playlistId: String)
+POST	/respostas					controllers.Application.respostas()
 
 #/:disciplinaId/:futuro/:atual		controllers.Application.mover(disciplinaId: String, futuro: Int, atual: Int)
 

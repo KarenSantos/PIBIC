@@ -57,11 +57,7 @@ public class SurveyAnswer extends Model {
 		this.survey = survey;
 		this.answers = new ArrayList<Answer>();
 		for (Question question : survey.getQuestions()) {
-			Answer answer = Answer.find.where().eq("question", question)
-					.eq("answerOption", null).findUnique();
-			if (answer == null) {
-				answer = new Answer(question);
-			}
+			Answer answer = new Answer(question);
 			answers.add(answer);
 		}
 	}
@@ -135,51 +131,48 @@ public class SurveyAnswer extends Model {
 	}
 
 	/**
-	 * Sets an answer for one specific questions of the survey.
+	 * Sets the option for one specific answer of the survey answer.
 	 * 
-	 * @param question
-	 *            The number of the question in the list starting with 1.
 	 * @param answer
+	 *            The answer to be set the option.
+	 * @param option
 	 *            The number of the question option to be the answer starting
 	 *            with 1.
-	 * @throws NumeroInvalidoException
-	 *             If the given numbers are not valid for questions or/and
-	 *             question options
+	 * @throws ParametroInvalidoException
+	 *             If the answer is not in the answers list or the option number
+	 *             is not a valid option for the question.
 	 */
-	public void setAnswerToQuestion(int question, int answer)
-			throws NumeroInvalidoException {
-		Question quest = survey.getQuestion(question);
-		QuestionOption option = quest.getOption(answer);
-		Answer ans = Answer.find.where().eq("question", quest)
-				.eq("answerOption", option).findUnique();
-		if (ans == null) {
-			ans = new Answer(quest, quest.getOption(answer));
+	public void setOptionToAnswer(Answer answer, QuestionOption option)
+			throws ParametroInvalidoException {
+		
+		if (!answers.contains(answer)){
+			throw new ParametroInvalidoException("Esta answer não está na lista de answers da survey answer.");
+		} else if (!answer.getQuestion().getOptions().contains(option)){
+			throw new ParametroInvalidoException("Esta option não está na lista de options da question.");
 		}
-		answers.set(question - 1, ans);
-
+//		int answerIndex = answers.indexOf(answer);
+//		Question quest = answer.getQuestion();
+//		answers.get(answerIndex).setAnswer(opt);
+		answer.setAnswer(option);
 	}
 
 	/**
-	 * Sets all the answers for all the questions of the survey if the amount of
-	 * answers given is smaller or is the same of the questions.
+	 * Sets a comment to the question with the given number.
 	 * 
-	 * @param answers
-	 *            The array with all the numbers of the question options for the
-	 *            questions.
-	 * @throws NumeroInvalidoException
-	 *             If the given numbers for the question options are not valid
-	 *             for a question.
+	 * @param num
+	 *            The number of the question of the answer.
+	 * @param comment
+	 *            The new comment for the question of the answer.
+	 * @throws ParametroInvalidoException
+	 *             If the given number is not a valid question in the survey.
 	 */
-	public void setAllAnswers(int[] answers) throws NumeroInvalidoException {
-		if (answers.length <= getAnswers().size()) {
-			for (int i = 0; i < answers.length; i++) {
-				setAnswerToQuestion(i + 1, answers[i] + 1);
-			}
+	public void setAnswerComment(int num, String comment)
+			throws ParametroInvalidoException {
+		if (num > answers.size()) {
+			throw new ParametroInvalidoException(
+					"Não existe pergunta com o número indicado.");
 		}
-	}
-
-	public void setCommentToQuestion(int num, String comment) {
-
+		answers.get(num - 1).setComment(comment);
 	}
 
 	/**
@@ -213,6 +206,15 @@ public class SurveyAnswer extends Model {
 			}
 		}
 		return resp;
+	}
+
+	/**
+	 * Returns the total amount of questions in the survey answer.
+	 * 
+	 * @return The total amount of questions in the survey answer.
+	 */
+	public int getTotalQuestions() {
+		return answers.size();
 	}
 
 }

@@ -110,12 +110,12 @@ public class Survey extends Model {
 	 * @param num
 	 *            The number of the question from the list starting with 1.
 	 * @return The question with the given number.
-	 * @throws NumeroInvalidoException
+	 * @throws ParametroInvalidoException
 	 *             If the given number is not a valid question.
 	 */
-	public Question getQuestion(int num) throws NumeroInvalidoException {
+	public Question getQuestion(int num) throws ParametroInvalidoException {
 		if (num < 0 || num > questions.size()) {
-			throw new NumeroInvalidoException("Não existe pergunta com o número indicado.");
+			throw new ParametroInvalidoException("Não existe pergunta com o número indicado.");
 		}
 		return this.questions.get(num - 1);
 	}
