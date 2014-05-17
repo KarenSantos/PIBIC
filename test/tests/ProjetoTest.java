@@ -260,7 +260,7 @@ public class ProjetoTest {
 	}
 	
 	@Test
-	public void devePoderCriarSurveyAnswerSePlaylistForCriada() throws AlocacaoInvalidaException {
+	public void devePoderCriarSurveyAnswer() throws AlocacaoInvalidaException {
 		projeto.addMusicaPrimPaisagem("mus1", "yW39pSIu4kk");
 		projeto.addMusicaPrimPaisagem("mus1", "huFra1mnIVE");
 		projeto.addMusicaPrimPaisagem("mus1", "T0ip40j82ws");
@@ -289,6 +289,73 @@ public class ProjetoTest {
 		}
 
 		assertEquals(1, SurveyAnswer.find.all().size());
+	}
+	
+	@Test
+	public void naoDeveCriarSurveyAnswerSePlaylistNaoFoiSalva() throws AlocacaoInvalidaException {
+		projeto.addMusicaPrimPaisagem("mus1", "yW39pSIu4kk");
+		projeto.addMusicaPrimPaisagem("mus1", "huFra1mnIVE");
+		projeto.addMusicaPrimPaisagem("mus1", "T0ip40j82ws");
+		projeto.addMusicaSegPaisagem("mus2", "B07iK9uh9qY");
+		projeto.addMusicaSegPaisagem("mus2", "gxYLlBsGGGM");
+		projeto.addMusicaSegPaisagem("mus2", "-am7iYzCfdE");
+		projeto.setMusicaTransicao("transicao", "eZEE0hRR378");
+		
+		Playlist playlist = new Playlist();
+		playlist.setId("myId");
+		playlist.setNome("My Playlist");
+		playlist.setImagem("0.jpg");
+		playlist.setPrimGenero("genero1");
+		playlist.setSegGenero("genero2");
+		
+		projeto.configuraNovaPlaylist(playlist);
+		
+		assertEquals(0, SurveyAnswer.find.all().size());
+		
+		try {
+			projeto.criaSurveyAnswerParaNovaPlaylist();
+			projeto.salvaNovaSurvey();
+			fail("Deveria ter lancado excecao");
+		} catch (PlaylistIncompletaException e){
+			assertEquals("Nenhuma playlist foi criada para responder a survey.", e.getMessage());
+		}
+
+		assertEquals(1, SurveyAnswer.find.all().size());
+	}
+	
+	@Test
+	public void devePoderResponderSurveyAnswer() throws AlocacaoInvalidaException, PlaylistIncompletaException, ParametroInvalidoException{
+		projeto.addMusicaPrimPaisagem("mus1", "yW39pSIu4kk");
+		projeto.addMusicaPrimPaisagem("mus1", "huFra1mnIVE");
+		projeto.addMusicaPrimPaisagem("mus1", "T0ip40j82ws");
+		projeto.addMusicaSegPaisagem("mus2", "B07iK9uh9qY");
+		projeto.addMusicaSegPaisagem("mus2", "gxYLlBsGGGM");
+		projeto.addMusicaSegPaisagem("mus2", "-am7iYzCfdE");
+		projeto.setMusicaTransicao("transicao", "eZEE0hRR378");
+		
+		Playlist playlist = new Playlist();
+		playlist.setId("myId");
+		playlist.setNome("My Playlist");
+		playlist.setImagem("0.jpg");
+		playlist.setPrimGenero("genero1");
+		playlist.setSegGenero("genero2");
+		
+		projeto.configuraNovaPlaylist(playlist);
+		projeto.salvarPlaylist();
+		
+		projeto.criaSurveyAnswerParaNovaPlaylist();
+		projeto.salvaNovaSurvey();
+
+		Answer ans = projeto.getSurveyAnswer().getAnswerToQuestion(1);
+		QuestionOption opt = projeto.getOptionForQuestion(ans, 1);
+
+		assertEquals("Sem resposta", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
+		
+		projeto.respondePerguntaComOption(ans, opt);
+		projeto.salvaNovaSurvey();
+		
+		assertEquals("Pelo menos uma vez por dia", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
+		
 	}
 	
 }

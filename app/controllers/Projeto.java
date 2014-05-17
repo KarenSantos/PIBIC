@@ -310,11 +310,11 @@ public class Projeto {
 	 */
 	public void criaSurveyAnswerParaNovaPlaylist()
 			throws PlaylistIncompletaException {
-		// se a playlist ja foi salva podemos criar a survey
-		// if (!catalogo.getPlaylists().contains(novaPlaylist)) {
-		// throw new PlaylistIncompletaException(
-		// "Nenhuma playlist foi criada para responder a survey.");
-		// }
+		//se a playlist ja foi salva podemos criar a survey
+		if (!catalogo.getPlaylists().contains(novaPlaylist)) {
+			throw new PlaylistIncompletaException(
+						"Nenhuma playlist foi criada para responder a survey.");
+		}
 		this.surveyAnswer = new SurveyAnswer(Survey.find.byId(ID_SURVEY_PADRAO));
 	}
 
@@ -344,27 +344,27 @@ public class Projeto {
 	}
 
 	/**
-	 * Responde uma pergunta da nova survey com uma resposta aberta.
+	 * Responde uma pergunta da nova survey answer com um comentario.
 	 * 
-	 * @param question
-	 *            O numero da pergunta da nova survey.
+	 * @param answer
+	 *            A answer a ser respondida com comentario.
 	 * @param resposta
 	 *            A string resposta para a pergunta.
 	 * @throws ParametroInvalidoException
-	 *             Se o numero da pergunta nao corresponde a uma pergunta da
-	 *             lista da nova survey.
+	 *             Se a answer nao existe na lista de answers da survey answer.
 	 */
-	public void respondePerguntaAberta(int question, String resposta)
+	public void respondePerguntaAberta(Answer answer, String resposta)
 			throws ParametroInvalidoException {
-		surveyAnswer.setAnswerComment(question, resposta);
+		surveyAnswer.setAnswerComment(answer, resposta);
 	}
 
 	/**
-	 * Returna uma question option para a question e o numero da question option
+	 * Retorna uma question option para a question e o numero da question option
 	 * indicado.
 	 * 
 	 * @param answer
-	 *            A resposta que tem a question que se quer saber a option do numero indicado.
+	 *            A resposta que tem a question que se quer saber a option do
+	 *            numero indicado.
 	 * @param optionNumber
 	 *            O numero da question option da pergunta.
 	 * @return The QuestionOption com o numero indicado.
@@ -372,9 +372,19 @@ public class Projeto {
 	 *             Se o numero indicado nao for um numero de option valido para
 	 *             a pergunta.
 	 */
-	public QuestionOption getOptionForQuestion(Answer answer,
-			int optionNumber) throws ParametroInvalidoException {
+	public QuestionOption getOptionForQuestion(Answer answer, int optionNumber)
+			throws ParametroInvalidoException {
 		return answer.getQuestion().getOption(optionNumber);
+	}
+
+	/**
+	 * Retorna se a survey answer foi respondida.
+	 * 
+	 * @return True se pelo menos uma pergunta foi respondida e false se nenhuma
+	 *         das perguntas foram respondidas.
+	 */
+	public boolean isSurveyAnswerRespondida() {
+		return surveyAnswer.isSurveyAnswered();
 	}
 
 	/**

@@ -15,21 +15,6 @@ function skip(){
 	document.getElementById("bcriar").style.display = "block";
 }
 
-function goHome(){
-	alert("chegou na funcao");
-	$.ajax({
-		type : "GET",
-		url : "/",
-		data : "",
-		success : function() {
-			window.location = "/" + novoPeriodo;
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("deu erro");
-		}
-	});
-}
-
 function go_get() {
 	 var base_url = 'http://www.youtube.com/embed?listType=search&list=';
 	 var search_field = document.getElementById('keyword').value;
@@ -219,6 +204,12 @@ function mostrarErro(erro){
 function fecharErro(){
 	document.getElementById("errorText").innerHTML = "";
 	document.getElementById("error").style.display = "none";
+	document.getElementById("error2").style.display = "none";
+	
+}
+
+function fecharSuccess(){
+	document.getElementById("success").style.display = "none";
 }
 
 function proximo(){

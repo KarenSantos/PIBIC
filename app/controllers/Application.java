@@ -14,8 +14,6 @@ import models.Answer;
 import models.ParametroInvalidoException;
 import models.Playlist;
 import models.PlaylistIncompletaException;
-import models.Question;
-import models.QuestionOption;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.libs.Json;
@@ -32,42 +30,42 @@ public class Application extends Controller {
 	private static final int IMG_WIDTH = 270;
 	private static final int IMG_HEIGHT = 160;
 	private static final String IMAGEM_PADRAO = "0.jpg";
-	
-	private static Projeto projeto = new Projeto();
-		
-    public static Result index() {
-    	projeto.limpaNovaPlaylist();
-        return ok(index.render(projeto.getSamplePlaylists()));
-    }
 
-    public static Result getPlaylist(String id) {
-    	Playlist playlist = projeto.getPlaylist(id);
-        return ok(Json.toJson(playlist));
-    }
-    
-    public static Result novaPlaylist() {
-    	return ok(create.render(Form.form(Playlist.class)));
-    }
-    
-    public static Result addPrimPaisagem(String nome, String id){
-    	try{
-    		projeto.addMusicaPrimPaisagem(nome, id);
-    	} catch (AlocacaoInvalidaException a){
-    		return badRequest();
-    	}
-    	return ok();
-    }
-    
-    public static Result addSegPaisagem(String nome, String id){
-    	try {
+	private static Projeto projeto = new Projeto();
+
+	public static Result index() {
+		projeto.limpaNovaPlaylist();
+		return ok(index.render(projeto.getSamplePlaylists()));
+	}
+
+	public static Result getPlaylist(String id) {
+		Playlist playlist = projeto.getPlaylist(id);
+		return ok(Json.toJson(playlist));
+	}
+
+	public static Result novaPlaylist() {
+		return ok(create.render(Form.form(Playlist.class)));
+	}
+
+	public static Result addPrimPaisagem(String nome, String id) {
+		try {
+			projeto.addMusicaPrimPaisagem(nome, id);
+		} catch (AlocacaoInvalidaException a) {
+			return badRequest();
+		}
+		return ok();
+	}
+
+	public static Result addSegPaisagem(String nome, String id) {
+		try {
 			projeto.addMusicaSegPaisagem(nome, id);
 		} catch (AlocacaoInvalidaException e) {
 			return badRequest();
 		}
-    	return ok();
-    }
- 
-	public static Result setTransicao(String nome, String id){
+		return ok();
+	}
+
+	public static Result setTransicao(String nome, String id) {
 		try {
 			projeto.setMusicaTransicao(nome, id);
 		} catch (AlocacaoInvalidaException e) {
@@ -76,103 +74,124 @@ public class Application extends Controller {
 		return ok();
 	}
 
-	public static Result criaPlaylist(){
+	public static Result criaPlaylist() {
 
-    	Form<Playlist> playlistForm = Form.form(Playlist.class).bindFromRequest();
-    	Playlist playlist = null;
-    	
-    	if (playlistForm.hasErrors()) {
+		Form<Playlist> playlistForm = Form.form(Playlist.class)
+				.bindFromRequest();
+		Playlist playlist = null;
+
+		if (playlistForm.hasErrors()) {
 			return badRequest(create.render(playlistForm));
-		
-    	} else {
-    		
-    		playlist = playlistForm.get();
-    		playlist.setId(Playlist.find.all().size() + 1 + "");
-    		System.out.println("playlist do form ok");
-    		
-    		MultipartFormData body = request().body().asMultipartFormData();
-    		FilePart imagem = body.getFile("imagem");
-    		
-    		if (imagem == null) {
-    			System.out.println("imagem é nula");
-    			playlist.setImagem(IMAGEM_PADRAO);
-    		} else {
-    			System.out.println("imagem nao é nula");
-    			File file = imagem.getFile();
-    			try {
-    				configuraImagem(file, playlist.getId());
-    				playlist.setImagem(playlist.getId());
-    			} catch (IOException e){
-    				playlist.setImagem(IMAGEM_PADRAO);
-    				flash("erro", "Um problema foi encontrado ao fazer o upload da imagem. Sua playlist foi salva com a imagem padrão.");
-    			}
-    		}
-    		System.out.println("passou das coisas da imagem");
+
+		} else {
+
+			playlist = playlistForm.get();
+			playlist.setId(Playlist.find.all().size() + 1 + "");
+			System.out.println("playlist do form ok");
+
+			MultipartFormData body = request().body().asMultipartFormData();
+			FilePart imagem = body.getFile("imagem");
+
+			if (imagem == null) {
+				System.out.println("imagem é nula");
+				playlist.setImagem(IMAGEM_PADRAO);
+			} else {
+				System.out.println("imagem nao é nula");
+				File file = imagem.getFile();
+				try {
+					configuraImagem(file, playlist.getId());
+					playlist.setImagem(playlist.getId());
+				} catch (IOException e) {
+					playlist.setImagem(IMAGEM_PADRAO);
+					flash("erro",
+							"Um problema foi encontrado ao fazer o upload da imagem. Sua playlist foi salva com a imagem padrão.");
+				}
+			}
+			System.out.println("passou das coisas da imagem");
 			projeto.configuraNovaPlaylist(playlist);
-			
+
 			try {
 				projeto.salvarPlaylist();
 			} catch (PlaylistIncompletaException e) {
-				flash("error", "Um erro ocorreu ao tentar salvar sua playlist. Tente mais tarde");
+				flash("error",
+						"Um erro ocorreu ao tentar salvar sua playlist. Tente mais tarde");
 				return redirect(routes.Application.novaPlaylist());
 			}
 		}
-    	
-    	return redirect(routes.Application.survey(playlist.getId()));
-    }
-    
-    public static Result survey(String id){
-    	try {
+
+		return redirect(routes.Application.survey(playlist.getId()));
+	}
+
+	public static Result survey(String id) {
+		try {
 			projeto.criaSurveyAnswerParaNovaPlaylist();
 		} catch (PlaylistIncompletaException e) {
 			flash("error", "Você precisa criar uma playlist para poder responder a survey.");
 			return redirect(routes.Application.novaPlaylist());
 		}
-    	return ok(survey.render(id, projeto.getSurveyAnswer()));
-    }
-    
-    public static Result respostas(){
-    	
-    	DynamicForm requestData = Form.form().bindFromRequest();
-        
-        for(Answer answer : projeto.getSurveyAnswer().getAnswers()){
-        	String stringAnswer = requestData.get("question" + answer.getQuestion().getId());
-        	int option = Integer.parseInt(stringAnswer);
-        	
-        	if(answer.getQuestion().hasOptions()){
-        		try {
-					projeto.respondePerguntaComOption(answer, projeto.getOptionForQuestion(answer, option);
-				} catch (ParametroInvalidoException e) {
-					e.printStackTrace();
-				}
-        	}
-        }
-    	
-    	
-    	return redirect(routes.Application.survey("1"));
-    }
+		return ok(survey.render(id, projeto.getSurveyAnswer()));
+	}
 
-    private static File configuraImagem(File file, String id) throws IOException{
-    	BufferedImage img;
+	public static Result respostas() {
+
+		DynamicForm requestData = Form.form().bindFromRequest();
+
+		for (Answer answer : projeto.getSurveyAnswer().getAnswers()) {
+			String stringAnswer = requestData.get("question" + answer.getQuestion().getId());
+			if (stringAnswer != null && !stringAnswer.equals("")){
+				if (answer.getQuestion().hasOptions()) {
+					int option;
+					try {
+						option = Integer.parseInt(stringAnswer);
+						projeto.respondePerguntaComOption(answer, projeto.getOptionForQuestion(answer, option));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					try {
+						System.out.println("sa: " + stringAnswer);
+						projeto.respondePerguntaAberta(answer, stringAnswer);
+					} catch (ParametroInvalidoException e) {
+						flash("nao deu certo o comentario");
+						e.printStackTrace();
+						return redirect(routes.Application.novaPlaylist());
+					}
+				}
+			}
+		}
+		if (projeto.isSurveyAnswerRespondida()) {
+			projeto.salvaNovaSurvey();
+			flash("success", "Obrigado por submeter sua survey.");
+			return redirect(routes.Application.novaPlaylist());
+		} else {
+			return redirect(routes.Application.index());
+		}
+	}
+
+	private static File configuraImagem(File file, String id)
+			throws IOException {
+		BufferedImage img;
 		BufferedImage resized = null;
-		
-		//creates an image from the uploaded file and resizes it
+
+		// creates an image from the uploaded file and resizes it
 		img = ImageIO.read(file);
 		resized = resizeImgTo(img, IMG_WIDTH, IMG_HEIGHT);
-		
-		//converts the image back to file
+
+		// converts the image back to file
 		File newImage = new File("public/img/playImgs", id + ".jpg");
 		ImageIO.write(resized, "jpg", newImage);
 
 		return newImage;
-    }
-    
-    private static BufferedImage resizeImgTo(Image srcImg, int w, int h){
-        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(srcImg, 0, 0, w, h, null);
-        g2.dispose();
-        return resizedImg;
-    }
+	}
+
+	private static BufferedImage resizeImgTo(Image srcImg, int w, int h) {
+		BufferedImage resizedImg = new BufferedImage(w, h,
+				BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2 = resizedImg.createGraphics();
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2.drawImage(srcImg, 0, 0, w, h, null);
+		g2.dispose();
+		return resizedImg;
+	}
 }

@@ -15,9 +15,9 @@
 	        
 	        <nav id="menu">
 	        	<ul id="menu-nav">
-	            	<li><a href="@routes.Application.index()">Home</a></li>
-	                <li><a onclick="goHome()">Playlists</a></li>
-	                <li><a href="www.youtube.com">Contato</a></li>
+	            	<li><a onclick="location.href='/'">Home</a></li>
+	                <li><a onclick="location.href='/#work'">Playlists</a></li>
+	                <li><a onclick="location.href='/#contact'">Contato</a></li>
 	            </ul>
 	        </nav>
 	        
@@ -75,10 +75,17 @@
 				</div>
 				
 				@if(flash.containsKey("error")){
-				<div class="alert alert-erro">
-					@flash.get("error")
-				</div>
-			}
+					<div id="error2" class="alert alert-error" style="display:block">
+						<div id="errorText2" class="floatLeft">@flash.get("error")&nbsp;&nbsp;</div>
+						<a class="glyphicon glyphicon-remove aerror" onclick="fecharErro()"></a>
+					</div>
+					
+				} @if(flash.containsKey("success")){
+					<div id="success" class="alert alert-success" style="display:block">
+						<div id="successText" class="floatLeft">@flash.get("success")&nbsp;&nbsp;</div>
+						<a class="glyphicon glyphicon-remove asuccess" onclick="fecharSuccess()"></a>
+					</div>
+				}
 				
 	        </div>
 		    

@@ -182,11 +182,8 @@
 .alert {
   	position: relative;
   	width: 95%;
-  	border: 1px solid #E56C69;
-  	border-radius: 5px !important;
   	padding: 10px 15px;
 	text-shadow: none;
-	background: #ED9896;
   	-webkit-border-radius: 0px;
        -moz-border-radius: 0px;
           	border-radius: 0px;
@@ -220,6 +217,12 @@
 	opacity: 1;	
 }
 
+.alert-error {
+  	border: 1px solid #E56C69;
+  	border-radius: 5px !important;
+	background: #ED9896;
+}
+
 .alert-standard {
   	background-color: #F1F1F1;
 	color: #55606A;
@@ -230,7 +233,9 @@
 }
 
 .alert-success {
-  	background-color: #1F7F5C;
+  	border: 1px solid #4FA76C;
+  	border-radius: 5px !important;
+	background: #63D187;
 }
 
 .alert-danger {

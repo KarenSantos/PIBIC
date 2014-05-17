@@ -150,29 +150,25 @@ public class SurveyAnswer extends Model {
 		} else if (!answer.getQuestion().getOptions().contains(option)){
 			throw new ParametroInvalidoException("Esta option não está na lista de options da question.");
 		}
-//		int answerIndex = answers.indexOf(answer);
-//		Question quest = answer.getQuestion();
-//		answers.get(answerIndex).setAnswer(opt);
 		answer.setAnswer(option);
 	}
 
 	/**
 	 * Sets a comment to the question with the given number.
 	 * 
-	 * @param num
-	 *            The number of the question of the answer.
+	 * @param answer
+	 *            The answer to set a comment.
 	 * @param comment
 	 *            The new comment for the question of the answer.
 	 * @throws ParametroInvalidoException
-	 *             If the given number is not a valid question in the survey.
+	 *             If the answer is not in the answers list of the survey answer.
 	 */
-	public void setAnswerComment(int num, String comment)
+	public void setAnswerComment(Answer answer, String comment)
 			throws ParametroInvalidoException {
-		if (num > answers.size()) {
-			throw new ParametroInvalidoException(
-					"Não existe pergunta com o número indicado.");
+		if (!answers.contains(answer)){
+			throw new ParametroInvalidoException("Esta answer não está na lista de answers da survey answer.");
 		}
-		answers.get(num - 1).setComment(comment);
+		answer.setComment(comment);
 	}
 
 	/**

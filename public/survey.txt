@@ -25,7 +25,7 @@ o-Crio playlists com diferentes critérios de seleção
 q-Indique o nível de dificuldade encontrado ao criar sua playlist.
 o-Muito fácil
 o-Fácil
-o-Médio
+o-Normal
 o-Difícil
 o-Muito difícil
 .
@@ -38,14 +38,14 @@ o-Pela música de transição
 q-Indique o nível de dificuldade encontrado para montar as paisagens musicais.
 o-Muito fácil
 o-Fácil
-o-Médio
+o-Normal
 o-Difícil
 o-Muito difícil
 .
 q-Indique o nível de dificuldade encontrado para encontrar a música de transição.
 o-Muito fácil
 o-Fácil
-o-Médio
+o-Normal
 o-Difícil
 o-Muito difícil
 .

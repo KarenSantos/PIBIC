@@ -286,6 +286,10 @@
 	color: #F8D6D5;
 }
 
+.asuccess {
+	color: #CCFFCC;
+}
+
 .playInfo {
 	padding-top: 20px;
 }
@@ -308,7 +312,7 @@
 
 #formulario {
 	position: relative;
-	height:400px;
+	height:50%;
 	overflow:auto;
 	margin-left:20px;
 	margin-bottom: 30px;

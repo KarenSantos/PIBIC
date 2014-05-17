@@ -36,13 +36,14 @@ public class Answer extends Model {
 	/**
 	 * Creates an empty answer.
 	 */
-	public Answer() {}
+	public Answer() {
+	}
 
-	public Answer(Question question){
+	public Answer(Question question) {
 		this.question = question;
 		this.answerOption = null;
 	}
-	
+
 	/**
 	 * Creates an answer with a question option as the answer.
 	 * 
@@ -106,11 +107,12 @@ public class Answer extends Model {
 	/**
 	 * Returns the chosen question option for the answer.
 	 * 
-	 * @return The chosen question option for the answer.
+	 * @return The string question option for the answer or "Sem resposta" if
+	 *         question option is null.
 	 */
 	public String getAnswerOption() {
 		String option;
-		if (getAnswer() == null){
+		if (getAnswer() == null) {
 			option = "Sem resposta";
 		} else {
 			option = answerOption.getOption();
@@ -131,10 +133,17 @@ public class Answer extends Model {
 	/**
 	 * Returns the comment on the answer.
 	 * 
-	 * @return The comment on the answer.
+	 * @return The comment on the answer or "Sem comentario" if comment is
+	 *         empty.
 	 */
 	public String getComment() {
-		return comment;
+		String com;
+		if (comment == null || comment.equals("")) {
+			com = "Sem comentario";
+		} else {
+			com = comment;
+		}
+		return com;
 	}
 
 	/**
@@ -155,9 +164,9 @@ public class Answer extends Model {
 	 */
 	public boolean isAnswered() {
 		boolean resp = false;
-		if (getAnswer() != null) {
+		if (answerOption != null) {
 			resp = true;
-		} else if (!getComment().equals("")) {
+		} else if (comment != null) {
 			resp = true;
 		}
 		return resp;
@@ -166,10 +175,10 @@ public class Answer extends Model {
 	@Override
 	public String toString() {
 		String s;
-		if (getAnswer() == null){
-			s = "Sem resposta";
-		} else {
+		if (getQuestion().hasOptions()) {
 			s = getAnswerOption();
+		} else {
+			s = getComment();
 		}
 		return "Answer: " + s;
 	}
