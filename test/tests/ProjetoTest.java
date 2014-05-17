@@ -320,7 +320,7 @@ public class ProjetoTest {
 			assertEquals("Nenhuma playlist foi criada para responder a survey.", e.getMessage());
 		}
 
-		assertEquals(1, SurveyAnswer.find.all().size());
+		assertEquals(0, SurveyAnswer.find.all().size());
 	}
 	
 	@Test
