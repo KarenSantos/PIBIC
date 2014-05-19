@@ -214,21 +214,8 @@ public class Projeto {
 	 *            A playlist do form da pagina.
 	 */
 	public void configuraNovaPlaylist(Playlist playlist) {
-		if (playlist.getId() != null) {
-			this.novaPlaylist.setId(playlist.getId());
-		}
-		if (playlist.getNome() != null) {
-			this.novaPlaylist.setNome(playlist.getNome());
-		}
-		if (playlist.getImagem() != null) {
-			this.novaPlaylist.setImagem(playlist.getImagem());
-		}
-		if (playlist.getPrimGenero() != null) {
-			this.novaPlaylist.setPrimGenero(playlist.getPrimGenero());
-		}
-		if (playlist.getSegGenero() != null) {
-			this.novaPlaylist.setSegGenero(playlist.getSegGenero());
-		}
+
+		this.novaPlaylist = playlist;
 		this.novaPlaylist.setPrimPaisagem(this.primPaisagem);
 		this.novaPlaylist.setSegPaisagem(this.segPaisagem);
 		if (isTransicaoSet()) {
@@ -244,6 +231,7 @@ public class Projeto {
 		this.primPaisagem = new ArrayList<Musica>();
 		this.segPaisagem = new ArrayList<Musica>();
 		this.transicao = null;
+		this.surveyAnswer = null;
 	}
 
 	/**
@@ -392,6 +380,8 @@ public class Projeto {
 	 */
 	public void salvaNovaSurvey() {
 		surveyAnswer.save();
+		novaPlaylist.setSurveyAnswer(surveyAnswer);
+		novaPlaylist.save();
 		limpaNovaPlaylist();
 	}
 

@@ -22,9 +22,9 @@ function openPlaylist(id) {
 
 function playlistStart(playlist) {
 	
-	alert(player == null);
-	player = null;
-	alert(player == null);
+//	alert(player == null);
+//	player = null;
+//	alert(player == null);
 	
 	document.getElementById("faixaPlayer").style.display = "block";
 	document.getElementById("nomePlaylist").innerHTML = playlist.nome;
@@ -34,7 +34,7 @@ function playlistStart(playlist) {
 	var currentSong = 0;
 
 	listSongs(playlist, videoTitles, videoIDs);
-	alert(videoTitles + "\n\n" + videoIDs + "\n\n" + currentSong)
+//	alert(videoTitles + "\n\n" + videoIDs + "\n\n" + currentSong)
 	
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {

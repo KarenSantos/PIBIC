@@ -176,6 +176,11 @@
 
 #searchOptions {
 	color: #FFFFFF;
+}
+
+.videoRadio {
+	margin-left:25%;
+	margin-right:25%;
 	text-align: center;
 }
 
@@ -276,10 +281,42 @@
 	margin-bottom: 5px;
 }
 
+#tempSongs{
+	position: relative;
+	height:100px;
+	padding:5px 10px;
+	border:2px solid #aaaaaa;
+	border-radius: 20px;
+	background: #FFFFFF;
+	color: black;
+	float: left;
+	font-size: 14px;
+	margin: 20px;
+}
+
+#tempSongs button {
+	border: 1px solid #aaaaaa;
+	border-radius: 5px;
+	padding: 5px;
+	background: #E6E6E6;
+}
+
+#tempSongs button:hover {
+	background: #CCCCCC;
+}
+
 #note {
 	font-style: italic;
 	float: left;
 	font-size:12px;
+}
+
+.remover {
+	color: #aaaaaa;
+}
+
+.remover a:hover {
+	color: #F8D6D5;
 }
 
 .aerror {

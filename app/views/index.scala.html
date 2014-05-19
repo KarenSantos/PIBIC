@@ -103,6 +103,12 @@
 		                <div class="title-page">
 		                    <h2 class="title">VIAJE!</h2>
 		                    <h3 class="title-description">Ouça playlists criadas por outros usuários.</h3>
+		                    @if(flash.containsKey("success")){
+					<div id="success" class="alert alert-success" style="display:block">
+						<div id="successText" class="floatLeft">@flash.get("success")&nbsp;&nbsp;</div>
+						<a class="glyphicon glyphicon-remove asuccess" onclick="fecharSuccess()"></a>
+					</div>
+				}
 		                </div>    
 		            </div>
 		        </div>

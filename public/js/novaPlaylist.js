@@ -118,12 +118,18 @@ function allowDrop(ev){
 	ev.preventDefault(); 
 }
 
-function drop(ev, goTo){ 
+function drag(ev) {
+	ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev){ 
 	ev.preventDefault(); 
 
 	var data = ev.dataTransfer.getData("Text"); 
 
-	alert("link: " + data + "\n enviado para: " + goTo.id);
+	alert("link: " + data + "\n enviado para: ");
+	
+//	ev.target.appendChild(document.getElementById(data));
 	
 }
 
@@ -164,6 +170,7 @@ function exibirMusicas() {
 	document.getElementById("p1music").innerHTML = "";
 	for (var p1mus in paisagem1){
 		document.getElementById("p1music").innerHTML += "<button type='button'>" + paisagem1[p1mus][0] + "</button><br>";
+//		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick='removerMusica(" + paisagem1[p1mus][1] + ")'></a></button><br>";
 	}
 	
 	if (transicao.length > 0){
@@ -175,6 +182,10 @@ function exibirMusicas() {
 		document.getElementById("p2music").innerHTML += "<button type='button'>" + paisagem2[p2mus][0] + "</button><br>";
 	}
 		
+}
+
+function removerMusica(id) {
+	alert(id);
 }
 
 function isAlreadyAdded(id){
@@ -220,10 +231,13 @@ function proximo(){
 		mostrarErro("Adicione uma música de transição.");
 	} else {
 		
+		document.getElementById('searchiframe').src = "";
+		
 		document.getElementById("genero1").style.display = "block";
 		document.getElementById("genero2").style.display = "block";
 		document.getElementById("info").style.display = "block";
 		
+		document.getElementById("tempSongs").style.display = "none";
 		document.getElementById("botao1").style.display = "none";
 		document.getElementById("searchForm").style.display = "none";
 		document.getElementById("searchOptions").style.display = "none";
@@ -235,6 +249,7 @@ function voltar(){
 	document.getElementById("genero2").style.display = "none";
 	document.getElementById("info").style.display = "none";
 	
+	document.getElementById("tempSongs").style.display = "block";
 	document.getElementById("botao1").style.display = "block";
 	document.getElementById("searchForm").style.display = "block";
 	document.getElementById("searchOptions").style.display = "block";

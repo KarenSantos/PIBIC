@@ -87,27 +87,23 @@ public class Application extends Controller {
 
 			playlist = playlistForm.get();
 			playlist.setId(Playlist.find.all().size() + 1 + "");
-			System.out.println("playlist do form ok");
 
 			MultipartFormData body = request().body().asMultipartFormData();
 			FilePart imagem = body.getFile("imagem");
 
 			if (imagem == null) {
-				System.out.println("imagem é nula");
 				playlist.setImagem(IMAGEM_PADRAO);
 			} else {
-				System.out.println("imagem nao é nula");
 				File file = imagem.getFile();
 				try {
 					configuraImagem(file, playlist.getId());
-					playlist.setImagem(playlist.getId());
+					playlist.setImagem(playlist.getId() + ".jpg");
 				} catch (IOException e) {
 					playlist.setImagem(IMAGEM_PADRAO);
 					flash("erro",
 							"Um problema foi encontrado ao fazer o upload da imagem. Sua playlist foi salva com a imagem padrão.");
 				}
 			}
-			System.out.println("passou das coisas da imagem");
 			projeto.configuraNovaPlaylist(playlist);
 
 			try {
@@ -149,11 +145,9 @@ public class Application extends Controller {
 					}
 				} else {
 					try {
-						System.out.println("sa: " + stringAnswer);
 						projeto.respondePerguntaAberta(answer, stringAnswer);
 					} catch (ParametroInvalidoException e) {
-						flash("nao deu certo o comentario");
-						e.printStackTrace();
+						flash("Ocorreu um erro, tente mais tarde.");
 						return redirect(routes.Application.novaPlaylist());
 					}
 				}
@@ -162,7 +156,7 @@ public class Application extends Controller {
 		if (projeto.isSurveyAnswerRespondida()) {
 			projeto.salvaNovaSurvey();
 			flash("success", "Obrigado por submeter sua survey.");
-			return redirect(routes.Application.novaPlaylist());
+			return redirect("/#work");
 		} else {
 			return redirect(routes.Application.index());
 		}
