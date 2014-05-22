@@ -2,10 +2,8 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * Classe de catálogo de playlists.
@@ -81,13 +79,16 @@ public class CatalogoDePlaylists {
 		List<Playlist> sample = new ArrayList<Playlist>();
 
 		Random randomGenerator = new Random();
-		Set<Integer> indices = new HashSet<Integer>();
+		List<Integer> indices = new ArrayList<Integer>();
 		int amount = num;
 		if (getTotalDePlaylists() < num) {
 			amount = getTotalDePlaylists();
 		}
 		while (indices.size() < amount) {
-			indices.add(randomGenerator.nextInt(getTotalDePlaylists()));
+			int ind = randomGenerator.nextInt(getTotalDePlaylists());
+			if (!indices.contains(ind)) {
+				indices.add(ind);
+			}
 		}
 
 		for (Integer indice : indices) {
