@@ -344,18 +344,15 @@ public class ProjetoTest {
 		projeto.salvarPlaylist();
 		
 		projeto.criaSurveyAnswerParaNovaPlaylist();
-		projeto.salvaNovaSurvey();
 
 		Answer ans = projeto.getSurveyAnswer().getAnswerToQuestion(1);
 		QuestionOption opt = projeto.getOptionForQuestion(ans, 1);
 
-		assertEquals("Sem resposta", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
+		assertEquals("Sem resposta", projeto.getSurveyAnswer().getAnswerToQuestion(1).getAnswerOption());
 		
 		projeto.respondePerguntaComOption(ans, opt);
-		projeto.salvaNovaSurvey();
 		
-		assertEquals("Pelo menos uma vez por dia", SurveyAnswer.find.all().get(0).getAnswerToQuestion(1).getAnswerOption());
-		
+		assertEquals("Pelo menos uma vez por dia", projeto.getSurveyAnswer().getAnswerToQuestion(1).getAnswerOption());
 	}
 	
 }
