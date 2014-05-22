@@ -169,8 +169,8 @@ function exibirMusicas() {
 
 	document.getElementById("p1music").innerHTML = "";
 	for (var p1mus in paisagem1){
-		document.getElementById("p1music").innerHTML += "<button type='button'>" + paisagem1[p1mus][0] + "</button><br>";
-//		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick='removerMusica(" + paisagem1[p1mus][1] + ")'></a></button><br>";
+		document.getElementById("p1music").innerHTML += "<button type='button'>" + paisagem1[p1mus][0] //+ "</button><br>";
+		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick=\"removerMusica('" + paisagem1[p1mus][1] + "')\"></a></button><br>";
 	}
 	
 	if (transicao.length > 0){

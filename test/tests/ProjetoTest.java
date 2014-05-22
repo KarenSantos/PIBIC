@@ -97,6 +97,11 @@ public class ProjetoTest {
 	}
 	
 	@Test
+	public void devePoderRemoverMusicasDuranteCriacao(){
+		//remover
+	}
+	
+	@Test
 	public void deveConfigurarNovaPlaylistComDadosDeUmaPlaylistRecebida(){
 		// vai ser util pra configurar a nova playlist com a playlist recebida no form
 		Playlist playlist = new Playlist();
