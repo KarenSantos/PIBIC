@@ -125,7 +125,7 @@ public class Application extends Controller {
 			flash("error", "Você precisa criar uma playlist para poder responder a survey.");
 			return redirect(routes.Application.novaPlaylist());
 		}
-		return ok(survey.render(id, projeto.getSurveyAnswer()));
+		return ok(survey.render(Playlist.find.byId(id), projeto.getSurveyAnswer()));
 	}
 
 	public static Result respostas() {

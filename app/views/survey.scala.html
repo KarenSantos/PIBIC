@@ -1,4 +1,4 @@
-@(playlistId: String, surveyAnswer: SurveyAnswer)
+@(playlist: Playlist, surveyAnswer: SurveyAnswer)
 
 @import helper._
 
@@ -28,7 +28,35 @@
 	<!-- Nova Playlist Section -->
 		
 	<div id="videoSearch">
-		<div class="texto t1">Sua playlist foi criada com sucesso!</div>
+		<div class="texto t1 alert-success">Sua playlist foi criada com sucesso!</div>
+		
+		<div id="playlistList">
+			<div class="divider"></div>
+			<div class="playlistPart">Primeira Paisagem</div>
+			<div class="songs">
+				<ul>
+					@for(musica <- playlist.getPrimPaisagem){
+						<li>@musica.getNome</li>
+					}
+				</ul>
+			</div>
+			<div class="divider"></div>
+			<div class="playlistPart">Música de Transição</div>
+			<div class="songs">
+				<ul>
+					<li>@playlist.getTransicao.getNome
+				</ul>
+			</div>
+			<div class="divider"></div>
+			<div class="playlistPart">Segunda Paisagem</div>
+			<div class="songs">
+				<ul>
+					@for(musica <- playlist.getSegPaisagem){
+						<li>@musica.getNome</li>
+					}
+				</ul>
+			</div>
+		</div>
 		
 	</div>
 
@@ -68,7 +96,7 @@
 						
 					</div>
 
-					<div id="botao1" class="floatRight">
+					<div id="botao1" class="botaoFinal">
 						<button type="button" class="btn btn-lg mainButton" onclick="location.href='/'">Não, obrigado.</button>
 				   		<button type="submit" class="btn btn-lg mainButton">Enviar</button>
 					</div>
