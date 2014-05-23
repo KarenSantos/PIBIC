@@ -74,6 +74,11 @@ public class Application extends Controller {
 		return ok();
 	}
 
+	public static Result removeMusica(String id){
+		projeto.removeMusica(id);
+		return ok();
+	}
+	
 	public static Result criaPlaylist() {
 
 		Form<Playlist> playlistForm = Form.form(Playlist.class)

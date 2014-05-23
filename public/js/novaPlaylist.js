@@ -166,26 +166,64 @@ function adicionarMusica(lugar, nome, id){
 }
 
 function exibirMusicas() {
-
 	document.getElementById("p1music").innerHTML = "";
 	for (var p1mus in paisagem1){
-		document.getElementById("p1music").innerHTML += "<button type='button'>" + paisagem1[p1mus][0] //+ "</button><br>";
-		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick=\"removerMusica('" + paisagem1[p1mus][1] + "')\"></a></button><br>";
+		document.getElementById("p1music").innerHTML += "<button type='button'>" + paisagem1[p1mus][0]
+		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick=\"removerMusicaProjeto('" + paisagem1[p1mus][1] + "')\"></a></button><br>";
 	}
 	
 	if (transicao.length > 0){
-		document.getElementById("tmusic").innerHTML = "<button type='button'>" + transicao[0] + "</button><br>";
+		document.getElementById("tmusic").innerHTML = "<button type='button'>" + transicao[0]
+		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick=\"removerMusicaProjeto('" + transicao[1] + "')\"></a></button><br>";
 	}
 	
 	document.getElementById("p2music").innerHTML = "";
 	for (var p2mus in paisagem2){
-		document.getElementById("p2music").innerHTML += "<button type='button'>" + paisagem2[p2mus][0] + "</button><br>";
+		document.getElementById("p2music").innerHTML += "<button type='button'>" + paisagem2[p2mus][0]
+		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick=\"removerMusicaProjeto('" + paisagem2[p2mus][1] + "')\"></a></button><br>";
 	}
 		
 }
 
-function removerMusica(id) {
-	alert(id);
+function removerMusicaProjeto(id) {
+	$.ajax({
+		type : "GET",
+		url : "/remove/" + id,
+		data : "",
+		success : function() {
+			removerMusica(id);
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			mostrarErro("Ocorreu um erro, tente mais tarde.");
+		}
+	});
+}
+
+function removerMusica(id){
+	
+	alert("mus: " + paisagem1['musica1'][0] + "\n num: " + numMusP1);
+	
+	for (var p1mus in paisagem1){
+		if(paisagem1[p1mus][1] == id){
+			alert("entrou no if");
+			delete paisagem1[p1mus];
+			numMusP1--;
+			alert("mus: " + paisagem1['musica1'][0] + "\n num: " + numMusP1);
+			break;
+		}
+	}
+	if(transicao[1] == id){
+		transicao = [];
+		numMusT = 0;
+	}
+	for (var p2mus in paisagem2){
+		if(paisagem2[p2mus][1] == id){
+			delete paisagem2.p2mus;
+			numMusP2--;
+			break;
+		}
+	}
+	exibirMusicas();
 }
 
 function isAlreadyAdded(id){

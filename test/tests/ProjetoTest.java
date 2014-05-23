@@ -1,8 +1,6 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.start;
@@ -97,8 +95,18 @@ public class ProjetoTest {
 	}
 	
 	@Test
-	public void devePoderRemoverMusicasDuranteCriacao(){
-		//remover
+	public void devePoderRemoverMusicasDuranteCriacao() throws AlocacaoInvalidaException{
+		projeto.addMusicaPrimPaisagem("mus1", "yW39pSIu4kk");
+		projeto.addMusicaSegPaisagem("mus2", "huFra1mnIVE");
+		projeto.setMusicaTransicao("transicao", "T0ip40j82ws");
+		
+		assertEquals(1, projeto.getTotalMusicasSegPaisagem());
+		
+		projeto.removeMusica("huFra1mnIVE");
+		assertEquals(0, projeto.getTotalMusicasSegPaisagem());
+		
+		projeto.removeMusica("T0ip40j82ws");
+		assertFalse(projeto.isTransicaoSet());
 	}
 	
 	@Test

@@ -192,6 +192,30 @@ public class Projeto {
 	}
 
 	/**
+	 * Remove uma musica se estiver adicionada em alguma das partes da playlist.
+	 * 
+	 * @param id
+	 *            O id da musica a ser removida.
+	 */
+	public void removeMusica(String id) {
+		for (Musica musica : primPaisagem) {
+			if (musica.getId().equals(id)) {
+				primPaisagem.remove(musica);
+				break;
+			}
+		}
+		if (isTransicaoSet() && transicao.getId().equals(id)) {
+			transicao = null;
+		}
+		for (Musica musica : segPaisagem) {
+			if (musica.getId().equals(id)) {
+				segPaisagem.remove(musica);
+				break;
+			}
+		}
+	}
+
+	/**
 	 * Retorna a lista de todas as musicas da nova playlist.
 	 * 
 	 * @return A lista de todas as musicas da nova playlist.
@@ -298,10 +322,10 @@ public class Projeto {
 	 */
 	public void criaSurveyAnswerParaNovaPlaylist()
 			throws PlaylistIncompletaException {
-		//se a playlist ja foi salva podemos criar a survey
+		// se a playlist ja foi salva podemos criar a survey
 		if (!catalogo.getPlaylists().contains(novaPlaylist)) {
 			throw new PlaylistIncompletaException(
-						"Nenhuma playlist foi criada para responder a survey.");
+					"Nenhuma playlist foi criada para responder a survey.");
 		}
 		this.surveyAnswer = new SurveyAnswer(Survey.find.byId(ID_SURVEY_PADRAO));
 	}

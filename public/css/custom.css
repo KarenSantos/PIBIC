@@ -165,8 +165,8 @@
 
 #videoSearch .t2 {
 	font-size:14px;
-	float: right;
-	margin: 15px 10px 0 0;
+	float: left;
+	margin: 15px 10px 0 10px;
 }
 
 #videoSearch .t3 {
