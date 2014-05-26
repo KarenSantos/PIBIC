@@ -200,7 +200,9 @@ public class Projeto {
 	public void removeMusica(String id) {
 		for (Musica musica : primPaisagem) {
 			if (musica.getId().equals(id)) {
+				System.out.println(primPaisagem);
 				primPaisagem.remove(musica);
+				System.out.println(primPaisagem);
 				break;
 			}
 		}

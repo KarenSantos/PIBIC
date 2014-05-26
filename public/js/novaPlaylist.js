@@ -202,26 +202,52 @@ function removerMusicaProjeto(id) {
 function removerMusica(id){
 	
 	alert("mus: " + paisagem1['musica1'][0] + "\n num: " + numMusP1);
+	var done = false;
 	
-	for (var p1mus in paisagem1){
-		if(paisagem1[p1mus][1] == id){
-			alert("entrou no if");
-			delete paisagem1[p1mus];
-			numMusP1--;
-			alert("mus: " + paisagem1['musica1'][0] + "\n num: " + numMusP1);
-			break;
-		}
-	}
 	if(transicao[1] == id){
 		transicao = [];
 		numMusT = 0;
+		done = true;
 	}
-	for (var p2mus in paisagem2){
-		if(paisagem2[p2mus][1] == id){
-			delete paisagem2.p2mus;
-			numMusP2--;
-			break;
+	if (!done){
+		var musTemp = {};
+		var numTemp = 1;
+
+		for (var p1mus in paisagem1){
+			if(paisagem1[p1mus][1] == id){
+				for (var p1 in paisagem1){
+					if(paisagem1[p1][1] != id){
+						var musica = "musica" + numTemp;
+						musTemp[musica] = [paisagem1[p1][0], paisagem1[p1][1];
+						musTemp++;
+					}
+				}
+				paisagem1 = musTemp;
+				numMusP1--;
+				alert("mus: " + paisagem1['musica1'][0] + "\n num: " + numMusP1);
+				done = true;
+				break;
+			}
 		}
+		
+		if (!done){
+			for (var p2mus in paisagem2){
+				if(paisagem2[p2mus][1] == id){
+					for (var p2 in paisagem2){
+						if(paisagem2[p2][1] != id){
+							var musica = "musica" + numTemp;
+							musTemp[musica] = [paisagem2[p2][0], paisagem2[p2][1];
+							musTemp++;
+						}
+					}
+					paisagem2 = musTemp;
+					numMusP2--;
+					alert("mus: " + paisagem2['musica1'][0] + "\n num: " + numMusP2);
+					break;
+				}
+			}
+		}
+		
 	}
 	exibirMusicas();
 }
