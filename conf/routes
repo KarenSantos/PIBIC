@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET		/getPlaylist/:id			controllers.Application.getPlaylist(id: String)
+GET		/playlists					controllers.Application.getPlaylists()
 
 # Nova Playlist
 
@@ -16,8 +17,6 @@ GET		/remove/:id					controllers.Application.removeMusica(id: String)
 POST	/cria_playlist				controllers.Application.criaPlaylist()
 GET		/survey/:playlistId			controllers.Application.survey(playlistId: String)
 POST	/respostas					controllers.Application.respostas()
-
-#/:disciplinaId/:futuro/:atual		controllers.Application.mover(disciplinaId: String, futuro: Int, atual: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

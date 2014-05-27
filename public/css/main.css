@@ -685,8 +685,17 @@ nav#menu #menu-nav li a:hover {
 }
 
 /* ==================================================
-   Section Portfolio
+   Section Playlists
 ================================================== */
+
+#work button{
+	float: right;
+	margin: 5px;
+}
+
+#work button:hover{
+	background-color: #FF8C53;
+}
 
 .work-nav {
 	margin-bottom: 30px;

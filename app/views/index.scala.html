@@ -104,11 +104,11 @@
 		                    <h2 class="title">VIAJE!</h2>
 		                    <h3 class="title-description">Ouça playlists criadas por outros usuários.</h3>
 		                    @if(flash.containsKey("success")){
-					<div id="success" class="alert alert-success" style="display:block">
-						<div id="successText" class="floatLeft">@flash.get("success")&nbsp;&nbsp;</div>
-						<a class="glyphicon glyphicon-remove asuccess" onclick="fecharSuccess()"></a>
-					</div>
-				}
+								<div id="success" class="alert alert-success" style="display:block">
+									<div id="successText" class="floatLeft">@flash.get("success")&nbsp;&nbsp;</div>
+									<a class="glyphicon glyphicon-remove asuccess" onclick="fecharSuccess()"></a>
+								</div>
+							}
 		                </div>    
 		            </div>
 		        </div>
@@ -137,22 +137,26 @@
 		            </div>
 		        </div>
 		        <!-- End Portfolio Projects -->
+		        
+		        <button type="button" class="btn btn-lg" onClick="location.href='/playlists'">Mais Playlists</button>
 		    </div>
+			
+			<!-- Big Blockquote -->
+			<div class="big-quote page">
+				<div class="container">
+			    	<div class="row">
+			        	<div class="span12">
+			            	<p>Será que você consegue fazer melhor?</p>
+			                <span class="font-icon-blockquote"></span>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			<!-- End Big Blockquote -->
+			
 		</div>
 		<!-- End Playlists Section -->
 		
-		<!-- Big Blockquote -->
-		<div class="big-quote page">
-			<div class="container">
-		    	<div class="row">
-		        	<div class="span12">
-		            	<p>Será que você consegue fazer melhor?</p>
-		                <span class="font-icon-blockquote"></span>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-		<!-- End Big Blockquote -->
 		
 		<!-- Nova Playlist Section -->
 		<div id="criar" class="page-alternate">
@@ -272,11 +276,13 @@
 		
 		<!-- Footer -->
 		<footer id="footer">
-			<div id="faixaPlayer" style="display:none;">
+			<div id="faixaPlayer" style="display:none;" class="row">
 				<a id="fecharPlayer" onclick="closePlaylist()">
 					<i class="font-icon-remove"></i>
 				</a>
+				<img id="imagemPlaylist" alt="Não foi possível carregar imagem">
 				<div id="nomePlaylist"></div>
+				
 				<div id="videoBox">
 					<div id="player" class="video"></div>
 					<div id="musicaAtual"></div>

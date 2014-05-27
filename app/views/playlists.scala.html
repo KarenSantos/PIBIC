@@ -1,0 +1,116 @@
+@(playlists: List[Playlist])
+
+@import helper._
+
+@main("Projeto") {
+
+	<!-- Header -->
+	<header>
+	    <div class="sticky-nav">
+	    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+	        
+	        <div id="logo">
+	        	<a id="goUp" href="#" title="Projeto">Projeto</a>
+	        </div>
+	        
+	        <nav id="menu">
+	        	<ul id="menu-nav">
+	            	<li><a onclick="location.href='/'">Home</a></li>
+	                <li><a onclick="location.href='/#work'">Playlists</a></li>
+	                <li><a onclick="location.href='/#criar'">Nova Playlist</a></li>
+	                <li><a onclick="location.href='/#contact'">Contato</a></li>
+	            </ul>
+	        </nav>
+	        
+	    </div>
+	</header>
+	<!-- End Header -->
+	
+	<!-- Nova Playlist Section -->
+		
+	<div id="videoSearch">
+		<div class="texto t1">Nome da playlist aqui</div>
+		
+		<div id="playlistList">
+			<div class="divider"></div>
+			<div class="playlistPart">Primeira Paisagem</div>
+			<div class="songs">
+				<ul>
+					<li>musicas aqui</li>
+				</ul>
+			</div>
+			<div class="divider"></div>
+			<div class="playlistPart">Música de Transição</div>
+			<div class="songs">
+				<ul>
+					<li>transicao aqui
+				</ul>
+			</div>
+			<div class="divider"></div>
+			<div class="playlistPart">Segunda Paisagem</div>
+			<div class="songs">
+				<ul>
+					<li>musicas aqui</li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+
+	<div id="playlists">
+	   
+	    <!-- Title Page -->
+	    <div class="row">
+	    	<div class="span12">
+	            <div class="title-page">
+	                <h2 class="title">VIAJE!</h2>
+	                <h3 class="title-description">Ouça playlists criadas por outros usuários.</h3>
+					@if(flash.containsKey("success")){
+						<div id="success" class="alert alert-success" style="display:block">
+							<div id="successText" class="floatLeft">@flash.get("success")&nbsp;&nbsp;</div>
+							<a class="glyphicon glyphicon-remove asuccess" onclick="fecharSuccess()"></a>
+						</div>
+					}
+	            </div>
+			</div>
+        </div>
+	    
+	    <div class="row">
+	    	<div class="span12">
+				
+				<section id="projects">
+ 					<ul id="thumbs">
+                     	@for(playlist <- playlists) {
+							<li class="item-thumbs span3 design">
+								<!-- Fancybox - Gallery Enabled - Title - Full Image -->
+								<a class="hover-wrap" id="playlist" title="Clique aqui para ouvir" onclick="openPlaylist('@playlist.getId()')">
+								    <span class="overlay-img"></span>
+								    <span class="overlay-img-thumb font-icon-play"></span>
+								</a>
+								<!-- Thumb Image and Description -->
+								<img src="@routes.Assets.at("img/playImgs/" + playlist.getImagem())" alt="Não foi possível carregar imagem">
+							</li>
+                         }               
+					</ul>
+				</section>
+			    
+		     </div>
+	    </div>
+    </div>
+    
+   	<!-- Footer -->
+	<footer id="footer">
+		<div id="faixaPlayer" style="display:none;">
+			<a id="fecharPlayer" onclick="closePlaylist()">
+				<i class="font-icon-remove"></i>
+			</a>
+			<div id="nomePlaylist"></div>
+			<div id="videoBox">
+				<div id="player" class="video"></div>
+				<div id="musicaAtual"></div>
+			</div>
+			<div id="proxima"></div>
+		</div>
+	</footer>
+    
+}

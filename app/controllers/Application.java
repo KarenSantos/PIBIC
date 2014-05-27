@@ -24,6 +24,7 @@ import play.mvc.Result;
 import views.html.create;
 import views.html.index;
 import views.html.survey;
+import views.html.playlists;
 
 public class Application extends Controller {
 
@@ -41,6 +42,10 @@ public class Application extends Controller {
 	public static Result getPlaylist(String id) {
 		Playlist playlist = projeto.getPlaylist(id);
 		return ok(Json.toJson(playlist));
+	}
+	
+	public static Result getPlaylists(){
+		return ok(playlists.render(projeto.getPlaylists()));
 	}
 
 	public static Result novaPlaylist() {

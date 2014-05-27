@@ -27,6 +27,7 @@ function playlistStart(playlist) {
 //	alert(player == null);
 	
 	document.getElementById("faixaPlayer").style.display = "block";
+	document.getElementById("imagemPlaylist").src = "@routes.Assets.at('img/playImgs/" + playlist.imagem + "')";
 	document.getElementById("nomePlaylist").innerHTML = playlist.nome;
 
 	var videoTitles = [];
@@ -38,7 +39,7 @@ function playlistStart(playlist) {
 	
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
-			height : '59',
+			height : '63',
 			width : '300',
 			events : {
 				'onReady' : onPlayerReady,
