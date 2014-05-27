@@ -140,6 +140,7 @@ function enviarMusicaProjeto(lugar, nome, id){
 		data : "",
 		success : function() {
 			adicionarMusica(lugar, nome, id);
+			fecharErro();
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			mostrarErro("Este vídeo apresentou problemas, melhor tentar outro.");
@@ -172,6 +173,7 @@ function exibirMusicas() {
 		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick=\"removerMusicaProjeto('" + paisagem1[p1mus][1] + "')\"></a></button><br>";
 	}
 	
+	document.getElementById("tmusic").innerHTML = "";
 	if (transicao.length > 0){
 		document.getElementById("tmusic").innerHTML = "<button type='button'>" + transicao[0]
 		+ " &nbsp;&nbsp;<a class='glyphicon glyphicon-remove remover' onclick=\"removerMusicaProjeto('" + transicao[1] + "')\"></a></button><br>";
@@ -201,55 +203,47 @@ function removerMusicaProjeto(id) {
 
 function removerMusica(id){
 	
-	alert("mus: " + paisagem1['musica1'][0] + "\n num: " + numMusP1);
-	var done = false;
 	
 	if(transicao[1] == id){
 		transicao = [];
 		numMusT = 0;
-		done = true;
+		exibirMusicas();
+		return true;
 	}
-	if (!done){
-		var musTemp = {};
-		var numTemp = 1;
+	var musTemp = {};
+	var numTemp = 0;
 
-		for (var p1mus in paisagem1){
-			if(paisagem1[p1mus][1] == id){
-				for (var p1 in paisagem1){
-					if(paisagem1[p1][1] != id){
-						var musica = "musica" + numTemp;
-						musTemp[musica] = [paisagem1[p1][0], paisagem1[p1][1];
-						musTemp++;
-					}
-				}
-				paisagem1 = musTemp;
-				numMusP1--;
-				alert("mus: " + paisagem1['musica1'][0] + "\n num: " + numMusP1);
-				done = true;
-				break;
-			}
-		}
-		
-		if (!done){
-			for (var p2mus in paisagem2){
-				if(paisagem2[p2mus][1] == id){
-					for (var p2 in paisagem2){
-						if(paisagem2[p2][1] != id){
-							var musica = "musica" + numTemp;
-							musTemp[musica] = [paisagem2[p2][0], paisagem2[p2][1];
-							musTemp++;
-						}
-					}
-					paisagem2 = musTemp;
-					numMusP2--;
-					alert("mus: " + paisagem2['musica1'][0] + "\n num: " + numMusP2);
-					break;
+	for (var p1mus in paisagem1){
+		if(paisagem1[p1mus][1] == id){
+			for (var p1 in paisagem1){
+				if(paisagem1[p1][1] != id){
+					numTemp++;
+					var musica = "musica" + numTemp;
+					musTemp[musica] = [paisagem1[p1][0], paisagem1[p1][1]];
 				}
 			}
+			paisagem1 = clone(musTemp);
+			numMusP1--;
+			exibirMusicas();
+			return true;
 		}
-		
 	}
-	exibirMusicas();
+		
+	for (var p2mus in paisagem2){
+		if(paisagem2[p2mus][1] == id){
+			for (var p2 in paisagem2){
+				if(paisagem2[p2][1] != id){
+					numTemp++;
+					var musica = "musica" + numTemp;
+					musTemp[musica] = [paisagem2[p2][0], paisagem2[p2][1]];
+				}
+			}
+			paisagem2 = clone(musTemp);
+			numMusP2--;
+			exibirMusicas();
+			return true;
+		}
+	}
 }
 
 function isAlreadyAdded(id){
@@ -317,4 +311,35 @@ function voltar(){
 	document.getElementById("botao1").style.display = "block";
 	document.getElementById("searchForm").style.display = "block";
 	document.getElementById("searchOptions").style.display = "block";
+}
+
+function clone(obj) {
+	// Handle the 3 simple types, and null or undefined
+    if (null == obj || "object" != typeof obj) return obj;
+
+    // Handle Date
+    if (obj instanceof Date) {
+        var copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
+    }
+
+    // Handle Array
+    if (obj instanceof Array) {
+        var copy = [];
+        for (var i = 0, len = obj.length; i < len; i++) {
+            copy[i] = clone(obj[i]);
+        }
+        return copy;
+    }
+
+    // Handle Object
+    if (obj instanceof Object) {
+        var copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+        }
+        return copy;
+    }
+    throw new Error("Unable to copy obj! Its type isn't supported.");
 }

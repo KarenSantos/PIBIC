@@ -44,6 +44,7 @@ public class Application extends Controller {
 	}
 
 	public static Result novaPlaylist() {
+		projeto.limpaNovaPlaylist();
 		return ok(create.render(Form.form(Playlist.class)));
 	}
 
