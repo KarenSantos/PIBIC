@@ -34,11 +34,11 @@ public class Global extends GlobalSettings {
 	}
 	
 	public Promise<SimpleResult> onBadRequest(RequestHeader request, String error) {
-        return Promise.<SimpleResult>pure(badRequest("Don't try to hack the URI!"));
+        return Promise.<SimpleResult>pure(badRequest("Don't try to hack the URL!"));
     }
 	
 	public void onStart(Application app) {
-		System.out.println("entrou on start");
+		System.out.println("entrou no onStart");
 		
 		if (Survey.find.byId(ID_SURVEY_PADRAO) == null){
 			criaSurvey();
