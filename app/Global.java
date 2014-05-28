@@ -54,7 +54,6 @@ public class Global extends GlobalSettings {
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(surveyText), "ISO-8859-1"));
 			Question q = new Question();
 			int optionNum = 1;
-//			int questionNum = 0;
 			System.out.println("achou o arquivo");
 			
 			while ((currentLine = reader.readLine()) != null) {
@@ -62,9 +61,7 @@ public class Global extends GlobalSettings {
 				String s = currentLine;
 				
 				if (s.startsWith("q")){
-//					q.setId(questionNum + "");
             		q.setQuestion(s.split("-")[1]);
-//            		questionNum++;
             	} else if (s.startsWith("o")){
             		QuestionOption opt = new QuestionOption(optionNum, s.split("-")[1]);
             		q.addOption(opt);
