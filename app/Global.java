@@ -38,6 +38,7 @@ public class Global extends GlobalSettings {
     }
 	
 	public void onStart(Application app) {
+		System.out.println("entrou on start");
 		
 		if (Survey.find.byId(ID_SURVEY_PADRAO) == null){
 			criaSurvey();
