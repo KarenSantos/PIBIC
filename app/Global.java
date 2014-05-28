@@ -40,7 +40,7 @@ public class Global extends GlobalSettings {
 	public void onStart(Application app) {
 		System.out.println("entrou no onStart");
 		
-		if (Survey.find.byId(ID_SURVEY_PADRAO) == null){
+		if (Survey.find.all().isEmpty()){
 			criaSurvey();
 		}
 	}
