@@ -18,15 +18,11 @@ import play.libs.F.Promise;
 import play.mvc.Http.RequestHeader;
 import play.mvc.SimpleResult;
 import views.html.error;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Global extends GlobalSettings {
 	
 	private final String ID_SURVEY_PADRAO = "padrao";
 	
-	private static Logger logger = LoggerFactory.getLogger(Global.class);
-
 	public Promise<SimpleResult> onError(RequestHeader request, Throwable t) {
 		return Promise.<SimpleResult>pure(internalServerError(error.render("Erro encontrado:\n"
 													+ t.getMessage())));
@@ -52,14 +48,14 @@ public class Global extends GlobalSettings {
 		List<Question> questions = new ArrayList<Question>();
 		BufferedReader reader = null;
 		try {
-			logger.info("vai ler o arquivo");
+			System.out.println("vai ler o arquivo");
 			String currentLine;
 			File surveyText = new File("./public/survey.txt");
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(surveyText), "ISO-8859-1"));
 			Question q = new Question();
 			int optionNum = 1;
 //			int questionNum = 0;
-			logger.error("achou o arquivo");
+			System.out.println("achou o arquivo");
 			
 			while ((currentLine = reader.readLine()) != null) {
 				
