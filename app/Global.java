@@ -40,11 +40,9 @@ public class Global extends GlobalSettings {
 	public void onStart(Application app) {
 		System.out.println("entrou no onStart");
 		
-		Playlist.find.all();
-		
-		if (Survey.find.all().isEmpty()){
+//		if (Survey.find.all().isEmpty()){
 			criaSurvey();
-		}
+//		}
 	}
 	
 	private void criaSurvey(){
