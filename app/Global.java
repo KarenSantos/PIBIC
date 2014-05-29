@@ -41,7 +41,7 @@ public class Global extends GlobalSettings {
 		System.out.println("entrou no onStart");
 		
 //		if (Survey.find.all().isEmpty()){
-			criaSurvey();
+//			criaSurvey();
 //		}
 	}
 	
