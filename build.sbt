@@ -1,4 +1,4 @@
-name := "Projeto"
+name := "projeto"
 
 version := "1.0-SNAPSHOT"
 
