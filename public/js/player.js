@@ -4,6 +4,12 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 
+//caso o player seja chamado na pagina de playlists o display de detalhes de playlist precisa ser diminuido
+function shortViewHeight(id){
+	document.getElementById("playlistsView").style.height = "calc(100% - 130px)";
+	openPlaylist(id);
+}
+
 function openPlaylist(id) {
 
 	$.ajax({
@@ -17,7 +23,6 @@ function openPlaylist(id) {
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 		}
 	});
-
 }
 
 function playlistStart(playlist) {
@@ -27,8 +32,9 @@ function playlistStart(playlist) {
 //	alert(player == null);
 	
 	document.getElementById("faixaPlayer").style.display = "block";
-	document.getElementById("imagemPlaylist").src = "@routes.Assets.at('img/playImgs/" + playlist.imagem + "')";
+	document.getElementById("imagemPlaylist").innerHTML = "<img src='/assets/img/playImgs/" + playlist.imagem + "' width='100%' height='100%' alt='Não foi possível carregar imagem'>";
 	document.getElementById("nomePlaylist").innerHTML = playlist.nome;
+	document.getElementById("generos").innerHTML = "De \"" + playlist.primGenero + "\" à \"" + playlist.segGenero + "\"";
 
 	var videoTitles = [];
 	var videoIDs = [];
@@ -50,9 +56,7 @@ function playlistStart(playlist) {
 
 	function onPlayerReady(event) {
 		event.target.loadVideoById(videoIDs[currentSong]);
-		
 		document.getElementById("musicaAtual").innerHTML = '"' + videoTitles[currentSong] + '"';
-		document.getElementById("proxima").innerHTML = "Próxima: " + videoTitles[currentSong+1];
 	}
 
 	function onPlayerStateChange(event) {
@@ -60,13 +64,7 @@ function playlistStart(playlist) {
 			currentSong++;
 			if (currentSong < videoIDs.length) {
 				player.loadVideoById(videoIDs[currentSong]);
-				
 				document.getElementById("musicaAtual").innerHTML = '"' + videoTitles[currentSong] + '"';
-				
-				if (currentSong+1 < videoIDs.length) {
-					document.getElementById("proxima").innerHTML = "Próxima: " + videoTitles[currentSong+1];
-				}
-				
 			}
 		}
 	}
@@ -76,9 +74,13 @@ function playlistStart(playlist) {
 	} else {
 		player.loadVideoById(videoIDs[currentSong]);
 		document.getElementById("musicaAtual").innerHTML = '"' + videoTitles[currentSong] + '"';
-		document.getElementById("proxima").innerHTML = "Próxima: " + videoTitles[currentSong+1];
 	}
-	
+}
+
+//caso o player seja fechado na pagina de playlists o display de detalhes de playlist precisa voltar ao normal
+function longViewHeight(){
+	document.getElementById("playlistsView").style.height = "calc(100% - 60px)";
+	closePlaylist();
 }
 
 function closePlaylist() {

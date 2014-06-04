@@ -10,7 +10,7 @@
 	bottom: 0;
 	padding: 2px 20px;
 	line-height: 28px;
-	z-index: 102;
+	z-index: 99;
 }
 
 #fecharPlayer {
@@ -32,8 +32,11 @@
 }
 
 #imagemPlaylist {
+	position: relative;
 	float: left;
 	margin: 0px 20px;
+	height: 62px;
+	width: 100px;
 }
 
 #nomePlaylist {
@@ -67,7 +70,7 @@
 	line-height:20px;
 }
 
-#proxima {
+#generos {
 	color: #fff;;
 	font-size: 20px;
 	float:left;
@@ -138,6 +141,31 @@
 	overflow-x: hidden;
 }
 
+#playlistsView {
+	position: fixed;
+	width: 20%;
+	height: calc(100% - 60px);
+	background: #666666;
+	padding: 5px;
+	z-index: 99;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border-bottom: 2px solid #FFFFFF;
+}
+
+#playlistsView .texto {
+	color: #FFFFFF;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	font-size:24px;
+	margin: 15px;
+}
+
+#imagemPlaylistView {
+	text-align: center;
+}
+
 /* ==================================================
    Video Search
 ================================================== */
@@ -148,7 +176,7 @@
 	height: calc(100% - 60px);
 	background: #666666;
 	padding: 5px;
-	z-index: 100;
+	z-index: 99;
 	overflow-x: hidden;
 	overflow-y: auto;
 }

@@ -28,31 +28,24 @@
 	
 	<!-- Nova Playlist Section -->
 		
-	<div id="videoSearch">
-		<div class="texto t1">Nome da playlist aqui</div>
+	<div id="playlistsView">
+		
+		<div id="nomePlaylistView" class="texto">Detalhes da Playlist</div>
+		
+		<div id="imagemPlaylistView"></div>
 		
 		<div id="playlistList">
 			<div class="divider"></div>
 			<div class="playlistPart">Primeira Paisagem</div>
-			<div class="songs">
-				<ul>
-					<li>musicas aqui</li>
-				</ul>
-			</div>
+			<div id="songs1" class="songs"></div>
+			
 			<div class="divider"></div>
 			<div class="playlistPart">Música de Transição</div>
-			<div class="songs">
-				<ul>
-					<li>transicao aqui
-				</ul>
-			</div>
+			<div id="songs2" class="songs"></div>
+			
 			<div class="divider"></div>
 			<div class="playlistPart">Segunda Paisagem</div>
-			<div class="songs">
-				<ul>
-					<li>musicas aqui</li>
-				</ul>
-			</div>
+			<div id="songs3" class="songs"></div>
 		</div>
 		
 	</div>
@@ -83,7 +76,7 @@
                      	@for(playlist <- playlists) {
 							<li class="item-thumbs span3 design">
 								<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-								<a class="hover-wrap" id="playlist" title="Clique aqui para ouvir" onclick="openPlaylist('@playlist.getId()')">
+								<a class="hover-wrap" id="playlist" title="Clique aqui para ouvir" onmouseover="selectPlaylist('@playlist.getId()')" onclick="shortViewHeight('@playlist.getId()')">
 								    <span class="overlay-img"></span>
 								    <span class="overlay-img-thumb font-icon-play"></span>
 								</a>
@@ -100,16 +93,21 @@
     
    	<!-- Footer -->
 	<footer id="footer">
-		<div id="faixaPlayer" style="display:none;">
-			<a id="fecharPlayer" onclick="closePlaylist()">
+		<div id="faixaPlayer" style="display:none;" class="row">
+				
+			<div id="imagemPlaylist"></div>
+			<div id="nomePlaylist"></div>
+			
+			<div id="generos"></div>
+
+			<a id="fecharPlayer" onclick="longViewHeight()">
 				<i class="font-icon-remove"></i>
 			</a>
-			<div id="nomePlaylist"></div>
+
 			<div id="videoBox">
 				<div id="player" class="video"></div>
 				<div id="musicaAtual"></div>
 			</div>
-			<div id="proxima"></div>
 		</div>
 	</footer>
     
