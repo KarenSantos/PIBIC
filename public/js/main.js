@@ -207,7 +207,7 @@ CHAKRA.contactForm = function(){
 		
 		$.ajax({
 			type: "POST",
-			url: "_include/php/contact.php",
+			url: "/public/php/contact.php",
 			data: fields,
 			dataType: 'json',
 			success: function(response) {
