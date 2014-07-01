@@ -295,7 +295,6 @@ function proximo(){
 		document.getElementById("genero2").style.display = "block";
 		document.getElementById("info").style.display = "block";
 		
-		document.getElementById("tempSongs").style.display = "none";
 		document.getElementById("botao1").style.display = "none";
 		document.getElementById("searchForm").style.display = "none";
 		document.getElementById("searchOptions").style.display = "none";
@@ -307,7 +306,6 @@ function voltar(){
 	document.getElementById("genero2").style.display = "none";
 	document.getElementById("info").style.display = "none";
 	
-	document.getElementById("tempSongs").style.display = "block";
 	document.getElementById("botao1").style.display = "block";
 	document.getElementById("searchForm").style.display = "block";
 	document.getElementById("searchOptions").style.display = "block";
